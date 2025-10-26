@@ -1,0 +1,278 @@
+{
+  "version": "2025-03-01",
+  "locale": "ja-JP",
+  "title": "プロ診断（STEP2）",
+  "questions": [
+    {
+      "id": "s2_q1",
+      "text": "主な活用シーンを選んでください",
+      "weight": 4,
+      "options": [
+        {
+          "key": "A",
+          "label": "趣味・旅撮／SNS・コンテンツ作成",
+          "scores": { "hobby": 4, "creative": 2 }
+        },
+        {
+          "key": "B",
+          "label": "映像制作・プロモーション",
+          "scores": { "creative": 4, "hobby": 1 }
+        },
+        {
+          "key": "C",
+          "label": "設備点検・保守・災害対応",
+          "scores": { "inspection": 4, "auto": 1 }
+        },
+        {
+          "key": "D",
+          "label": "測量・マッピング・土木設計",
+          "scores": { "survey": 4 }
+        },
+        {
+          "key": "E",
+          "label": "農業リモートセンシング・圃場管理",
+          "scores": { "agri": 4, "survey": 2 }
+        },
+        {
+          "key": "F",
+          "label": "物資輸送・物流支援",
+          "scores": { "logi": 4, "auto": 2 }
+        },
+        {
+          "key": "G",
+          "label": "無人監視・警戒運用",
+          "scores": { "auto": 4, "inspection": 2 }
+        },
+        {
+          "key": "H",
+          "label": "研究・開発・PoC",
+          "scores": { "dev": 4, "survey": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q2",
+      "text": "運用頻度の想定は？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "年数回〜月1程度",
+          "scores": { "hobby": 1, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "月数回〜隔週",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+        },
+        {
+          "key": "C",
+          "label": "週1以上／常時運用",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q3",
+      "text": "操縦者・運用チームのスキルセットは？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "初級（これから習得／資格未取得）",
+          "scores": { "hobby": 2, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "中級（国家資格二等など取得済み）",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+        },
+        {
+          "key": "C",
+          "label": "上級（産業用途の経験豊富）",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "dev": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q4",
+      "text": "主な運用環境は？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "屋内／市街地／イベント会場",
+          "scores": { "creative": 2, "inspection": 1 }
+        },
+        {
+          "key": "B",
+          "label": "工場・プラント・インフラ現場",
+          "scores": { "inspection": 3, "auto": 1 }
+        },
+        {
+          "key": "C",
+          "label": "山間部・林野・農地・広域エリア",
+          "scores": { "survey": 2, "agri": 3 }
+        },
+        {
+          "key": "D",
+          "label": "沿岸・強風エリア・遠隔地",
+          "scores": { "logi": 2, "auto": 2, "survey": 1 }
+        },
+        {
+          "key": "E",
+          "label": "常設拠点からの24h無人運用",
+          "scores": { "auto": 3, "logi": 2 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q5",
+      "text": "自動航行・ドック運用は必要ですか？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "はい（常時監視・遠隔操作を想定）",
+          "scores": { "auto": 4, "logi": 3, "survey": 1, "inspection": 1 }
+        },
+        {
+          "key": "B",
+          "label": "検討中／部分的に導入予定",
+          "scores": { "auto": 2, "logi": 1, "survey": 1 }
+        },
+        {
+          "key": "C",
+          "label": "いいえ（必要ない）",
+          "scores": { "hobby": 1, "creative": 1, "inspection": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q6",
+      "text": "赤外線カメラ・RTK・LiDAR などの特殊センサーは？",
+      "weight": 4,
+      "options": [
+        {
+          "key": "A",
+          "label": "必須（常時活用する）",
+          "scores": { "inspection": 4, "survey": 4, "agri": 2 }
+        },
+        {
+          "key": "B",
+          "label": "用途により使いたい",
+          "scores": { "inspection": 2, "survey": 2, "agri": 1, "dev": 1 }
+        },
+        {
+          "key": "C",
+          "label": "不要／通常カメラで十分",
+          "scores": { "hobby": 1, "creative": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q7",
+      "text": "SDK・拡張開発や連携は？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "SDK 利用やカスタム開発を実施する",
+          "scores": { "dev": 4, "survey": 1, "auto": 1 }
+        },
+        {
+          "key": "B",
+          "label": "パートナーと連携しながら開発予定",
+          "scores": { "dev": 2, "survey": 1, "inspection": 1 }
+        },
+        {
+          "key": "C",
+          "label": "既製アプリで完結したい",
+          "scores": { "hobby": 1, "creative": 1, "inspection": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q8",
+      "text": "物資運搬・散布など重量物の取り扱いは？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "主要業務として行う（1kg以上の運搬・散布）",
+          "scores": { "logi": 4, "agri": 3, "auto": 2 }
+        },
+        {
+          "key": "B",
+          "label": "限定的に発生する",
+          "scores": { "logi": 2, "agri": 2 }
+        },
+        {
+          "key": "C",
+          "label": "想定していない",
+          "scores": { "hobby": 1, "creative": 1, "inspection": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q9",
+      "text": "想定している予算帯は？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "〜20万円程度",
+          "scores": { "hobby": 3, "creative": 2 }
+        },
+        {
+          "key": "B",
+          "label": "〜100万円程度",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+        },
+        {
+          "key": "C",
+          "label": "〜300万円程度",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "dev": 1 }
+        },
+        {
+          "key": "D",
+          "label": "1000万円以上（大規模投資）",
+          "scores": { "auto": 4, "logi": 3, "dev": 2 }
+        }
+      ]
+    },
+    {
+      "id": "s2_q10",
+      "text": "最も重視するポイントは？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "携帯性と簡単さ",
+          "scores": { "hobby": 3, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "映像品質・表現力",
+          "scores": { "creative": 3, "hobby": 1 }
+        },
+        {
+          "key": "C",
+          "label": "精度・センサー拡張性",
+          "scores": { "survey": 3, "inspection": 2, "agri": 2, "dev": 1 }
+        },
+        {
+          "key": "D",
+          "label": "自動化・運用効率",
+          "scores": { "auto": 3, "logi": 3 }
+        },
+        {
+          "key": "E",
+          "label": "拡張開発・API 連携",
+          "scores": { "dev": 3, "survey": 1 }
+        }
+      ]
+    }
+  ]
+}
+

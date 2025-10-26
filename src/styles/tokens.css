@@ -1,0 +1,33 @@
+:root {
+  --color-primary: #0ea5e9;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-danger: #ef4444;
+  --radius-card: 16px;
+  --shadow-card: 0 20px 45px -25px rgba(15, 73, 110, 0.35);
+}
+
+.bg-surface {
+  background: #ffffff;
+}
+
+.text-muted {
+  color: rgb(100 116 139);
+}
+
+.badge {
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-size: 0.75rem;
+}
+
+.badge-primary {
+  background: rgba(14, 165, 233, 0.12);
+  color: #0ea5e9;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+}
+

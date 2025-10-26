@@ -1,0 +1,148 @@
+{
+  "version": "2025-03-01",
+  "locale": "ja-JP",
+  "title": "ライト診断（STEP1）",
+  "questions": [
+    {
+      "id": "s1_q1",
+      "text": "ドローンを使う主な目的は？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "旅行や趣味の撮影",
+          "scores": { "hobby": 3, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "映像制作・プロモーション",
+          "scores": { "creative": 3, "hobby": 1 }
+        },
+        {
+          "key": "C",
+          "label": "点検・測量などの業務",
+          "scores": { "inspection": 2, "survey": 2, "agri": 1 }
+        },
+        {
+          "key": "D",
+          "label": "物資運搬や無人監視",
+          "scores": { "logi": 2, "auto": 3 }
+        },
+        {
+          "key": "E",
+          "label": "研究・PoC・拡張開発",
+          "scores": { "dev": 3, "survey": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s1_q2",
+      "text": "ドローンの運用経験はどのくらい？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "ほぼ未経験（これから学びたい）",
+          "scores": { "hobby": 2, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "基本操作はできる",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+        },
+        {
+          "key": "C",
+          "label": "専門的に運用している／予定",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "dev": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s1_q3",
+      "text": "主に撮影・計測したい対象は？",
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "旅の風景・人物・日常シーン",
+          "scores": { "hobby": 3, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "建物・設備・インフラの状態確認",
+          "scores": { "inspection": 3, "auto": 1 }
+        },
+        {
+          "key": "C",
+          "label": "地形・農地・広域のデータ取得",
+          "scores": { "survey": 3, "agri": 2 }
+        },
+        {
+          "key": "D",
+          "label": "自動化や研究テーマの検証",
+          "scores": { "dev": 2, "auto": 2, "logi": 1 }
+        }
+      ]
+    },
+    {
+      "id": "s1_q4",
+      "text": "主な飛行場所は？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "市街地・観光地など人の多い場所",
+          "scores": { "hobby": 2, "creative": 2 }
+        },
+        {
+          "key": "B",
+          "label": "工事現場・プラント・施設内",
+          "scores": { "inspection": 3 }
+        },
+        {
+          "key": "C",
+          "label": "山間部・農地・広域エリア",
+          "scores": { "survey": 2, "agri": 3 }
+        },
+        {
+          "key": "D",
+          "label": "常設拠点からの無人運用",
+          "scores": { "auto": 3, "logi": 2 }
+        }
+      ]
+    },
+    {
+      "id": "s1_q5",
+      "text": "もっとも惹かれるポイントは？",
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "携帯性と気軽さ",
+          "scores": { "hobby": 2, "creative": 1 }
+        },
+        {
+          "key": "B",
+          "label": "映像品質と演出力",
+          "scores": { "creative": 3, "hobby": 1 }
+        },
+        {
+          "key": "C",
+          "label": "精密データや解析精度",
+          "scores": { "survey": 2, "inspection": 2, "agri": 2 }
+        },
+        {
+          "key": "D",
+          "label": "無人化・自動化・運搬効率",
+          "scores": { "auto": 3, "logi": 3 }
+        },
+        {
+          "key": "E",
+          "label": "SDK・拡張性・カスタム開発",
+          "scores": { "dev": 3, "survey": 1 }
+        }
+      ]
+    }
+  ]
+}
+
