@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import QuestionCard from "@/components/QuestionCard";
 import ProgressBar from "@/components/ProgressBar";
@@ -226,6 +227,20 @@ export default function Step1Page() {
                 データ差し替えで最新カタログにも即対応できます。
               </li>
             </ul>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/"
+                className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+              >
+                ホームへ戻る
+              </Link>
+              <Link
+                href="/step2"
+                className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+              >
+                プロ診断へ進む
+              </Link>
+            </div>
           </section>
         </section>
       ) : null}
