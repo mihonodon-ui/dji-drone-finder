@@ -183,6 +183,12 @@ export default function Step2Page() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
+              <Link
+                href="/"
+                className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+              >
+                トップへ戻る
+              </Link>
               <button
                 type="button"
                 onClick={() => setShowResult(false)}

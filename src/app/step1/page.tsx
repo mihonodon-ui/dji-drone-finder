@@ -136,7 +136,13 @@ export default function Step1Page() {
                 スコアが高かったタイプを表示しています。差が小さい場合はセカンド候補も参考にしてください。
               </p>
             </div>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/"
+                className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+              >
+                トップへ戻る
+              </Link>
               <button
                 type="button"
                 onClick={() => setShowResult(false)}
