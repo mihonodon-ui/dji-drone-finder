@@ -9,18 +9,19 @@ import {
 } from "@/lib/datasets";
 import type { DroneTypeKey } from "@/lib/types";
 
-interface ResultPageProps {
-  params: {
+type ResultPageProps = {
+  params: Promise<{
     id: string;
-  };
-}
+  }>;
+};
 
 function isDroneTypeKey(candidate: string): candidate is DroneTypeKey {
   return candidate in catalog.types;
 }
 
-export default function ResultPage({ params }: ResultPageProps) {
-  const slug = params.id.toLowerCase();
+export default async function ResultPage({ params }: ResultPageProps) {
+  const { id } = await params;
+  const slug = id.toLowerCase();
   if (!isDroneTypeKey(slug)) {
     notFound();
   }
