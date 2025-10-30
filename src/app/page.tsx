@@ -10,21 +10,22 @@ export default function LandingPage() {
           を見つけましょう
         </h1>
         <p className="mx-auto max-w-2xl text-base text-muted sm:text-lg">
-          ライト診断（STEP1）で方向性を確認し、プロ診断（STEP2）でおすすめ機種と価格帯まで明確に。用途別に最適な導入プランをご提案します。
+          最短3問のライト診断から、最大7問のプロ診断までワンフローで完了。
+          最新の DJI ラインアップから用途と予算に最適な機体をご案内します。
         </p>
       </div>
       <div className="flex flex-col gap-4 sm:flex-row">
         <Link
-          href="/step1"
+          href="/diagnose"
           className="rounded-full bg-primary px-8 py-3 text-white transition hover:bg-sky-500"
         >
-          ライト診断を始める
+          診断を始める
         </Link>
         <Link
-          href="/step2"
+          href="/diagnose"
           className="rounded-full border border-slate-300 px-8 py-3 text-slate-700 transition hover:border-primary hover:text-primary"
         >
-          プロ診断の流れを見る
+          診断フローの詳細を見る
         </Link>
       </div>
       <section className="grid w-full gap-6 rounded-3xl bg-white/70 p-8 shadow-2xl shadow-sky-100 sm:grid-cols-3">
@@ -36,9 +37,9 @@ export default function LandingPage() {
           </p>
         </div>
         <div>
-          <h2 className="text-xl font-semibold">2段階診断</h2>
+          <h2 className="text-xl font-semibold">動的診断フロー</h2>
           <p className="mt-2 text-sm text-muted">
-            STEP1で用途タイプを判定、STEP2で具体的な機種と価格帯を絞り込み。診断結果はブックマーク/共有可能。
+            最初の2問でモードを判定し、必要な質問だけを出題。ライト層は最短3問、プロ用途でも最大7問で確定します。
           </p>
         </div>
         <div>
@@ -52,4 +53,3 @@ export default function LandingPage() {
     </main>
   );
 }
-

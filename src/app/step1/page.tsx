@@ -79,12 +79,29 @@ export default function Step1Page() {
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-12">
       <header className="flex flex-col gap-4 text-center sm:text-left">
-        <span className="badge badge-primary self-center sm:self-start">STEP 1</span>
+        <span className="badge badge-primary self-center sm:self-start">Legacy</span>
         <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">{title}</h1>
         <p className="text-base text-muted">
-          5問に回答すると、あなたに近い用途タイプとおすすめの DJI 機種を提示します。
-          選び直しはいつでも可能です。
+          このライト診断は旧バージョンです。最新の動的診断フローは
+          <Link href="/diagnose" className="ml-1 font-semibold text-primary">
+            /diagnose
+          </Link>
+          からご利用いただけます。
         </p>
+        <div className="flex flex-wrap justify-center gap-3 sm:justify-start">
+          <Link
+            href="/diagnose"
+            className="rounded-full bg-primary px-6 py-2 text-sm font-semibold text-white transition hover:bg-sky-500"
+          >
+            新しい診断を使う
+          </Link>
+          <Link
+            href="/step2"
+            className="rounded-full border border-slate-300 px-6 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+          >
+            旧プロ診断を見る
+          </Link>
+        </div>
       </header>
 
       {!showResult && currentQuestion ? (
