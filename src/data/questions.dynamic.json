@@ -1,0 +1,203 @@
+{
+  "version": "2025-03-01",
+  "locale": "ja-JP",
+  "title": "用途に合わせたドローン診断",
+  "questions": [
+    {
+      "id": "dyn_q1",
+      "text": "ドローンを活用したい主な目的は？",
+      "category": "purpose",
+      "difficulty": "basic",
+      "targetSegments": ["common"],
+      "strategyTags": ["must_ask"],
+      "weight": 4,
+      "options": [
+        {
+          "key": "A",
+          "label": "趣味・旅行で写真や動画を撮りたい",
+          "scores": { "hobby": 4, "creative": 2 },
+          "effects": { "setMode": "light" }
+        },
+        {
+          "key": "B",
+          "label": "業務で点検・測量・農業などに使いたい",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "auto": 1 },
+          "effects": { "setMode": "pro" }
+        },
+        {
+          "key": "C",
+          "label": "研究開発・SDK連携・PoCを検討している",
+          "scores": { "dev": 3, "survey": 1, "creative": 1 },
+          "effects": { "setMode": "pro" }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q2",
+      "text": "想定している導入予算帯は？",
+      "category": "budget",
+      "difficulty": "basic",
+      "targetSegments": ["common"],
+      "strategyTags": ["must_ask"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "〜20万円",
+          "scores": { "hobby": 3, "creative": 1 },
+          "constraints": { "maxPrice": 200000 }
+        },
+        {
+          "key": "B",
+          "label": "〜100万円",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 },
+          "constraints": { "maxPrice": 1000000 }
+        },
+        {
+          "key": "C",
+          "label": "〜300万円",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 1, "dev": 1 },
+          "constraints": { "maxPrice": 3000000 }
+        },
+        {
+          "key": "D",
+          "label": "1000万円以上（大規模投資も想定）",
+          "scores": { "auto": 4, "logi": 3, "dev": 2 },
+          "constraints": { "maxPrice": 12000000 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q3",
+      "text": "もっとも重視したいポイントは？",
+      "category": "priority",
+      "difficulty": "basic",
+      "targetSegments": ["light"],
+      "strategyTags": ["light_terminal"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "画質と映像表現力",
+          "scores": { "creative": 3, "hobby": 1 }
+        },
+        {
+          "key": "B",
+          "label": "携帯性と手軽さ",
+          "scores": { "hobby": 3 }
+        },
+        {
+          "key": "C",
+          "label": "自動運用や将来拡張",
+          "scores": { "auto": 2, "dev": 1 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q4",
+      "text": "必要なセンサー・機能はありますか？",
+      "category": "sensor",
+      "difficulty": "advanced",
+      "targetSegments": ["pro"],
+      "weight": 4,
+      "options": [
+        {
+          "key": "A",
+          "label": "赤外線やズームで設備点検を行いたい",
+          "scores": { "inspection": 4, "auto": 1 }
+        },
+        {
+          "key": "B",
+          "label": "RTK や高精度測量が必要",
+          "scores": { "survey": 4, "agri": 2 }
+        },
+        {
+          "key": "C",
+          "label": "LiDAR / マルチスペクトルなど高度なセンサーが必要",
+          "scores": { "agri": 2, "survey": 2, "dev": 2 }
+        },
+        {
+          "key": "D",
+          "label": "特に限定した要件はない",
+          "scores": { "logi": 1, "creative": 1 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q5",
+      "text": "自動航行・ドック運用について",
+      "category": "automation",
+      "difficulty": "advanced",
+      "targetSegments": ["pro"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "24h 運用や Dock 導入を予定している",
+          "scores": { "auto": 4, "logi": 2 }
+        },
+        {
+          "key": "B",
+          "label": "自動化は部分導入を検討中",
+          "scores": { "auto": 2, "logi": 1, "inspection": 1 }
+        },
+        {
+          "key": "C",
+          "label": "手動運用が中心",
+          "scores": { "inspection": 1, "survey": 1 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q6",
+      "text": "SDK やカスタム開発の予定は？",
+      "category": "development",
+      "difficulty": "advanced",
+      "targetSegments": ["pro"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "SDK を活用し連携開発する予定",
+          "scores": { "dev": 4, "survey": 1, "auto": 1 }
+        },
+        {
+          "key": "B",
+          "label": "連携はパートナーと検討中",
+          "scores": { "dev": 2, "inspection": 1 }
+        },
+        {
+          "key": "C",
+          "label": "既製アプリのみで完結したい",
+          "scores": { "inspection": 1, "logi": 1 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_q7",
+      "text": "物資輸送や散布など重量物の取り扱いは？",
+      "category": "payload",
+      "difficulty": "advanced",
+      "targetSegments": ["pro"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "主要業務として行いたい（1kg 以上の運搬・散布）",
+          "scores": { "logi": 4, "agri": 3 }
+        },
+        {
+          "key": "B",
+          "label": "限定的に発生する見込み",
+          "scores": { "logi": 2, "agri": 2 }
+        },
+        {
+          "key": "C",
+          "label": "想定していない",
+          "scores": { "inspection": 1, "creative": 1 }
+        }
+      ]
+    }
+  ]
+}
+

@@ -15,16 +15,38 @@ export type DroneTypeKey = (typeof droneTypeKeys)[number];
 
 export const ScoreRecordSchema = z.record(z.number());
 
+export const QuestionOptionConstraintsSchema = z
+  .object({
+    maxPrice: z.number().int().optional(),
+    minPrice: z.number().int().optional(),
+    requiredSensors: z.array(z.string()).optional()
+  })
+  .partial()
+  .optional();
+
+export const QuestionOptionEffectsSchema = z
+  .object({
+    setMode: z.enum(["light", "pro"]).optional()
+  })
+  .partial()
+  .optional();
+
 export const QuestionOptionSchema = z.object({
   key: z.string().min(1),
   label: z.string().min(1),
-  scores: ScoreRecordSchema
+  scores: ScoreRecordSchema,
+  constraints: QuestionOptionConstraintsSchema,
+  effects: QuestionOptionEffectsSchema
 });
 
 export const QuestionSchema = z.object({
   id: z.string().min(1),
   text: z.string().min(1),
   weight: z.number().int().min(1).default(1),
+  category: z.string().optional(),
+  difficulty: z.enum(["basic", "advanced", "expert"]).optional(),
+  targetSegments: z.array(z.enum(["common", "light", "pro"])).optional(),
+  strategyTags: z.array(z.string()).optional(),
   options: z.array(QuestionOptionSchema).min(2)
 });
 
@@ -38,6 +60,12 @@ export const QuestionSetSchema = z.object({
 export type QuestionOption = z.infer<typeof QuestionOptionSchema>;
 export type Question = z.infer<typeof QuestionSchema>;
 export type QuestionSet = z.infer<typeof QuestionSetSchema>;
+export type QuestionOptionConstraints = z.infer<
+  NonNullable<typeof QuestionOptionConstraintsSchema>
+>;
+export type QuestionOptionEffects = z.infer<
+  NonNullable<typeof QuestionOptionEffectsSchema>
+>;
 
 export const CatalogTypeSchema = z.object({
   label: z.string(),
@@ -116,4 +144,3 @@ export const defaultTypePriority: DroneTypeKey[] = [
   "auto",
   "dev"
 ];
-
