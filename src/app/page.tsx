@@ -14,16 +14,16 @@ export default function LandingPage() {
           最新の DJI ラインアップから用途と予算に最適な機体をご案内します。
         </p>
       </div>
-      <div className="flex flex-col gap-4 sm:flex-row">
+      <div className="flex w-full flex-col items-center gap-6 sm:flex-col sm:items-center">
         <Link
           href="/diagnose"
-          className="rounded-full bg-primary px-8 py-3 text-white transition hover:bg-sky-500"
+          className="flex w-full max-w-xs items-center justify-center gap-3 rounded-full bg-primary px-10 py-4 text-lg font-semibold text-white shadow-lg transition hover:-translate-y-1 hover:bg-sky-500 hover:shadow-xl sm:max-w-none sm:px-12"
         >
           診断を始める
         </Link>
         <Link
           href="/lineup"
-          className="rounded-full border border-slate-300 px-8 py-3 text-slate-700 transition hover:border-primary hover:text-primary"
+          className="text-sm font-semibold text-slate-600 underline-offset-4 transition hover:text-primary"
         >
           ラインナップを確認する
         </Link>
