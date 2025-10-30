@@ -22,10 +22,10 @@ export default function LandingPage() {
           診断を始める
         </Link>
         <Link
-          href="/diagnose"
+          href="/lineup"
           className="rounded-full border border-slate-300 px-8 py-3 text-slate-700 transition hover:border-primary hover:text-primary"
         >
-          診断フローの詳細を見る
+          ラインナップを確認する
         </Link>
       </div>
       <section className="grid w-full gap-6 rounded-3xl bg-white/70 p-8 shadow-2xl shadow-sky-100 sm:grid-cols-3">
