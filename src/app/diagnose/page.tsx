@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import CandidatePanel, { type CandidateEntry } from "@/components/CandidatePanel";
 import CTAButtons from "@/components/CTAButtons";
 import ProgressBar from "@/components/ProgressBar";
 import QuestionCard from "@/components/QuestionCard";
@@ -20,6 +21,8 @@ import {
   findQuestionById,
   isDiagnosisComplete,
   registerAnswer,
+  type ConstraintState,
+  type DiagnosisMode,
   type DiagnosisState
 } from "@/lib/dynamicDiagnosis";
 import { evaluateQuestionSet } from "@/lib/scoring";
@@ -35,12 +38,15 @@ function formatPriceRange(min?: number, max?: number) {
   return null;
 }
 
-function selectModelsWithBudget(type: DroneTypeKey, maxPrice?: number, minPrice?: number) {
+function selectModelsWithBudget(
+  type: DroneTypeKey,
+  constraints: ConstraintState
+) {
   const typeDetail = catalog.types[type];
   if (!typeDetail) {
     return {
       primary: undefined,
-      alternatives: [],
+      alternatives: [] as ReturnType<typeof resolveAlternativeModels>,
       note: undefined
     };
   }
@@ -53,10 +59,10 @@ function selectModelsWithBudget(type: DroneTypeKey, maxPrice?: number, minPrice?
 
   const affordable = candidates.filter((model) => {
     const { min, max } = model.priceJPY;
-    if (typeof maxPrice === "number" && min > maxPrice) {
+    if (typeof constraints.maxPrice === "number" && min > constraints.maxPrice) {
       return false;
     }
-    if (typeof minPrice === "number" && max < minPrice) {
+    if (typeof constraints.minPrice === "number" && max < constraints.minPrice) {
       return false;
     }
     return true;
@@ -66,14 +72,16 @@ function selectModelsWithBudget(type: DroneTypeKey, maxPrice?: number, minPrice?
     return {
       primary,
       alternatives,
-      note: maxPrice ? "ご選択の予算帯では該当モデルが見つかりませんでした。" : undefined
+      note: constraints.maxPrice
+        ? "選択中の予算帯では対応機種が見つかりません。予算または要件をご検討ください。"
+        : undefined
     };
   }
 
   const [first, ...rest] = affordable;
   const note =
     primary && first.id !== primary.id
-      ? "予算に合わせて代替候補をメインとして表示しています。"
+      ? "予算に合わせて代替候補を優先表示しています。"
       : undefined;
 
   return {
@@ -81,6 +89,34 @@ function selectModelsWithBudget(type: DroneTypeKey, maxPrice?: number, minPrice?
     alternatives: rest,
     note
   };
+}
+
+function buildCandidateEntries(
+  mode: DiagnosisMode,
+  evaluation: ReturnType<typeof evaluateQuestionSet>,
+  constraints: ConstraintState,
+  primaryType?: DroneTypeKey
+): CandidateEntry[] {
+  const ranked = evaluation.ranked.slice(0, 4);
+  if (!ranked.length) return [];
+
+  return ranked.flatMap((entry, index) => {
+    const typeDetail = catalog.types[entry.type];
+    if (!typeDetail) return [];
+    const { primary, alternatives, note } = selectModelsWithBudget(entry.type, constraints);
+    const representative = primary ?? alternatives[0];
+    return [
+      {
+        rank: index + 1,
+        typeKey: entry.type,
+        typeLabel: typeDetail.label,
+        score: entry.score,
+        model: representative,
+        fallback: note,
+        isPrimary: entry.type === primaryType && mode !== "unknown"
+      }
+    ];
+  });
 }
 
 export default function DiagnosePage() {
@@ -107,11 +143,10 @@ export default function DiagnosePage() {
   );
 
   const diagnosisComplete = isDiagnosisComplete(state, activeQuestions);
-
   const primaryType = evaluation.primary?.type;
   const typeDetail = primaryType ? catalog.types[primaryType] : undefined;
-  const models = primaryType
-    ? selectModelsWithBudget(primaryType, state.constraints.maxPrice, state.constraints.minPrice)
+  const modelSelection = primaryType
+    ? selectModelsWithBudget(primaryType, state.constraints)
     : { primary: undefined, alternatives: [], note: undefined };
   const resultTemplate = primaryType ? resolveResultTemplate(primaryType) : undefined;
 
@@ -123,6 +158,12 @@ export default function DiagnosePage() {
         : "";
 
   const budgetLabel = formatPriceRange(state.constraints.minPrice, state.constraints.maxPrice);
+  const hasAnswers = state.questionOrder.length > 0;
+
+  const candidateEntries = useMemo(
+    () => buildCandidateEntries(state.mode, evaluation, state.constraints, primaryType),
+    [evaluation, state.constraints, primaryType, state.mode]
+  );
 
   const handleSelect = (question: Question, option: QuestionOption) => {
     const nextState = registerAnswer(state, question, option);
@@ -147,8 +188,31 @@ export default function DiagnosePage() {
     handleSelect(currentQuestion, option);
   };
 
+  const handleNext = () => {
+    if (!currentQuestion) return;
+    if (!state.answers[currentQuestion.id]) {
+      setErrorMessage("選択肢をひとつ選んでから次へ進んでください。");
+      return;
+    }
+
+    const nextQuestionId = findNextQuestionId(dynamicQuestionSet, state);
+    if (!nextQuestionId) {
+      setCurrentQuestionId(undefined);
+      return;
+    }
+    setCurrentQuestionId(nextQuestionId);
+  };
+
+  const handlePrev = () => {
+    if (!currentQuestion) return;
+    const currentIndex = activeQuestions.findIndex((item) => item.id === currentQuestion.id);
+    if (currentIndex <= 0) return;
+    setCurrentQuestionId(activeQuestions[currentIndex - 1]?.id);
+  };
+
   const handleReset = () => {
-    setState(createInitialDiagnosisState());
+    const initialState = createInitialDiagnosisState();
+    setState(initialState);
     setCurrentQuestionId(dynamicQuestionSet.questions[0]?.id);
     setErrorMessage(null);
     setCopied(false);
@@ -167,148 +231,184 @@ export default function DiagnosePage() {
   };
 
   return (
-    <main className="mx-auto flex max-w-5xl flex-col gap-10 px-6 py-12">
-      <header className="flex flex-col gap-4 text-center sm:text-left">
-        <span className="badge badge-primary self-center sm:self-start">Dynamic</span>
-        <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">
-          最適な DJI ドローン診断
-        </h1>
-        <p className="text-base text-muted">
-          目的と予算を起点に、必要な機能だけを順番にお伺いします。ライトユーザーは最短3問、プロ用途でも最大7問で結果をご案内します。
-        </p>
-      </header>
-
-      {!diagnosisComplete && currentQuestion ? (
-        <>
-          <ProgressBar
-            current={answeredCount + 1}
-            total={Math.max(totalQuestions, answeredCount + 1)}
-            label="診断進捗"
-          />
-          <QuestionCard
-            question={currentQuestion}
-            selectedKey={state.answers[currentQuestion.id]}
-            onSelect={handleOptionSelect}
-          />
-          {errorMessage ? (
-            <p className="text-sm font-semibold text-danger">{errorMessage}</p>
-          ) : null}
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <button
-              type="button"
-              onClick={handleReset}
-              className="rounded-full border border-danger px-6 py-3 text-sm font-semibold text-danger transition hover:bg-danger hover:text-white"
-            >
-              診断を最初からやり直す
-            </button>
-            <span className="text-xs text-muted">
-              現在のモード：{state.mode === "unknown" ? "診断中" : state.mode === "light" ? "ライト" : "プロ"}
-            </span>
-          </div>
-        </>
-      ) : null}
-
-      {diagnosisComplete ? (
-        <section className="flex flex-col gap-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900">診断結果</h2>
-              <p className="text-sm text-muted">
-                回答内容に基づき、最適なタイプとおすすめ機体をご提案します。
-                {budgetLabel ? ` ご選択の予算帯：${budgetLabel}` : ""}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/"
-                className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-              >
-                トップへ戻る
-              </Link>
-              <button
-                type="button"
-                onClick={handleReset}
-                className="rounded-full border border-danger px-5 py-2 text-sm font-semibold text-danger transition hover:bg-danger hover:text-white"
-              >
-                もう一度診断する
-              </button>
-            </div>
-          </div>
-
-          {typeDetail ? (
-            <ResultCard
-              typeLabel={typeDetail.label}
-              template={resultTemplate}
-              primaryModel={models.primary}
-              alternativeModels={models.alternatives}
-              score={evaluation.primary?.score}
-            />
-          ) : (
-            <div className="rounded-3xl bg-white p-8 text-slate-700 shadow">
-              診断結果を確定できませんでした。回答をリセットして再度お試しください。
-            </div>
-          )}
-
-          {models.note ? (
-            <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-700">{models.note}</div>
-          ) : null}
-
-          {resultTemplate ? (
-            <CTAButtons primary={resultTemplate.cta} secondary={resultTemplate.secondaryCta} />
-          ) : null}
-
-          <section className="rounded-3xl bg-white p-6 shadow">
-            <h3 className="text-lg font-semibold text-slate-900">結果を共有する</h3>
-            <p className="mt-1 text-sm text-muted">
-              チームメンバーやお客様と診断結果を共有する際は以下のリンクをご活用ください。
+    <main className="mx-auto max-w-6xl px-6 py-12">
+      <div className="grid gap-8 xl:grid-cols-[minmax(0,1fr)_320px]">
+        <div className="flex flex-col gap-8">
+          <header className="flex flex-col gap-4 text-center sm:text-left">
+            <span className="badge badge-primary self-center sm:self-start">Dynamic</span>
+            <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">用途最適ドローン診断</h1>
+            <p className="text-base text-muted">
+              目的と予算を起点に、必要な質問だけを順番にお伺いします。ライトユーザーは最短3問、
+              プロ用途でも最大7問で結果をご案内します。
             </p>
-            <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <code className="rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-700">
-                {shareUrl || "結果確定後にリンクが表示されます"}
-              </code>
-              <button
-                type="button"
-                onClick={handleCopyShareUrl}
-                disabled={!shareUrl}
-                className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition disabled:opacity-40 hover:border-primary hover:text-primary"
-              >
-                {copied ? "コピー済み" : "リンクをコピー"}
-              </button>
-            </div>
-          </section>
+          </header>
+
+          {!diagnosisComplete && currentQuestion ? (
+            <section className="flex flex-col gap-6 rounded-3xl bg-white p-8 shadow-xl shadow-sky-100">
+              <ProgressBar
+                current={Number.isFinite(answeredCount) ? answeredCount + 1 : 1}
+                total={Math.max(totalQuestions, answeredCount + 1)}
+                label="診断進捗"
+              />
+              <QuestionCard
+                question={currentQuestion}
+                selectedKey={state.answers[currentQuestion.id]}
+                onSelect={handleOptionSelect}
+              />
+              {errorMessage ? (
+                <p className="text-sm font-semibold text-danger">{errorMessage}</p>
+              ) : null}
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={handlePrev}
+                    className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary disabled:opacity-40"
+                    disabled={answeredCount === 0}
+                  >
+                    前の質問へ
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleNext}
+                    className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white transition hover:bg-sky-500"
+                  >
+                    {findNextQuestionId(dynamicQuestionSet, state)
+                      ? "次の質問へ"
+                      : "診断結果を見る"}
+                  </button>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="rounded-full border border-danger px-6 py-3 text-sm font-semibold text-danger transition hover:bg-danger hover:text-white"
+                >
+                  診断を最初からやり直す
+                </button>
+              </div>
+            </section>
+          ) : null}
+
+          {diagnosisComplete ? (
+            <section className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900">診断結果</h2>
+                  <p className="text-sm text-muted">
+                    回答内容に基づき、最適なタイプとおすすめ機体をご提案します。
+                    {budgetLabel ? ` 選択予算帯：${budgetLabel}` : ""}
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/"
+                    className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+                  >
+                    トップへ戻る
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className="rounded-full border border-danger px-5 py-2 text-sm font-semibold text-danger transition hover:bg-danger hover:text-white"
+                  >
+                    もう一度診断する
+                  </button>
+                </div>
+              </div>
+
+              {typeDetail ? (
+                <ResultCard
+                  typeLabel={typeDetail.label}
+                  template={resultTemplate}
+                  primaryModel={modelSelection.primary}
+                  alternativeModels={modelSelection.alternatives}
+                  score={evaluation.primary?.score}
+                />
+              ) : (
+                <div className="rounded-3xl bg-white p-8 text-slate-700 shadow">
+                  診断結果を確定できませんでした。回答を追加してから再度お試しください。
+                </div>
+              )}
+
+              {modelSelection.note ? (
+                <div className="rounded-3xl bg-slate-50 p-4 text-sm text-slate-700">
+                  {modelSelection.note}
+                </div>
+              ) : null}
+
+              {resultTemplate ? (
+                <CTAButtons
+                  primary={resultTemplate.cta}
+                  secondary={resultTemplate.secondaryCta}
+                />
+              ) : null}
+
+              <section className="rounded-3xl bg-white p-6 shadow">
+                <h3 className="text-lg font-semibold text-slate-900">結果を共有する</h3>
+                <p className="mt-1 text-sm text-muted">
+                  チームメンバーやお客様と診断結果を共有する際は以下のリンクをご活用ください。
+                </p>
+                <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <code className="rounded-full bg-slate-100 px-4 py-2 text-xs text-slate-700">
+                    {shareUrl || "結果確定後にリンクが表示されます"}
+                  </code>
+                  <button
+                    type="button"
+                    onClick={handleCopyShareUrl}
+                    disabled={!shareUrl}
+                    className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition disabled:opacity-40 hover:border-primary hover:text-primary"
+                  >
+                    {copied ? "コピー済み" : "リンクをコピー"}
+                  </button>
+                </div>
+              </section>
+
+              <section className="rounded-3xl bg-white p-6 shadow">
+                <h3 className="text-lg font-semibold text-slate-900">スコア内訳</h3>
+                <div className="mt-4 grid gap-3 md:grid-cols-2">
+                  {evaluation.ranked.map(({ type, score }) => {
+                    const detail = catalog.types[type];
+                    if (!detail) return null;
+                    return (
+                      <div
+                        key={type}
+                        className="flex flex-col gap-1 rounded-2xl border border-slate-200 px-4 py-4"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="text-sm font-semibold text-slate-500">
+                            {detail.label}
+                          </span>
+                          <span className="text-lg font-bold text-slate-900">
+                            {score.toFixed(1)}
+                          </span>
+                        </div>
+                        <p className="text-xs text-muted">{detail.summary}</p>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            </section>
+          ) : null}
 
           <section className="rounded-3xl bg-white p-6 shadow">
-            <h3 className="text-lg font-semibold text-slate-900">スコア内訳</h3>
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              {evaluation.ranked.map(({ type, score }) => {
-                const detail = catalog.types[type];
-                if (!detail) return null;
-                return (
-                  <div
-                    key={type}
-                    className="flex flex-col gap-1 rounded-2xl border border-slate-200 px-4 py-4"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold text-slate-500">{detail.label}</span>
-                      <span className="text-lg font-bold text-slate-900">{score.toFixed(1)}</span>
-                    </div>
-                    <p className="text-xs text-muted">{detail.summary}</p>
-                  </div>
-                );
-              })}
-            </div>
+            <h3 className="text-lg font-semibold text-slate-900">診断の進め方</h3>
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
+              <li>最初に目的と予算をお伺いし、ライト／プロモードを自動判定します。</li>
+              <li>ライトモードは最短3問で完了。プロモードは最大7問で詳細要件を把握します。</li>
+              <li>診断途中でリセットしたい場合は「診断を最初からやり直す」を押してください。</li>
+            </ul>
           </section>
-        </section>
-      ) : null}
+        </div>
 
-      <section className="rounded-3xl bg-white p-6 shadow">
-        <h3 className="text-lg font-semibold text-slate-900">診断の進め方</h3>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-slate-700">
-          <li>最初に目的と予算をお伺いし、ライト/プロモードを自動判定します。</li>
-          <li>ライトモードは最短3問で完了。プロモードは最大7問で詳しい要件を把握します。</li>
-          <li>診断途中でリセットしたい場合は「診断を最初からやり直す」を押してください。</li>
-        </ul>
-      </section>
+        <CandidatePanel
+          candidates={candidateEntries}
+          constraints={state.constraints}
+          mode={state.mode}
+          hasAnswers={hasAnswers}
+        />
+      </div>
     </main>
   );
 }
+
