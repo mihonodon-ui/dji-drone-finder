@@ -46,9 +46,6 @@ export default async function ModelDetailPage({
               width={420}
               height={280}
               className="rounded-2xl object-cover"
-              onError={(event) => {
-                (event.target as HTMLImageElement).style.display = "none";
-              }}
             />
           ) : (
             <div className="flex h-56 w-full items-center justify-center rounded-2xl bg-slate-100 text-sm text-slate-500">
