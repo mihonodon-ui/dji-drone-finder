@@ -1,4 +1,5 @@
 import type { DiagnosisMode, ConstraintState } from "@/lib/dynamicDiagnosis";
+import { catalog } from "@/lib/datasets";
 import type { CatalogModel } from "@/lib/types";
 import clsx from "clsx";
 
@@ -25,6 +26,11 @@ function formatPrice(model?: CatalogModel) {
   const minText = min.toLocaleString("ja-JP");
   const maxText = max.toLocaleString("ja-JP");
   return `${minText}〜${maxText}円`;
+}
+
+function formatKind(model?: CatalogModel) {
+  if (!model) return "";
+  return model.kind === "payload" ? "ペイロード" : "機体";
 }
 
 function formatConstraints(constraints: ConstraintState) {
@@ -85,6 +91,10 @@ export function CandidatePanel({
           candidates.map((candidate) => {
             const { model, typeLabel, fallback } = candidate;
             const scoreRatio = maxScore ? Math.max(candidate.score / maxScore, 0) : 0;
+            const modelTypeLabels = model?.typeTags
+              ?.map((tag) => catalog.types[tag]?.label)
+              .filter(Boolean)
+              .join("／");
             return (
               <div
                 key={`${candidate.typeKey}-${candidate.rank}`}
@@ -119,10 +129,20 @@ export function CandidatePanel({
                     {model ? model.name : "該当する機種がありません"}
                   </span>
                   {model ? (
-                    <span className="text-xs text-muted">
-                      {formatPrice(model)}
-                      {model.typeTags?.length ? ` ｜ ${model.typeTags.join(", ")}` : ""}
-                    </span>
+                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted">
+                      <span>{formatPrice(model)}</span>
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                        {formatKind(model)}
+                      </span>
+                      {modelTypeLabels ? (
+                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                          {modelTypeLabels}
+                        </span>
+                      ) : null}
+                    </div>
+                  ) : null}
+                  {model?.notes ? (
+                    <span className="text-xs text-amber-600">{model.notes}</span>
                   ) : null}
                   {fallback ? <span className="text-xs text-warning">{fallback}</span> : null}
                 </div>
@@ -140,4 +160,3 @@ export function CandidatePanel({
 }
 
 export default CandidatePanel;
-

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { catalog } from "@/lib/datasets";
 
@@ -9,12 +10,114 @@ const formattedModels = catalog.models.map((model) => {
     .map((tag) => catalog.types[tag]?.label)
     .filter(Boolean)
     .join("／");
+  const kindLabel = model.kind === "payload" ? "ペイロード" : "機体";
+
   return {
     ...model,
     priceRange,
-    typeLabels
+    typeLabels,
+    kindLabel,
+    isPayload: model.kind === "payload"
   };
 });
+
+const primaryModelIds = new Set(
+  Object.values(catalog.types).map((type) => type.primaryModelId)
+);
+const highlightedModels = formattedModels.filter(
+  (model) => primaryModelIds.has(model.id) && !model.isPayload
+);
+const aircraftModels = formattedModels.filter(
+  (model) => !model.isPayload && !primaryModelIds.has(model.id)
+);
+const payloadModels = formattedModels.filter((model) => model.isPayload);
+
+function ModelCard({
+  model
+}: {
+  model: (typeof formattedModels)[number];
+}) {
+  const { isPayload, kindLabel } = model;
+  const primaryImage = model.images?.[0];
+  const bulletItems = (model.bullets ?? []).slice(0, 3).map((bullet) =>
+    bullet.length > 28 ? `${bullet.slice(0, 28)}…` : bullet
+  );
+
+  return (
+    <article
+      key={model.id}
+      className="flex h-full flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+    >
+      {primaryImage ? (
+        <div className="relative h-40 w-full overflow-hidden rounded-2xl bg-slate-50">
+          <Image
+            src={`/images/${primaryImage}`}
+            alt={model.name}
+            fill
+            className="object-contain p-4"
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          />
+        </div>
+      ) : (
+        <div className="flex h-40 w-full items-center justify-center rounded-2xl bg-slate-50 text-xs text-slate-500">
+          画像準備中
+        </div>
+      )}
+      <div className="flex flex-col gap-2">
+        <div className="flex flex-wrap gap-2">
+          <span
+            className="badge badge-primary bg-sky-100 text-xs font-semibold text-primary"
+          >
+            {isPayload ? `ペイロード / ${model.typeLabels || "用途"}` : model.typeLabels || "汎用"}
+          </span>
+          {isPayload ? (
+            <span className="badge badge-primary bg-orange-100 text-xs font-semibold text-orange-500">
+              {kindLabel}
+            </span>
+          ) : null}
+        </div>
+        <h2 className="text-xl font-bold text-slate-900">{model.name}</h2>
+        <p className="text-sm font-semibold text-primary">{model.priceRange}</p>
+      </div>
+      {bulletItems.length ? (
+        <ul className="flex flex-col gap-2 text-xs text-slate-600">
+          {bulletItems.map((bullet, index) => (
+            <li key={`${model.id}-bullet-${index}`} className="rounded-xl bg-slate-50 px-3 py-2">
+              {bullet}
+            </li>
+          ))}
+        </ul>
+      ) : null}
+      {model.notes ? (
+        <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-600">{model.notes}</p>
+      ) : null}
+      <div className="mt-auto flex flex-wrap gap-3 text-sm">
+        <Link
+          href={`/models/${model.id}`}
+          className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+        >
+          詳細を見る
+        </Link>
+        {model.links?.consult ? (
+          <Link
+            href={model.links.consult}
+            className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+          >
+            相談する
+          </Link>
+        ) : null}
+        {model.links?.demo ? (
+          <Link
+            href={model.links.demo}
+            className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+          >
+            体験会を予約
+          </Link>
+        ) : null}
+      </div>
+    </article>
+  );
+}
 
 export default function LineupPage() {
   return (
@@ -45,57 +148,45 @@ export default function LineupPage() {
           </Link>
         </div>
       </header>
+      <section className="flex flex-col gap-4">
+        {highlightedModels.length ? (
+          <div className="flex flex-col gap-4">
+            <h2 className="text-xl font-semibold text-slate-900">注目機体（診断の代表モデル）</h2>
+            <p className="text-sm text-muted">
+              診断ステップで代表機種として提示されるモデルです。用途別の主力構成を先に把握したい場合にご活用ください。
+            </p>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {highlightedModels.map((model) => (
+                <ModelCard key={model.id} model={model} />
+              ))}
+            </div>
+          </div>
+        ) : null}
 
-        <section className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {formattedModels.map((model) => (
-            <article
-              key={model.id}
-              className="flex h-full flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className="flex flex-col gap-2">
-                <span className="badge badge-primary w-fit text-xs font-semibold">
-                  {model.typeLabels || "汎用"}
-                </span>
-                <h2 className="text-xl font-bold text-slate-900">{model.name}</h2>
-                <p className="text-sm font-semibold text-primary">{model.priceRange}</p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {model.bullets?.map((bullet) => (
-                  <span
-                    key={bullet}
-                    className="badge badge-primary bg-sky-100 text-xs font-semibold text-primary"
-                  >
-                    {bullet}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-auto flex flex-wrap gap-3 text-sm">
-                <Link
-                  href={`/models/${model.id}`}
-                  className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-                >
-                  詳細を見る
-                </Link>
-                {model.links?.consult ? (
-                  <Link
-                    href={model.links.consult}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-                  >
-                    相談する
-                  </Link>
-                ) : null}
-                {model.links?.demo ? (
-                  <Link
-                    href={model.links.demo}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-                  >
-                    体験会を予約
-                  </Link>
-                ) : null}
-              </div>
-            </article>
+        <h2 className="text-xl font-semibold text-slate-900">ドローン本体</h2>
+        <p className="text-sm text-muted">
+          産業向けの機体ラインアップです。診断結果や用途カテゴリに連動して提案されます。
+        </p>
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          {aircraftModels.map((model) => (
+            <ModelCard key={model.id} model={model} />
           ))}
+        </div>
+      </section>
+
+      {payloadModels.length ? (
+        <section className="flex flex-col gap-4">
+          <h2 className="text-xl font-semibold text-slate-900">対応ペイロード / アクセサリ</h2>
+          <p className="text-sm text-muted">
+            カメラや照明などのペイロードです。対応機体（主に Matrice 350 / 400 シリーズ）と組み合わせて活用します。
+          </p>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {payloadModels.map((model) => (
+              <ModelCard key={model.id} model={model} />
+            ))}
+          </div>
         </section>
+      ) : null}
     </main>
   );
 }

@@ -32,7 +32,13 @@
       "label": "点検",
       "primaryModelId": "mavic3t",
       "alts": [
-        "m30t"
+        "m30t",
+        "m350rtk",
+        "m4t",
+        "zenmuse_h30",
+        "zenmuse_h30t",
+        "zenmuse_s1",
+        "zenmuse_v1"
       ],
       "summary": "設備点検や災害対応で赤外線やズーム撮影の効率を高めたいタイプ。"
     },
@@ -40,7 +46,12 @@
       "label": "測量",
       "primaryModelId": "mavic3e",
       "alts": [
-        "m400"
+        "m400",
+        "m4e",
+        "m350rtk",
+        "m30t",
+        "zenmuse_l2",
+        "zenmuse_p1"
       ],
       "summary": "測量・土木用途で RTK や高精度マッピングを重視するタイプ。"
     },
@@ -62,7 +73,12 @@
       "label": "警戒・自動運用",
       "primaryModelId": "dock3_m4td",
       "alts": [
-        "m30t"
+        "m30t",
+        "m4t",
+        "zenmuse_h30",
+        "zenmuse_h30t",
+        "zenmuse_s1",
+        "zenmuse_v1"
       ],
       "summary": "常設拠点からの無人運用・警備を前提としたタイプ。"
     },
@@ -70,7 +86,15 @@
       "label": "開発・研究",
       "primaryModelId": "m400",
       "alts": [
-        "air3s"
+        "air3s",
+        "m350rtk",
+        "m4t",
+        "m4e",
+        "m400",
+        "zenmuse_l2",
+        "zenmuse_p1",
+        "zenmuse_h30",
+        "zenmuse_h30t"
       ],
       "summary": "SDK 連携や拡張開発の柔軟性を重視するタイプ。"
     }
@@ -88,9 +112,9 @@
         "max": 180000
       },
       "bullets": [
-        "全方位障害物センサー",
-        "縦撮り対応",
-        "249g クラスで規制負担を軽減"
+        "全方位障害物検知",
+        "縦撮りビデオ対応",
+        "249gで手続き簡素"
       ],
       "specs": {
         "機体重量": "約 249 g",
@@ -118,9 +142,9 @@
         "max": 150000
       },
       "bullets": [
-        "360°障害物検知",
+        "360°障害物ガード",
         "ActiveTrack 360",
-        "縦横切替カメラ"
+        "縦横スイッチ撮影"
       ],
       "specs": {
         "機体重量": "約 249 g",
@@ -147,9 +171,9 @@
         "max": 100000
       },
       "bullets": [
-        "249g エントリーモデル",
-        "4K30 撮影",
-        "QuickShots 自動撮影"
+        "249gクラス入門",
+        "4K30映像対応",
+        "QuickShots自動"
       ],
       "specs": {
         "機体重量": "約 249 g",
@@ -176,9 +200,9 @@
         "max": 110000
       },
       "bullets": [
-        "48MP 写真",
-        "長時間飛行バッテリー",
-        "縦撮り対応"
+        "1/1.3型48MP",
+        "縦撮りクイック",
+        "最大38分飛行"
       ],
       "specs": {
         "機体重量": "約 248 g",
@@ -205,9 +229,9 @@
         "max": 70000
       },
       "bullets": [
-        "2.7K カメラ",
-        "OcuSync 2.0 伝送",
-        "軽量で気軽に始められる"
+        "2.7Kカメラ搭載",
+        "OcuSync2.0伝送",
+        "246gで気軽に飛行"
       ],
       "specs": {
         "機体重量": "約 246 g",
@@ -234,9 +258,9 @@
         "max": 25000
       },
       "bullets": [
-        "室内向けトリックドローン",
-        "自動フリップモード",
-        "保護ガード付きで安全"
+        "室内安全フリップ",
+        "自動トリック操作",
+        "保護ガード標準"
       ],
       "specs": {
         "機体重量": "約 155 g",
@@ -263,9 +287,9 @@
         "max": 35000
       },
       "bullets": [
-        "タッチコントローラー操作に対応",
-        "プロペラガード標準装備",
-        "屋内練習に最適"
+        "タッチ操作送信機",
+        "プロペラガード付",
+        "屋内練習向け"
       ],
       "specs": {
         "機体重量": "約 180 g",
@@ -293,9 +317,9 @@
         "max": 270000
       },
       "bullets": [
-        "デュアルカメラ（広角 + 望遠）",
-        "縦横切替のフレキシブル撮影",
-        "最大 46 分の飛行時間"
+        "広角望遠デュアル",
+        "縦横自在コンテンツ",
+        "最大46分飛行"
       ],
       "specs": {
         "機体重量": "約 720 g",
@@ -323,18 +347,18 @@
         "max": 520000
       },
       "bullets": [
-        "トリプルカメラと Cine レベルの映像表現",
-        "最大 51 分飛行・航続 41 km・耐風 12 m/s",
-        "64GB／512GB 内蔵ストレージ搭載"
+        "Hasselblad三眼",
+        "最大51分飛行",
+        "大容量内蔵メモリ"
       ],
       "specs": {
-        "耐風性能": "12 m/s",
-        "動画解像度": "6K 60fps、4K 120fps、縦向き 4K 60fps",
-        "内部ストレージ": "64GB（約42GB 利用）／512GB（クリエイター）",
         "機体重量": "約1063 g",
         "最大航続距離": "41 km",
+        "最大飛行時間": "最大51分",
+        "耐風性能": "12 m/s",
         "イメージセンサー": "4/3型 CMOS 100MP／1/1.3型 CMOS 48MP／1/1.5型 CMOS 50MP",
-        "最大飛行時間": "最大51分"
+        "動画解像度": "6K 60fps、4K 120fps、縦向き 4K 60fps",
+        "内部ストレージ": "64GB（約42GB 利用）／512GB（クリエイター）"
       },
       "images": [
         "mavic4pro.png"
@@ -349,7 +373,7 @@
       "name": "DJI Mavic 3 Pro",
       "typeTags": [
         "creative",
-        "survey"
+        "hobby"
       ],
       "priceJPY": {
         "min": 350000,
@@ -357,8 +381,8 @@
       },
       "bullets": [
         "トリプルカメラ構成",
-        "5.1K/50fps 10bit D-Log",
-        "O3+ 伝送"
+        "5.1K50fps10bit",
+        "O3+長距離伝送"
       ],
       "specs": {
         "機体重量": "約 958 g",
@@ -385,9 +409,9 @@
         "max": 260000
       },
       "bullets": [
-        "4/3 CMOS 単眼カメラ",
-        "5.1K60 10bit D-Log",
-        "46 分飛行"
+        "4/3型単眼センサー",
+        "5.1K60 D-Log撮影",
+        "最大46分飛行"
       ],
       "specs": {
         "機体重量": "約 895 g",
@@ -414,9 +438,9 @@
         "max": 22000
       },
       "bullets": [
-        "プログラミング対応",
-        "室内安全ガード付き",
-        "HD 720p 30fps カメラ"
+        "Scratch対応教育用",
+        "室内安全ガード",
+        "720pHDカメラ"
       ],
       "specs": {
         "メーカー": "Ryze Tech（DJI テクノロジー協力）",
@@ -433,6 +457,38 @@
       }
     },
     {
+      "id": "avata2",
+      "name": "DJI Avata 2",
+      "typeTags": [
+        "creative",
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 160000,
+        "max": 210000
+      },
+      "bullets": [
+        "Cinewhoop設計",
+        "1/1.3型4K60FPV",
+        "最大23分飛行"
+      ],
+      "specs": {
+        "耐風性能": "10.7 m/s",
+        "動画解像度": "4K 60fps／2.7K 120fps",
+        "機体重量": "約377 g",
+        "最大航続距離": "13 km",
+        "イメージセンサー": "1/1.3 型 CMOS 48MP",
+        "最大飛行時間": "最大23分"
+      },
+      "images": [
+        "avata2.png"
+      ],
+      "links": {
+        "consult": "/contact",
+        "learn": "https://www.dji.com/jp/avata-2"
+      }
+    },
+    {
       "id": "mavic3t",
       "name": "DJI Mavic 3T",
       "typeTags": [
@@ -443,9 +499,9 @@
         "max": 900000
       },
       "bullets": [
-        "赤外線 + ズーム + 広角のトリプルカメラ",
-        "RTK オプション対応",
-        "折り畳みで現場即応"
+        "可視赤外トリプル",
+        "RTKモジュール対応",
+        "折り畳み即応運用"
       ],
       "specs": {
         "機体重量": "約 915 g",
@@ -473,21 +529,53 @@
         "max": 2200000
       },
       "bullets": [
-        "全天候対応 IP55",
-        "赤外・ズーム・レーザー距離計を一体化",
-        "DJI Dock 3 とシームレス連携"
+        "IP55全天候機体",
+        "広角望遠サーマル",
+        "最大41分飛行"
       ],
       "specs": {
-        "機体重量": "約 3.77 kg",
+        "機体重量": "約 3.77 kg（バッテリー含む）",
         "最大飛行時間": "最大 41 分",
-        "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512 + レーザー距離計",
-        "防塵防滴": "IP55（機体） / IP54（送信機）"
+        "搭載センサー": "広角 12MP / 望遠 48MP / サーマル 640×512 / LRF 1200 m",
+        "運用環境": "−20 ～ 50 ℃、IP55、耐風 15 m/s"
       },
       "images": [
         "m30t.png"
       ],
       "links": {
         "learn": "https://www.dji.com/jp/matrice-30",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "m350rtk",
+      "name": "DJI Matrice 350 RTK",
+      "typeTags": [
+        "inspection",
+        "survey",
+        "auto",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 1800000,
+        "max": 2300000
+      },
+      "bullets": [
+        "O3Enterprise伝送",
+        "最大55分飛行",
+        "IP55とTB65冗長"
+      ],
+      "specs": {
+        "機体重量": "約 3.77 kg（バッテリー除く）",
+        "最大飛行時間": "最大 55 分（無積載）",
+        "最大ペイロード": "2.7 kg",
+        "運用環境": "−20 ～ 50 ℃、IP55、耐風 12 m/s"
+      },
+      "images": [
+        "m350rtk.png"
+      ],
+      "links": {
+        "learn": "https://www.dji.com/jp/matrice-350-rtk",
         "consult": "/contact"
       }
     },
@@ -502,9 +590,9 @@
         "max": 1000000
       },
       "bullets": [
-        "4/3 CMOS センサー",
-        "メカニカルシャッター",
-        "RTK モジュール対応"
+        "4/3型メカシャッター",
+        "RTK精密測位対応",
+        "夜間測量にも強い"
       ],
       "specs": {
         "機体重量": "約 915 g",
@@ -521,8 +609,38 @@
       }
     },
     {
-      "id": "m400",
-      "name": "DJI Matrice 400",
+      "id": "m4e",
+      "name": "DJI Matrice 4E",
+      "typeTags": [
+        "survey",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 2000000,
+        "max": 2600000
+      },
+      "bullets": [
+        "三眼測量カメラ",
+        "SmartOblique2.0",
+        "TB35ホットスワップ"
+      ],
+      "specs": {
+        "機体重量": "約 1.22 kg（バッテリー含む）",
+        "最大飛行時間": "最大 49 分（無風・無積載）",
+        "搭載センサー": "広角 4/3 CMOS 20MP / 中望遠 48MP / 望遠 48MP",
+        "運用環境": "−10 ～ 40 ℃、耐風 12 m/s"
+      },
+      "images": [
+        "m4e.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/matrice-4-series",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "zenmuse_l2",
+      "name": "DJI Zenmuse L2",
       "typeTags": [
         "survey",
         "dev"
@@ -532,9 +650,78 @@
         "max": 3000000
       },
       "bullets": [
-        "O4 Enterprise 伝送",
-        "最大 6 kg ペイロード",
-        "多様なセンサー・SDK 拡張"
+        "LiDAR毎秒120万点",
+        "450m測距レンジ",
+        "水平5cm垂直4cm精度"
+      ],
+      "specs": {
+        "質量": "905 ±5 g",
+        "検出距離": "450 m @50% 反射 / 250 m @10% 反射、最大 500 m",
+        "点群レート": "シングル 240,000 pts/s、マルチ 1,200,000 pts/s",
+        "精度": "水平 5 cm・垂直 4 cm（150 m、RTK FIX）",
+        "視野角": "ノンリピート 70° × 75°",
+        "レーザークラス": "Class 1 (IEC 60825-1:2014)",
+        "動作温度": "−20 ～ 50 ℃"
+      },
+      "images": [
+        "zenmuse_l2.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-l2",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "zenmuse_p1",
+      "name": "DJI Zenmuse P1",
+      "typeTags": [
+        "survey",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 900000,
+        "max": 1100000
+      },
+      "bullets": [
+        "フルフレーム45MP",
+        "1/2000秒メカシャッター",
+        "水平3cm精度(RTK)"
+      ],
+      "specs": {
+        "質量": "約 800 g",
+        "対応レンズ": "DL 24/35/50 mm LS ASPH",
+        "センサー": "フルサイズ CMOS 45 MP、ピクセル 4.4 µm",
+        "最短撮影間隔": "0.7 秒",
+        "シャッター": "メカ 1/2000～1 秒、電子 1/8000～1 秒",
+        "動作温度": "−20 ～ 50 ℃"
+      },
+      "images": [
+        "zenmuse_p1.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-p1",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "m400",
+      "name": "DJI Matrice 400",
+      "typeTags": [
+        "survey",
+        "dev",
+        "inspection",
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 2500000,
+        "max": 3000000
+      },
+      "bullets": [
+        "O4Enterprise伝送",
+        "最大6kgペイロード",
+        "SDK拡張プラットフォーム"
       ],
       "specs": {
         "機体重量": "約 8.1 kg",
@@ -562,9 +749,9 @@
         "max": 1000000
       },
       "bullets": [
-        "マルチスペクトル + RGB カメラ",
-        "圃場データの即時解析",
-        "RTK サポート"
+        "マルチスペクトル+RGB",
+        "圃場診断ワークフロー",
+        "RTK測位サポート"
       ],
       "specs": {
         "機体重量": "約 951 g",
@@ -591,9 +778,9 @@
         "max": 3000000
       },
       "bullets": [
-        "最大 50 kg の散布能力",
-        "前方/後方レーダー + 双眼ビジョン",
-        "自動ルート散布"
+        "最大50kg散布",
+        "前後レーダー+双眼",
+        "自動航行散布"
       ],
       "specs": {
         "離陸重量": "最大 78 kg（散布時）",
@@ -607,7 +794,8 @@
       "links": {
         "learn": "https://www.dji.com/jp/agras-t50",
         "consult": "/contact"
-      }
+      },
+      "notes": "T25/T10 はヤンマー取扱い製品。DJI正規販売対象外のため参考情報のみ掲載。"
     },
     {
       "id": "flycart30",
@@ -621,9 +809,9 @@
         "max": 2500000
       },
       "bullets": [
-        "最大 30 kg ペイロード",
-        "最大 16 km の航続距離",
-        "デュアルバッテリー冗長"
+        "最大30kg輸送",
+        "航続16kmクラス",
+        "デュアルバッテリー"
       ],
       "specs": {
         "機体重量": "約 39 kg",
@@ -650,9 +838,9 @@
         "max": 12000000
       },
       "bullets": [
-        "全天候ドックで無人自動運用",
-        "24 時間リモート監視",
-        "サーマル + ズームで広域カバー"
+        "全天候ドック運用",
+        "24時間リモート監視",
+        "サーマルズーム併用"
       ],
       "specs": {
         "システム構成": "Dock 3 + Matrice 4TD",
@@ -670,6 +858,171 @@
       }
     },
     {
+      "id": "zenmuse_h30",
+      "name": "DJI Zenmuse H30",
+      "typeTags": [
+        "inspection",
+        "auto",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 1500000,
+        "max": 1800000
+      },
+      "bullets": [
+        "40MP34倍光学",
+        "3kmレーザー距離計",
+        "IP54全天候対応"
+      ],
+      "specs": {
+        "質量": "920 ±5 g",
+        "ズームカメラ": "1/1.8 型 CMOS 40 MP、f/1.6〜f/5.2、FOV 66.7°〜2.9°",
+        "広角カメラ": "1/1.3 型 CMOS 48 MP、f/1.7、FOV 82.1°",
+        "レーザー測距": "3〜3000 m、測距精度 ±(0.2 m + 距離×0.15%)",
+        "動作温度": "−20 ～ 50 ℃",
+        "保護等級": "IP54"
+      },
+      "images": [
+        "zenmuse_h30.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-h30-series",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "zenmuse_h30t",
+      "name": "DJI Zenmuse H30T",
+      "typeTags": [
+        "inspection",
+        "auto",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 2000000,
+        "max": 2400000
+      },
+      "bullets": [
+        "1280×1024サーマル",
+        "32倍赤外ズーム",
+        "1600℃高温測定"
+      ],
+      "specs": {
+        "質量": "920 ±5 g",
+        "サーマルカメラ": "VOx 1280×1024、24 mm f/0.95、NETD ≤50 mk",
+        "温度測定範囲": "高感度 -20～150 ℃、低感度 0～600 ℃（フィルター使用で最大 1600 ℃）",
+        "レーザー測距": "3〜3000 m",
+        "保護等級": "IP54",
+        "動作温度": "−20 ～ 50 ℃"
+      },
+      "images": [
+        "zenmuse_h30t.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-h30-series",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "zenmuse_s1",
+      "name": "DJI Zenmuse S1",
+      "typeTags": [
+        "inspection",
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 400000,
+        "max": 500000
+      },
+      "bullets": [
+        "40lux高出力照明",
+        "低高ビーム切替",
+        "IP54-20℃運用"
+      ],
+      "specs": {
+        "寸法": "125×152×171 mm",
+        "定格出力": "Matrice 400 搭載時 120 W",
+        "照度": "最大 40 lux @100 m、低ビーム 20 lux、ハイビーム 30 lux",
+        "照射角": "低ビーム 15°、ハイビーム 4°",
+        "有効照射距離": "約 500 m（両灯）",
+        "動作温度": "−20 ～ 40 ℃"
+      },
+      "images": [
+        "zenmuse_s1.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-s1",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "zenmuse_v1",
+      "name": "DJI Zenmuse V1 スピーカー",
+      "typeTags": [
+        "inspection",
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 180000,
+        "max": 220000
+      },
+      "bullets": [
+        "最大129dB放送",
+        "テキスト読み上げ",
+        "IP54全天候使用"
+      ],
+      "specs": {
+        "寸法": "134×119×140 mm",
+        "定格出力": "25 W 公称、最大 30 W",
+        "最大音圧": "129 dB @1 m（Matrice 400 搭載時）",
+        "有効放送距離": "最大 700 m（Matrice 400）",
+        "対応機体": "Matrice 400 / 350 RTK / 300 RTK (RC Plus 必須)",
+        "動作温度": "−20 ～ 50 ℃"
+      },
+      "images": [
+        "zenmuse_v1.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/zenmuse-v1",
+        "consult": "/contact"
+      },
+      "kind": "payload"
+    },
+    {
+      "id": "m4t",
+      "name": "DJI Matrice 4T",
+      "typeTags": [
+        "inspection",
+        "auto",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 2200000,
+        "max": 2800000
+      },
+      "bullets": [
+        "四眼複合センサー",
+        "1800mレーザー測距",
+        "最大49分飛行"
+      ],
+      "specs": {
+        "機体重量": "約 1.22 kg（バッテリー含む）",
+        "最大飛行時間": "最大 49 分（無風・無積載）",
+        "搭載センサー": "広角 48MP / 中望遠 48MP / 望遠 48MP / サーマル 640×512",
+        "運用環境": "−10 ～ 40 ℃、耐風 12 m/s"
+      },
+      "images": [
+        "m4t.png"
+      ],
+      "links": {
+        "learn": "https://enterprise.dji.com/matrice-4-series",
+        "consult": "/contact"
+      }
+    },
+    {
       "id": "inspire3",
       "name": "DJI Inspire 3",
       "typeTags": [
@@ -680,9 +1033,9 @@
         "max": 2000000
       },
       "bullets": [
-        "8K ProRes RAW 対応",
-        "ティルトブースト機構でダイナミック撮影",
-        "RTK ベースで精密トラッキング"
+        "8K ProRes RAW撮影",
+        "ティルトブースト構造",
+        "RTK精密トラッキング"
       ],
       "specs": {
         "機体重量": "約 4.0 kg（機体のみ）",
@@ -696,38 +1049,6 @@
       "links": {
         "learn": "https://www.dji.com/jp/inspire-3",
         "consult": "/contact"
-      }
-    },
-    {
-      "id": "avata2",
-      "name": "DJI Avata 2",
-      "typeTags": [
-        "creative",
-        "hobby"
-      ],
-      "priceJPY": {
-        "min": 160000,
-        "max": 210000
-      },
-      "bullets": [
-        "Cinewhoop デザインで狭所も安全に飛行",
-        "1/1.3 型 CMOS 4K60 の臨場感ある FPV 映像",
-        "最大 23 分飛行・急速充電対応バッテリー"
-      ],
-      "specs": {
-        "耐風性能": "10.7 m/s",
-        "動画解像度": "4K 60fps／2.7K 120fps",
-        "機体重量": "約377 g",
-        "最大航続距離": "13 km",
-        "イメージセンサー": "1/1.3 型 CMOS 48MP",
-        "最大飛行時間": "最大23分"
-      },
-      "images": [
-        "avata2.png"
-      ],
-      "links": {
-        "consult": "/contact",
-        "learn": "https://www.dji.com/jp/avata-2"
       }
     }
   ]

@@ -78,12 +78,15 @@ export const CatalogModelSchema = z.object({
   id: z.string(),
   name: z.string(),
   typeTags: z.array(z.string()).default([]),
+  kind: z.enum(["aircraft", "payload"]).default("aircraft"),
   priceJPY: z.object({
     min: z.number().int(),
     max: z.number().int()
   }),
   bullets: z.array(z.string()).default([]),
   specs: z.record(z.string()).optional(),
+  notes: z.string().optional(),
+  status: z.string().optional(),
   images: z.array(z.string()).default([]),
   links: z
     .object({

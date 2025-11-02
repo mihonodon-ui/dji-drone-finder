@@ -22,6 +22,7 @@ const categoryLabel: Record<string, string> = {
   cinema: "映像制作",
   fpv: "FPV",
   legacy: "レガシー",
+  enterprise: "産業用",
   accessories: "アクセサリ"
 };
 
@@ -89,4 +90,3 @@ export default function ArchivePage() {
     </main>
   );
 }
-

@@ -2,6 +2,11 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { catalog } from "@/lib/datasets";
+import type { CatalogModel } from "@/lib/types";
+
+function getKindLabel(model: CatalogModel) {
+  return model.kind === "payload" ? "ペイロード" : "機体";
+}
 
 export default async function ModelDetailPage({
   params
@@ -20,14 +25,31 @@ export default async function ModelDetailPage({
     .join("／");
 
   const specsEntries = model.specs ? Object.entries(model.specs) : [];
+  const priceRange = `${model.priceJPY.min.toLocaleString("ja-JP")}〜${model.priceJPY.max.toLocaleString("ja-JP")}円`;
+  const kindLabel = getKindLabel(model);
 
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-12">
       <header className="flex flex-col gap-4 text-center sm:text-left">
-        <span className="badge badge-primary self-center sm:self-start">
-          {typeLabels || "DJI Drone"}
-        </span>
+        <div className="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:gap-3">
+          <span className="badge badge-primary bg-sky-100 text-xs font-semibold text-primary">
+            {kindLabel}
+          </span>
+          {typeLabels ? (
+            <span className="badge badge-primary bg-slate-100 text-xs font-semibold text-slate-600">
+              {typeLabels}
+            </span>
+          ) : null}
+          <span className="badge badge-primary bg-slate-100 text-xs font-semibold text-slate-600">
+            {priceRange}
+          </span>
+        </div>
         <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">{model.name}</h1>
+        {model.notes ? (
+          <p className="mx-auto max-w-3xl rounded-xl bg-amber-50 px-4 py-3 text-xs text-amber-600 sm:mx-0">
+            {model.notes}
+          </p>
+        ) : null}
         {model.bullets?.length ? (
           <ul className="mx-auto max-w-3xl list-disc space-y-2 text-sm text-slate-700 sm:mx-0 sm:pl-5">
             {model.bullets.map((bullet) => (
@@ -73,6 +95,14 @@ export default async function ModelDetailPage({
                 相談する
               </Link>
             ) : null}
+            {model.links?.demo ? (
+              <Link
+                href={model.links.demo}
+                className="rounded-full border border-slate-300 px-5 py-2 font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+              >
+                体験会を予約
+              </Link>
+            ) : null}
           </div>
         </div>
 
@@ -94,6 +124,12 @@ export default async function ModelDetailPage({
           ) : (
             <p className="mt-4 text-sm text-slate-600">スペック情報は準備中です。</p>
           )}
+
+          <div className="mt-6 text-sm text-muted">
+            <p>
+              価格目安：<span className="font-semibold text-slate-900">{priceRange}</span>
+            </p>
+          </div>
 
           {model.links?.learn ? (
             <div className="mt-6 text-sm">

@@ -44,6 +44,20 @@
       "notes": "Inspire 3 の登場により旧モデル化。法人レンタルなど一部需要あり。"
     },
     {
+      "id": "matrice30",
+      "name": "DJI Matrice 30 シリーズ",
+      "status": "archive",
+      "category": "enterprise",
+      "notes": "公式サイトで掲載終了。Matrice 30T のみ在庫限りで流通。"
+    },
+    {
+      "id": "matrice4d",
+      "name": "DJI Ronin 4D（旧 Matrice 4D 表記）",
+      "status": "archive",
+      "category": "cinema",
+      "notes": "航空ドローンではなく地上撮影システム。空撮用途には Matrice 4E/Mavic 3E を参照。"
+    },
+    {
       "id": "phantom_series",
       "name": "DJI Phantom シリーズ",
       "status": "discontinued",
@@ -59,4 +73,3 @@
     }
   ]
 }
-
