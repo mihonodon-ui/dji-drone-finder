@@ -5,13 +5,13 @@
     "hobby": {
       "label": "趣味・旅撮",
       "primaryModelId": "mini5pro",
-      "alts": ["mini4pro", "mini4k", "mini3", "mini2se"],
+      "alts": ["mini4pro", "mini4k", "mini3", "mini2se", "djiflip", "djineo"],
       "summary": "旅行やSNS向けに、軽量で扱いやすい空撮ドローンを重視するタイプ。"
     },
     "creative": {
       "label": "映像・クリエイティブ",
       "primaryModelId": "air3s",
-      "alts": ["mavic3pro", "inspire3"],
+      "alts": ["mavic4pro", "mavic3pro", "mavic3classic", "inspire3"],
       "summary": "映像制作でダイナミックレンジや多レンズ構成を求めるタイプ。"
     },
     "inspection": {
@@ -117,7 +117,7 @@
         "機体重量": "約 248 g",
         "最大飛行時間": "最大 38 分",
         "カメラ": "1/1.3 型 CMOS 48MP、4K30 HDR",
-        "風圧抵抗": "10.7 m/s"
+        "耐風性能": "10.7 m/s"
       },
       "images": ["mini3.png"],
       "links": {
@@ -129,7 +129,7 @@
       "id": "mini2se",
       "name": "DJI Mini 2 SE",
       "typeTags": ["hobby"],
-      "priceJPY": { "min": 60000, "max": 75000 },
+      "priceJPY": { "min": 60000, "max": 70000 },
       "bullets": ["2.7K カメラ", "OcuSync 2.0 伝送", "軽量で気軽に始められる"],
       "specs": {
         "機体重量": "約 246 g",
@@ -140,6 +140,42 @@
       "images": ["mini2se.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-2-se",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "djiflip",
+      "name": "DJI Flip",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 20000, "max": 25000 },
+      "bullets": ["室内向けトリックドローン", "自動フリップモード", "保護ガード付きで安全"],
+      "specs": {
+        "機体重量": "約 155 g",
+        "最大飛行時間": "最大 18 分",
+        "カメラ": "1080p HD",
+        "特徴": "屋内でも楽しめるフリップ・バレルロール機能"
+      },
+      "images": ["djiflip.png"],
+      "links": {
+        "learn": "https://www.dji.com/jp/dji-flip",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "djineo",
+      "name": "DJI Neo",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 30000, "max": 35000 },
+      "bullets": ["タッチコントローラー操作に対応", "プロペラガード標準装備", "屋内練習に最適"],
+      "specs": {
+        "機体重量": "約 180 g",
+        "最大飛行時間": "最大 19 分",
+        "カメラ": "2.7K 30fps",
+        "特徴": "手軽な操作系とクイックショットテンプレが充実"
+      },
+      "images": ["djineo.png"],
+      "links": {
+        "learn": "https://www.dji.com/jp/dji-neo",
         "consult": "/contact"
       }
     },
@@ -162,6 +198,23 @@
       }
     },
     {
+      "id": "mavic4pro",
+      "name": "DJI Mavic 4 Pro（情報待ち）",
+      "typeTags": ["creative", "hobby"],
+      "priceJPY": { "min": 400000, "max": 520000 },
+      "bullets": ["次世代 4 レンズシステム（噂段階）", "夜景撮影向け大型センサー搭載予定", "O5 伝送（想定）"],
+      "specs": {
+        "ステータス": "正式発表待ち（セキドでティザー案内中）",
+        "参考リンク": "https://sekido-rc.com/?mode=grp&gid=3072235",
+        "想定用途": "ハイエンド空撮・映像制作"
+      },
+      "images": ["mavic4pro.png"],
+      "links": {
+        "learn": "https://sekido-rc.com/?mode=grp&gid=3072235",
+        "consult": "/contact"
+      }
+    },
+    {
       "id": "mavic3pro",
       "name": "DJI Mavic 3 Pro",
       "typeTags": ["creative", "survey"],
@@ -171,11 +224,29 @@
         "機体重量": "約 958 g",
         "最大飛行時間": "最大 43 分",
         "カメラ": "4/3 CMOS 広角 + 中望遠 + 望遠",
-        "動画性能": "5.1K 50fps、Apple ProRes (Cine)"
+        "動画性能": "5.1K 50fps、Apple ProRes（Cine）"
       },
       "images": ["mavic3pro.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-pro",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "mavic3classic",
+      "name": "DJI Mavic 3 Classic",
+      "typeTags": ["creative"],
+      "priceJPY": { "min": 220000, "max": 260000 },
+      "bullets": ["4/3 CMOS 単眼カメラ", "5.1K60 10bit D-Log", "46 分飛行"],
+      "specs": {
+        "機体重量": "約 895 g",
+        "最大飛行時間": "最大 46 分",
+        "カメラ": "4/3 CMOS 20MP（ハッセルブラッド）",
+        "動画性能": "5.1K 60fps / 4K 120fps"
+      },
+      "images": ["mavic3classic.png"],
+      "links": {
+        "learn": "https://www.dji.com/jp/mavic-3-classic",
         "consult": "/contact"
       }
     },
@@ -189,7 +260,7 @@
         "機体重量": "約 915 g",
         "最大飛行時間": "最大 45 分",
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512",
-        "防塵防滴": "IP54 (機体)"
+        "防塵防滴": "IP54（機体）"
       },
       "images": ["m3t.png"],
       "links": {
@@ -207,7 +278,7 @@
         "機体重量": "約 3.77 kg",
         "最大飛行時間": "最大 41 分",
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512 + レーザー距離計",
-        "防塵防滴": "IP55 (機体) / IP54 (コントローラー)"
+        "防塵防滴": "IP55（機体） / IP54（送信機）"
       },
       "images": ["m30t.png"],
       "links": {
@@ -225,7 +296,7 @@
         "機体重量": "約 915 g",
         "最大飛行時間": "最大 45 分",
         "カメラ": "4/3 CMOS 20MP、メカニカルシャッター 1/2000 秒",
-        "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK使用時）"
+        "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK 使用時）"
       },
       "images": ["m3e.png"],
       "links": {
@@ -343,3 +414,4 @@
     }
   ]
 }
+
