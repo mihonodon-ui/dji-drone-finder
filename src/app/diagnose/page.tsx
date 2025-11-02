@@ -128,8 +128,8 @@ export default function DiagnosePage() {
   const [copied, setCopied] = useState(false);
 
   const activeQuestions = useMemo(
-    () => buildActiveQuestions(dynamicQuestionSet, state.mode),
-    [state.mode]
+    () => buildActiveQuestions(dynamicQuestionSet, state),
+    [state]
   );
 
   const currentQuestion = findQuestionById(dynamicQuestionSet, currentQuestionId);
@@ -170,7 +170,7 @@ export default function DiagnosePage() {
     setState(nextState);
     setErrorMessage(null);
 
-    const nextActiveQuestions = buildActiveQuestions(dynamicQuestionSet, nextState.mode);
+    const nextActiveQuestions = buildActiveQuestions(dynamicQuestionSet, nextState);
     const shouldFinish = isDiagnosisComplete(nextState, nextActiveQuestions);
     const nextQuestionId = findNextQuestionId(dynamicQuestionSet, nextState);
 
@@ -411,4 +411,3 @@ export default function DiagnosePage() {
     </main>
   );
 }
-

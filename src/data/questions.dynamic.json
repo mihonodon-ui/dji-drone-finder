@@ -20,12 +20,18 @@
         },
         {
           "key": "B",
+          "label": "映像制作・プロモーションなどの空撮業務に使いたい",
+          "scores": { "creative": 4, "hobby": 1 },
+          "effects": { "setMode": "pro", "addDetailSegments": ["detail_creative"] }
+        },
+        {
+          "key": "C",
           "label": "業務で点検・測量・農業などに使いたい",
           "scores": { "inspection": 2, "survey": 2, "agri": 2, "auto": 1 },
           "effects": { "setMode": "pro" }
         },
         {
-          "key": "C",
+          "key": "D",
           "label": "研究開発・SDK 連携・PoC を進めたい",
           "scores": { "dev": 3, "survey": 1, "creative": 1 },
           "effects": { "setMode": "pro" }
@@ -150,7 +156,7 @@
     },
     {
       "id": "dyn_q6",
-      "text": "SDK やカスタム開発の予定は？",
+      "text": "SDK（ドローンを自社システムと連携させる開発キット）やカスタム開発の予定は？",
       "category": "development",
       "difficulty": "advanced",
       "targetSegments": ["pro"],
@@ -197,7 +203,56 @@
           "scores": { "inspection": 1, "creative": 1 }
         }
       ]
+    },
+    {
+      "id": "dyn_creative_q1",
+      "text": "映像制作で最も重視したいポイントは？",
+      "category": "creative_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_creative"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "シネマクオリティの画質・ダイナミックレンジ",
+          "scores": { "creative": 3, "dev": 1 }
+        },
+        {
+          "key": "B",
+          "label": "長時間飛行と現場での運用効率",
+          "scores": { "creative": 2, "logi": 1 }
+        },
+        {
+          "key": "C",
+          "label": "携帯性と少人数運用のしやすさ",
+          "scores": { "creative": 1, "hobby": 2 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_creative_q2",
+      "text": "必要なカメラ構成に近いものを選んでください",
+      "category": "creative_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_creative"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "望遠・広角を同時に使えるマルチカメラ構成",
+          "scores": { "creative": 3, "inspection": 1 }
+        },
+        {
+          "key": "B",
+          "label": "単眼でも大判センサーを重視する",
+          "scores": { "creative": 2, "dev": 1 }
+        },
+        {
+          "key": "C",
+          "label": "FPV や迫力ショット向けの機体を想定している",
+          "scores": { "creative": 2, "hobby": 2 }
+        }
+      ]
     }
   ]
 }
-

@@ -26,7 +26,8 @@ export const QuestionOptionConstraintsSchema = z
 
 export const QuestionOptionEffectsSchema = z
   .object({
-    setMode: z.enum(["light", "pro"]).optional()
+    setMode: z.enum(["light", "pro"]).optional(),
+    addDetailSegments: z.array(z.string()).optional()
   })
   .partial()
   .optional();
@@ -45,7 +46,7 @@ export const QuestionSchema = z.object({
   weight: z.number().int().min(1).default(1),
   category: z.string().optional(),
   difficulty: z.enum(["basic", "advanced", "expert"]).optional(),
-  targetSegments: z.array(z.enum(["common", "light", "pro"])).optional(),
+  targetSegments: z.array(z.enum(["common", "light", "pro", "detail_creative"])).optional(),
   strategyTags: z.array(z.string()).optional(),
   options: z.array(QuestionOptionSchema).min(2)
 });

@@ -63,13 +63,6 @@
       "status": "discontinued",
       "category": "legacy",
       "notes": "公式販売終了。測量用途で Phantom 4 RTK のみ一部取扱い。"
-    },
-    {
-      "id": "main_body_accessories",
-      "name": "本体販売終了アクセサリ / 消耗品",
-      "status": "archive",
-      "category": "accessories",
-      "notes": "過去モデル向けの消耗品・アクセサリ。サポート窓口を案内。"
     }
   ]
 }

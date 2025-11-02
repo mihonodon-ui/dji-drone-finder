@@ -22,6 +22,86 @@ export function ResultCard(props: ResultCardProps) {
     if (!model) return "";
     return model.kind === "payload" ? "ペイロード" : "機体";
   };
+  const formatPrice = (model: CatalogModel) =>
+    `${model.priceJPY.min.toLocaleString("ja-JP")}〜${model.priceJPY.max.toLocaleString("ja-JP")}円`;
+  const priceMid = (model: CatalogModel) =>
+    (model.priceJPY.min + model.priceJPY.max) / 2;
+
+  const payloadAlternatives: CatalogModel[] = [];
+  const upperAlternatives: CatalogModel[] = [];
+  const lowerAlternatives: CatalogModel[] = [];
+
+  const benchmark = primaryModel ? priceMid(primaryModel) : undefined;
+  alternativeModels.forEach((model) => {
+    if (model.kind === "payload") {
+      payloadAlternatives.push(model);
+      return;
+    }
+    if (benchmark === undefined) {
+      lowerAlternatives.push(model);
+      return;
+    }
+    if (priceMid(model) >= benchmark) {
+      upperAlternatives.push(model);
+    } else {
+      lowerAlternatives.push(model);
+    }
+  });
+
+  const renderAlternativeList = (
+    title: string,
+    models: CatalogModel[],
+    accent: "upper" | "lower" | "payload"
+  ) => {
+    if (!models.length) return null;
+    const accentClass =
+      accent === "upper"
+        ? "border-slate-200 bg-sky-50"
+        : accent === "payload"
+        ? "border-amber-200 bg-amber-50"
+        : "border-slate-200 bg-white";
+    return (
+      <div
+        className={`rounded-2xl border p-4 ${accentClass} shadow-sm transition`}
+      >
+        <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+          {title}
+        </p>
+        <ul className="mt-3 space-y-3 text-sm text-slate-700">
+          {models.map((model) => (
+            <li key={model.id} className="flex flex-col gap-1">
+              <span className="font-semibold text-slate-900">{model.name}</span>
+              <span className="flex flex-wrap gap-2 text-xs text-muted">
+                {formatPrice(model)}
+                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                  {kindLabel(model)}
+                </span>
+                {model.typeTags?.length ? (
+                  <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                    {model.typeTags
+                      .map((tag) => catalog.types[tag]?.label)
+                      .filter(Boolean)
+                      .join("／")}
+                  </span>
+                ) : null}
+              </span>
+              {model.bullets?.length ? (
+                <ul className="ml-4 list-disc text-xs text-slate-600">
+                  {model.bullets.slice(0, 3).map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
+              ) : null}
+              {model.notes ? (
+                <span className="text-xs text-amber-600">{model.notes}</span>
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className="w-full rounded-3xl bg-white p-8 shadow-2xl shadow-sky-100">
       <div className="flex flex-col gap-4">
@@ -70,8 +150,7 @@ export function ResultCard(props: ResultCardProps) {
               ) : null}
             </div>
             <p className="text-sm text-muted">
-              {primaryModel.priceJPY.min.toLocaleString("ja-JP")}〜
-              {primaryModel.priceJPY.max.toLocaleString("ja-JP")}円（税込目安）
+              {formatPrice(primaryModel)}（税込目安）
             </p>
             {primaryModel.bullets?.length ? (
               <ul className="mt-3 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">
@@ -92,30 +171,11 @@ export function ResultCard(props: ResultCardProps) {
             ) : null}
           </div>
         ) : null}
-        {alternativeModels.length ? (
-          <div className="mt-4 rounded-2xl border border-dashed border-slate-200 p-4">
-            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-              上位 / 代替候補
-            </p>
-            <ul className="mt-2 space-y-2 text-sm text-slate-700">
-              {alternativeModels.map((model) => (
-                <li key={model.id} className="flex flex-col">
-                  <span className="font-medium">{model.name}</span>
-                  <span className="flex flex-wrap gap-2 text-xs text-muted">
-                    {model.priceJPY.min.toLocaleString("ja-JP")}〜
-                    {model.priceJPY.max.toLocaleString("ja-JP")}円
-                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
-                      {kindLabel(model)}
-                    </span>
-                  </span>
-                  {model.notes ? (
-                    <span className="text-xs text-amber-600">{model.notes}</span>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
+        <div className="mt-4 grid gap-4 lg:grid-cols-2">
+          {renderAlternativeList("上位候補（より高機能・高価格帯）", upperAlternatives, "upper")}
+          {renderAlternativeList("代替候補（コスト重視・下位機）", lowerAlternatives, "lower")}
+          {renderAlternativeList("推奨ペイロード / 対応アクセサリ", payloadAlternatives, "payload")}
+        </div>
         {template?.tips?.length ? (
           <div className="mt-4 rounded-2xl bg-slate-50 p-4">
             <p className="text-sm font-semibold text-slate-600">導入のヒント</p>

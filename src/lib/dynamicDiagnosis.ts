@@ -19,13 +19,15 @@ export interface DiagnosisState {
   constraints: ConstraintState;
   answers: AnswerMap;
   questionOrder: string[];
+  detailSegments: string[];
 }
 
 export const initialDiagnosisState: DiagnosisState = {
   mode: "unknown",
   constraints: {},
   answers: {},
-  questionOrder: []
+  questionOrder: [],
+  detailSegments: []
 };
 
 export function createInitialDiagnosisState(): DiagnosisState {
@@ -33,18 +35,28 @@ export function createInitialDiagnosisState(): DiagnosisState {
     mode: "unknown",
     constraints: {},
     answers: {},
-    questionOrder: []
+    questionOrder: [],
+    detailSegments: []
   };
 }
 
 const COMMON_SEGMENT = "common";
 
-export function shouldIncludeQuestion(question: Question, mode: DiagnosisMode) {
+export function shouldIncludeQuestion(
+  question: Question,
+  state: DiagnosisState
+) {
   const segments = question.targetSegments ?? [COMMON_SEGMENT];
-  if (mode === "unknown") {
+  if (state.mode === "unknown") {
     return segments.includes(COMMON_SEGMENT);
   }
-  return segments.includes(COMMON_SEGMENT) || segments.includes(mode);
+  if (segments.includes(COMMON_SEGMENT) || segments.includes(state.mode)) {
+    return true;
+  }
+  if (!state.detailSegments.length) {
+    return false;
+  }
+  return segments.some((segment) => state.detailSegments.includes(segment));
 }
 
 export function applyOptionEffects(
@@ -59,8 +71,17 @@ export function applyOptionEffects(
       ...extractConstraints(option.constraints)
     },
     answers: { ...state.answers },
-    questionOrder: [...state.questionOrder]
+    questionOrder: [...state.questionOrder],
+    detailSegments: [...state.detailSegments]
   };
+
+  if (option.effects?.addDetailSegments?.length) {
+    const merged = new Set([
+      ...nextState.detailSegments,
+      ...option.effects.addDetailSegments
+    ]);
+    nextState.detailSegments = Array.from(merged);
+  }
 
   return nextState;
 }
@@ -99,12 +120,15 @@ export function findNextQuestionId(
     if (state.answers[question.id]) {
       return false;
     }
-    return shouldIncludeQuestion(question, state.mode);
+    return shouldIncludeQuestion(question, state);
   })?.id;
 }
 
-export function buildActiveQuestions(questionSet: QuestionSet, mode: DiagnosisMode) {
-  return questionSet.questions.filter((question) => shouldIncludeQuestion(question, mode));
+export function buildActiveQuestions(
+  questionSet: QuestionSet,
+  state: DiagnosisState
+) {
+  return questionSet.questions.filter((question) => shouldIncludeQuestion(question, state));
 }
 
 export function isDiagnosisComplete(
