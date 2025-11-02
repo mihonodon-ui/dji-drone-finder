@@ -65,7 +65,11 @@
         "伝送システム": "O4 HD Video Transmission"
       },
       "images": ["mini5pro.jpg"],
-      "links": { "learn": "#", "consult": "/contact", "demo": "/experience" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mini-5-pro",
+        "consult": "/contact",
+        "demo": "/experience"
+      }
     },
     {
       "id": "mini4pro",
@@ -80,7 +84,10 @@
         "最大伝送距離": "最大 20 km (O4)"
       },
       "images": ["mini4pro.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mini-4-pro",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mini4k",
@@ -95,7 +102,10 @@
         "動画ビットレート": "100 Mbps"
       },
       "images": ["mini4k.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mini-4k",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mini3",
@@ -110,7 +120,10 @@
         "風圧抵抗": "10.7 m/s"
       },
       "images": ["mini3.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mini-3",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mini2se",
@@ -125,7 +138,10 @@
         "最大伝送距離": "10 km (O2)"
       },
       "images": ["mini2se.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mini-2-se",
+        "consult": "/contact"
+      }
     },
     {
       "id": "air3s",
@@ -140,7 +156,10 @@
         "動画性能": "4K100 HDR、10bit D-Log M"
       },
       "images": ["air3s.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/air-3",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mavic3pro",
@@ -155,7 +174,10 @@
         "動画性能": "5.1K 50fps、Apple ProRes (Cine)"
       },
       "images": ["mavic3pro.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mavic-3-pro",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mavic3t",
@@ -170,7 +192,10 @@
         "防塵防滴": "IP54 (機体)"
       },
       "images": ["m3t.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mavic-3t",
+        "consult": "/contact"
+      }
     },
     {
       "id": "m30t",
@@ -185,7 +210,10 @@
         "防塵防滴": "IP55 (機体) / IP54 (コントローラー)"
       },
       "images": ["m30t.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/matrice-30",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mavic3e",
@@ -200,7 +228,10 @@
         "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK使用時）"
       },
       "images": ["m3e.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mavic-3-enterprise",
+        "consult": "/contact"
+      }
     },
     {
       "id": "m400",
@@ -215,7 +246,10 @@
         "対応SDK": "Pilot 2、Payload/Onboard SDK"
       },
       "images": ["m400.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/matrice-400",
+        "consult": "/contact"
+      }
     },
     {
       "id": "mavic3m",
@@ -230,7 +264,10 @@
         "補正": "RTK / Network RTK / D-RTK 2"
       },
       "images": ["m3m.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/mavic-3-multispectral",
+        "consult": "/contact"
+      }
     },
     {
       "id": "agras_t50",
@@ -245,7 +282,10 @@
         "対応レーダー": "前後デュアルアクティブフェーズドアレイ"
       },
       "images": ["t50.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/agras-t50",
+        "consult": "/contact"
+      }
     },
     {
       "id": "flycart30",
@@ -260,7 +300,10 @@
         "運用環境": "−20 〜 45 ℃、IP55"
       },
       "images": ["flycart30.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/flycart-30",
+        "consult": "/contact"
+      }
     },
     {
       "id": "dock3_m4td",
@@ -275,7 +318,10 @@
         "通信": "O4 Enterprise + 5G（オプション）"
       },
       "images": ["dock3.jpg", "m4td.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/dock-3",
+        "consult": "/contact"
+      }
     },
     {
       "id": "inspire3",
@@ -290,7 +336,10 @@
         "動画性能": "8K60 ProRes RAW / CinemaDNG"
       },
       "images": ["insp3.jpg"],
-      "links": { "learn": "#", "consult": "/contact" }
+      "links": {
+        "learn": "https://www.dji.com/jp/inspire-3",
+        "consult": "/contact"
+      }
     }
   ]
 }
