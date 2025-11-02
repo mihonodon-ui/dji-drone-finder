@@ -64,7 +64,7 @@
         "カメラ": "1/1.3 型 CMOS 48MP、4K60 HDR",
         "伝送システム": "O4 HD Video Transmission"
       },
-      "images": ["mini5pro.jpg"],
+      "images": ["mini5pro.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-5-pro",
         "consult": "/contact",
@@ -83,7 +83,7 @@
         "カメラ": "1/1.3 型 CMOS 48MP、4K60",
         "最大伝送距離": "最大 20 km (O4)"
       },
-      "images": ["mini4pro.jpg"],
+      "images": ["mini4pro.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-4-pro",
         "consult": "/contact"
@@ -101,7 +101,7 @@
         "カメラ": "1/2.3 型 CMOS 12MP、4K30",
         "動画ビットレート": "100 Mbps"
       },
-      "images": ["mini4k.jpg"],
+      "images": ["mini4k.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-4k",
         "consult": "/contact"
@@ -119,7 +119,7 @@
         "カメラ": "1/1.3 型 CMOS 48MP、4K30 HDR",
         "風圧抵抗": "10.7 m/s"
       },
-      "images": ["mini3.jpg"],
+      "images": ["mini3.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-3",
         "consult": "/contact"
@@ -137,7 +137,7 @@
         "カメラ": "1/2.3 型 CMOS 12MP、2.7K30",
         "最大伝送距離": "10 km (O2)"
       },
-      "images": ["mini2se.jpg"],
+      "images": ["mini2se.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mini-2-se",
         "consult": "/contact"
@@ -155,7 +155,7 @@
         "カメラ": "1/1.3 型 CMOS デュアル（広角・3倍望遠）",
         "動画性能": "4K100 HDR、10bit D-Log M"
       },
-      "images": ["air3s.jpg"],
+      "images": ["air3s.png"],
       "links": {
         "learn": "https://www.dji.com/jp/air-3",
         "consult": "/contact"
@@ -173,7 +173,7 @@
         "カメラ": "4/3 CMOS 広角 + 中望遠 + 望遠",
         "動画性能": "5.1K 50fps、Apple ProRes (Cine)"
       },
-      "images": ["mavic3pro.jpg"],
+      "images": ["mavic3pro.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-pro",
         "consult": "/contact"
@@ -191,7 +191,7 @@
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512",
         "防塵防滴": "IP54 (機体)"
       },
-      "images": ["m3t.jpg"],
+      "images": ["m3t.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3t",
         "consult": "/contact"
@@ -209,7 +209,7 @@
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512 + レーザー距離計",
         "防塵防滴": "IP55 (機体) / IP54 (コントローラー)"
       },
-      "images": ["m30t.jpg"],
+      "images": ["m30t.png"],
       "links": {
         "learn": "https://www.dji.com/jp/matrice-30",
         "consult": "/contact"
@@ -227,7 +227,7 @@
         "カメラ": "4/3 CMOS 20MP、メカニカルシャッター 1/2000 秒",
         "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK使用時）"
       },
-      "images": ["m3e.jpg"],
+      "images": ["m3e.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-enterprise",
         "consult": "/contact"
@@ -245,7 +245,7 @@
         "最大ペイロード": "6 kg",
         "対応SDK": "Pilot 2、Payload/Onboard SDK"
       },
-      "images": ["m400.jpg"],
+      "images": ["m400.png"],
       "links": {
         "learn": "https://www.dji.com/jp/matrice-400",
         "consult": "/contact"
@@ -263,7 +263,7 @@
         "センサー": "RGB 20MP + マルチスペクトル（G/R/RE/NIR）",
         "補正": "RTK / Network RTK / D-RTK 2"
       },
-      "images": ["m3m.jpg"],
+      "images": ["m3m.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-multispectral",
         "consult": "/contact"
@@ -281,7 +281,7 @@
         "散布タンク容量": "最大 40 L",
         "対応レーダー": "前後デュアルアクティブフェーズドアレイ"
       },
-      "images": ["t50.jpg"],
+      "images": ["t50.png"],
       "links": {
         "learn": "https://www.dji.com/jp/agras-t50",
         "consult": "/contact"
@@ -299,7 +299,7 @@
         "最大航続距離": "16 km",
         "運用環境": "−20 〜 45 ℃、IP55"
       },
-      "images": ["flycart30.jpg"],
+      "images": ["flycart30.png"],
       "links": {
         "learn": "https://www.dji.com/jp/flycart-30",
         "consult": "/contact"
@@ -317,7 +317,7 @@
         "運用環境": "IP55（ドック） / IP54（機体）",
         "通信": "O4 Enterprise + 5G（オプション）"
       },
-      "images": ["dock3.jpg", "m4td.jpg"],
+      "images": ["dock3.png", "m4td.png"],
       "links": {
         "learn": "https://www.dji.com/jp/dock-3",
         "consult": "/contact"
@@ -335,7 +335,7 @@
         "カメラ": "Zenmuse X9-8K Air（フルサイズセンサー）",
         "動画性能": "8K60 ProRes RAW / CinemaDNG"
       },
-      "images": ["insp3.jpg"],
+      "images": ["insp3.png"],
       "links": {
         "learn": "https://www.dji.com/jp/inspire-3",
         "consult": "/contact"
