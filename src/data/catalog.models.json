@@ -5,31 +5,51 @@
     "hobby": {
       "label": "趣味・旅撮",
       "primaryModelId": "mini5pro",
-      "alts": ["mini4pro", "mini4k", "mini3", "mini2se", "djiflip", "djineo", "tello"],
+      "alts": [
+        "mini4pro",
+        "mini4k",
+        "mini3",
+        "mini2se",
+        "djiflip",
+        "djineo",
+        "avata2",
+        "tello"
+      ],
       "summary": "旅行やSNS向けに、軽量で扱いやすい空撮ドローンを重視するタイプ。"
     },
     "creative": {
       "label": "映像・クリエイティブ",
       "primaryModelId": "air3s",
-      "alts": ["mavic4pro", "mavic3pro", "mavic3classic", "inspire3"],
+      "alts": [
+        "mavic4pro",
+        "mavic3pro",
+        "mavic3classic",
+        "inspire3"
+      ],
       "summary": "映像制作でダイナミックレンジや多レンズ構成を求めるタイプ。"
     },
     "inspection": {
       "label": "点検",
       "primaryModelId": "mavic3t",
-      "alts": ["m30t"],
+      "alts": [
+        "m30t"
+      ],
       "summary": "設備点検や災害対応で赤外線やズーム撮影の効率を高めたいタイプ。"
     },
     "survey": {
       "label": "測量",
       "primaryModelId": "mavic3e",
-      "alts": ["m400"],
+      "alts": [
+        "m400"
+      ],
       "summary": "測量・土木用途で RTK や高精度マッピングを重視するタイプ。"
     },
     "agri": {
       "label": "農業",
       "primaryModelId": "mavic3m",
-      "alts": ["agras_t50"],
+      "alts": [
+        "agras_t50"
+      ],
       "summary": "圃場管理や農薬散布でマルチスペクトル対応を求めるタイプ。"
     },
     "logi": {
@@ -41,13 +61,17 @@
     "auto": {
       "label": "警戒・自動運用",
       "primaryModelId": "dock3_m4td",
-      "alts": ["m30t"],
+      "alts": [
+        "m30t"
+      ],
       "summary": "常設拠点からの無人運用・警備を前提としたタイプ。"
     },
     "dev": {
       "label": "開発・研究",
       "primaryModelId": "m400",
-      "alts": ["air3s"],
+      "alts": [
+        "air3s"
+      ],
       "summary": "SDK 連携や拡張開発の柔軟性を重視するタイプ。"
     }
   },
@@ -55,16 +79,28 @@
     {
       "id": "mini5pro",
       "name": "DJI Mini 5 Pro",
-      "typeTags": ["hobby", "creative"],
-      "priceJPY": { "min": 150000, "max": 180000 },
-      "bullets": ["全方位障害物センサー", "縦撮り対応", "249g クラスで規制負担を軽減"],
+      "typeTags": [
+        "hobby",
+        "creative"
+      ],
+      "priceJPY": {
+        "min": 150000,
+        "max": 180000
+      },
+      "bullets": [
+        "全方位障害物センサー",
+        "縦撮り対応",
+        "249g クラスで規制負担を軽減"
+      ],
       "specs": {
         "機体重量": "約 249 g",
         "最大飛行時間": "最大 34 分",
         "カメラ": "1/1.3 型 CMOS 48MP、4K60 HDR",
         "伝送システム": "O4 HD Video Transmission"
       },
-      "images": ["mini5pro.png"],
+      "images": [
+        "mini5pro.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mini-5-pro",
         "consult": "/contact",
@@ -74,16 +110,27 @@
     {
       "id": "mini4pro",
       "name": "DJI Mini 4 Pro",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 125000, "max": 150000 },
-      "bullets": ["360°障害物検知", "ActiveTrack 360", "縦横切替カメラ"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 125000,
+        "max": 150000
+      },
+      "bullets": [
+        "360°障害物検知",
+        "ActiveTrack 360",
+        "縦横切替カメラ"
+      ],
       "specs": {
         "機体重量": "約 249 g",
         "最大飛行時間": "最大 34 分",
         "カメラ": "1/1.3 型 CMOS 48MP、4K60",
         "最大伝送距離": "最大 20 km (O4)"
       },
-      "images": ["mini4pro.png"],
+      "images": [
+        "mini4pro.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mini-4-pro",
         "consult": "/contact"
@@ -92,16 +139,27 @@
     {
       "id": "mini4k",
       "name": "DJI Mini 4K",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 80000, "max": 100000 },
-      "bullets": ["249g エントリーモデル", "4K30 撮影", "QuickShots 自動撮影"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 80000,
+        "max": 100000
+      },
+      "bullets": [
+        "249g エントリーモデル",
+        "4K30 撮影",
+        "QuickShots 自動撮影"
+      ],
       "specs": {
         "機体重量": "約 249 g",
         "最大飛行時間": "最大 31 分",
         "カメラ": "1/2.3 型 CMOS 12MP、4K30",
         "動画ビットレート": "100 Mbps"
       },
-      "images": ["mini4k.png"],
+      "images": [
+        "mini4k.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mini-4k",
         "consult": "/contact"
@@ -110,16 +168,27 @@
     {
       "id": "mini3",
       "name": "DJI Mini 3",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 90000, "max": 110000 },
-      "bullets": ["48MP 写真", "長時間飛行バッテリー", "縦撮り対応"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 90000,
+        "max": 110000
+      },
+      "bullets": [
+        "48MP 写真",
+        "長時間飛行バッテリー",
+        "縦撮り対応"
+      ],
       "specs": {
         "機体重量": "約 248 g",
         "最大飛行時間": "最大 38 分",
         "カメラ": "1/1.3 型 CMOS 48MP、4K30 HDR",
         "耐風性能": "10.7 m/s"
       },
-      "images": ["mini3.png"],
+      "images": [
+        "mini3.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mini-3",
         "consult": "/contact"
@@ -128,16 +197,27 @@
     {
       "id": "mini2se",
       "name": "DJI Mini 2 SE",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 60000, "max": 70000 },
-      "bullets": ["2.7K カメラ", "OcuSync 2.0 伝送", "軽量で気軽に始められる"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 60000,
+        "max": 70000
+      },
+      "bullets": [
+        "2.7K カメラ",
+        "OcuSync 2.0 伝送",
+        "軽量で気軽に始められる"
+      ],
       "specs": {
         "機体重量": "約 246 g",
         "最大飛行時間": "最大 31 分",
         "カメラ": "1/2.3 型 CMOS 12MP、2.7K30",
         "最大伝送距離": "10 km (O2)"
       },
-      "images": ["mini2se.png"],
+      "images": [
+        "mini2se.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mini-2-se",
         "consult": "/contact"
@@ -146,16 +226,27 @@
     {
       "id": "djiflip",
       "name": "DJI Flip",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 20000, "max": 25000 },
-      "bullets": ["室内向けトリックドローン", "自動フリップモード", "保護ガード付きで安全"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 20000,
+        "max": 25000
+      },
+      "bullets": [
+        "室内向けトリックドローン",
+        "自動フリップモード",
+        "保護ガード付きで安全"
+      ],
       "specs": {
         "機体重量": "約 155 g",
         "最大飛行時間": "最大 18 分",
         "カメラ": "1080p HD",
         "特徴": "屋内でも楽しめるフリップ・バレルロール機能"
       },
-      "images": ["djiflip.png"],
+      "images": [
+        "djiflip.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/dji-flip",
         "consult": "/contact"
@@ -164,16 +255,27 @@
     {
       "id": "djineo",
       "name": "DJI Neo",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 30000, "max": 35000 },
-      "bullets": ["タッチコントローラー操作に対応", "プロペラガード標準装備", "屋内練習に最適"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 30000,
+        "max": 35000
+      },
+      "bullets": [
+        "タッチコントローラー操作に対応",
+        "プロペラガード標準装備",
+        "屋内練習に最適"
+      ],
       "specs": {
         "機体重量": "約 180 g",
         "最大飛行時間": "最大 19 分",
         "カメラ": "2.7K 30fps",
         "特徴": "手軽な操作系とクイックショットテンプレが充実"
       },
-      "images": ["djineo.png"],
+      "images": [
+        "djineo.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/dji-neo",
         "consult": "/contact"
@@ -182,16 +284,28 @@
     {
       "id": "air3s",
       "name": "DJI Air 3S",
-      "typeTags": ["creative", "hobby"],
-      "priceJPY": { "min": 230000, "max": 270000 },
-      "bullets": ["デュアルカメラ（広角 + 望遠）", "縦横切替のフレキシブル撮影", "最大 46 分の飛行時間"],
+      "typeTags": [
+        "creative",
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 230000,
+        "max": 270000
+      },
+      "bullets": [
+        "デュアルカメラ（広角 + 望遠）",
+        "縦横切替のフレキシブル撮影",
+        "最大 46 分の飛行時間"
+      ],
       "specs": {
         "機体重量": "約 720 g",
         "最大飛行時間": "最大 46 分",
         "カメラ": "1/1.3 型 CMOS デュアル（広角・3倍望遠）",
         "動画性能": "4K100 HDR、10bit D-Log M"
       },
-      "images": ["air3s.png"],
+      "images": [
+        "air3s.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/air-3",
         "consult": "/contact"
@@ -200,25 +314,31 @@
     {
       "id": "mavic4pro",
       "name": "DJI Mavic 4 Pro",
-      "typeTags": ["creative", "hobby"],
-      "priceJPY": { "min": 400000, "max": 520000 },
+      "typeTags": [
+        "creative",
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 400000,
+        "max": 520000
+      },
       "bullets": [
-        "Hasselblad 4/3型 100MP + 中望遠 48MP + 望遠 50MP のトリプルカメラ",
-        "最大 51 分の飛行と 41 km の航続距離、耐風性能 12 m/s",
-        "標準 64GB／クリエイターコンボ 512GB の大容量内蔵ストレージ"
+        "トリプルカメラと Cine レベルの映像表現",
+        "最大 51 分飛行・航続 41 km・耐風 12 m/s",
+        "64GB／512GB 内蔵ストレージ搭載"
       ],
       "specs": {
-        "離陸重量": "約1063 g",
-        "最大飛行時間": "最大51分",
+        "耐風性能": "12 m/s",
+        "動画解像度": "6K 60fps、4K 120fps、縦向き 4K 60fps",
+        "内部ストレージ": "64GB（約42GB 利用）／512GB（クリエイター）",
+        "機体重量": "約1063 g",
         "最大航続距離": "41 km",
-        "最大風圧抵抗": "12 m/s",
-        "動作環境温度": "-10〜40 ℃",
-        "GNSS": "GPS + Galileo + BeiDou",
-        "イメージセンサー": "4/3型 CMOS 100MP（Hasselblad）／1/1.3型 CMOS 48MP（中望遠）／1/1.5型 CMOS 50MP（望遠）",
-        "動画解像度": "最大 6K60、4K120、縦向き 4K60 などに対応",
-        "内部ストレージ": "64GB（約42GB 利用可能）／512GB（クリエイターコンボ）"
+        "イメージセンサー": "4/3型 CMOS 100MP／1/1.3型 CMOS 48MP／1/1.5型 CMOS 50MP",
+        "最大飛行時間": "最大51分"
       },
-      "images": ["mavic4pro.png"],
+      "images": [
+        "mavic4pro.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/support/product/mavic-4-pro",
         "consult": "/contact"
@@ -227,16 +347,28 @@
     {
       "id": "mavic3pro",
       "name": "DJI Mavic 3 Pro",
-      "typeTags": ["creative", "survey"],
-      "priceJPY": { "min": 350000, "max": 450000 },
-      "bullets": ["トリプルカメラ構成", "5.1K/50fps 10bit D-Log", "O3+ 伝送"],
+      "typeTags": [
+        "creative",
+        "survey"
+      ],
+      "priceJPY": {
+        "min": 350000,
+        "max": 450000
+      },
+      "bullets": [
+        "トリプルカメラ構成",
+        "5.1K/50fps 10bit D-Log",
+        "O3+ 伝送"
+      ],
       "specs": {
         "機体重量": "約 958 g",
         "最大飛行時間": "最大 43 分",
         "カメラ": "4/3 CMOS 広角 + 中望遠 + 望遠",
         "動画性能": "5.1K 50fps、Apple ProRes（Cine）"
       },
-      "images": ["mavic3pro.png"],
+      "images": [
+        "mavic3pro.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-pro",
         "consult": "/contact"
@@ -245,16 +377,27 @@
     {
       "id": "mavic3classic",
       "name": "DJI Mavic 3 Classic",
-      "typeTags": ["creative"],
-      "priceJPY": { "min": 220000, "max": 260000 },
-      "bullets": ["4/3 CMOS 単眼カメラ", "5.1K60 10bit D-Log", "46 分飛行"],
+      "typeTags": [
+        "creative"
+      ],
+      "priceJPY": {
+        "min": 220000,
+        "max": 260000
+      },
+      "bullets": [
+        "4/3 CMOS 単眼カメラ",
+        "5.1K60 10bit D-Log",
+        "46 分飛行"
+      ],
       "specs": {
         "機体重量": "約 895 g",
         "最大飛行時間": "最大 46 分",
         "カメラ": "4/3 CMOS 20MP（ハッセルブラッド）",
         "動画性能": "5.1K 60fps / 4K 120fps"
       },
-      "images": ["mavic3classic.png"],
+      "images": [
+        "mavic3classic.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-classic",
         "consult": "/contact"
@@ -263,16 +406,27 @@
     {
       "id": "tello",
       "name": "DJI Ryze Tello",
-      "typeTags": ["hobby"],
-      "priceJPY": { "min": 18000, "max": 22000 },
-      "bullets": ["プログラミング対応", "室内安全ガード付き", "HD 720p 30fps カメラ"],
+      "typeTags": [
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 18000,
+        "max": 22000
+      },
+      "bullets": [
+        "プログラミング対応",
+        "室内安全ガード付き",
+        "HD 720p 30fps カメラ"
+      ],
       "specs": {
         "メーカー": "Ryze Tech（DJI テクノロジー協力）",
         "機体重量": "約 80 g",
         "最大飛行時間": "最大 13 分",
         "制御方法": "スマホ / Scratch プログラミング"
       },
-      "images": ["tello.png"],
+      "images": [
+        "tello.png"
+      ],
       "links": {
         "learn": "https://www.ryzerobotics.com/tello",
         "consult": "/contact"
@@ -281,16 +435,27 @@
     {
       "id": "mavic3t",
       "name": "DJI Mavic 3T",
-      "typeTags": ["inspection"],
-      "priceJPY": { "min": 700000, "max": 900000 },
-      "bullets": ["赤外線 + ズーム + 広角のトリプルカメラ", "RTK オプション対応", "折り畳みで現場即応"],
+      "typeTags": [
+        "inspection"
+      ],
+      "priceJPY": {
+        "min": 700000,
+        "max": 900000
+      },
+      "bullets": [
+        "赤外線 + ズーム + 広角のトリプルカメラ",
+        "RTK オプション対応",
+        "折り畳みで現場即応"
+      ],
       "specs": {
         "機体重量": "約 915 g",
         "最大飛行時間": "最大 45 分",
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512",
         "防塵防滴": "IP54（機体）"
       },
-      "images": ["m3t.png"],
+      "images": [
+        "m3t.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3t",
         "consult": "/contact"
@@ -299,16 +464,28 @@
     {
       "id": "m30t",
       "name": "DJI Matrice 30T",
-      "typeTags": ["inspection", "auto"],
-      "priceJPY": { "min": 1800000, "max": 2200000 },
-      "bullets": ["全天候対応 IP55", "赤外・ズーム・レーザー距離計を一体化", "DJI Dock 3 とシームレス連携"],
+      "typeTags": [
+        "inspection",
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 1800000,
+        "max": 2200000
+      },
+      "bullets": [
+        "全天候対応 IP55",
+        "赤外・ズーム・レーザー距離計を一体化",
+        "DJI Dock 3 とシームレス連携"
+      ],
       "specs": {
         "機体重量": "約 3.77 kg",
         "最大飛行時間": "最大 41 分",
         "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512 + レーザー距離計",
         "防塵防滴": "IP55（機体） / IP54（送信機）"
       },
-      "images": ["m30t.png"],
+      "images": [
+        "m30t.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/matrice-30",
         "consult": "/contact"
@@ -317,16 +494,27 @@
     {
       "id": "mavic3e",
       "name": "DJI Mavic 3 Enterprise",
-      "typeTags": ["survey"],
-      "priceJPY": { "min": 800000, "max": 1000000 },
-      "bullets": ["4/3 CMOS センサー", "メカニカルシャッター", "RTK モジュール対応"],
+      "typeTags": [
+        "survey"
+      ],
+      "priceJPY": {
+        "min": 800000,
+        "max": 1000000
+      },
+      "bullets": [
+        "4/3 CMOS センサー",
+        "メカニカルシャッター",
+        "RTK モジュール対応"
+      ],
       "specs": {
         "機体重量": "約 915 g",
         "最大飛行時間": "最大 45 分",
         "カメラ": "4/3 CMOS 20MP、メカニカルシャッター 1/2000 秒",
         "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK 使用時）"
       },
-      "images": ["m3e.png"],
+      "images": [
+        "m3e.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-enterprise",
         "consult": "/contact"
@@ -335,16 +523,28 @@
     {
       "id": "m400",
       "name": "DJI Matrice 400",
-      "typeTags": ["survey", "dev"],
-      "priceJPY": { "min": 2500000, "max": 3000000 },
-      "bullets": ["O4 Enterprise 伝送", "最大 6 kg ペイロード", "多様なセンサー・SDK 拡張"],
+      "typeTags": [
+        "survey",
+        "dev"
+      ],
+      "priceJPY": {
+        "min": 2500000,
+        "max": 3000000
+      },
+      "bullets": [
+        "O4 Enterprise 伝送",
+        "最大 6 kg ペイロード",
+        "多様なセンサー・SDK 拡張"
+      ],
       "specs": {
         "機体重量": "約 8.1 kg",
         "最大飛行時間": "最大 55 分",
         "最大ペイロード": "6 kg",
         "対応SDK": "Pilot 2、Payload/Onboard SDK"
       },
-      "images": ["m400.png"],
+      "images": [
+        "m400.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/matrice-400",
         "consult": "/contact"
@@ -353,16 +553,28 @@
     {
       "id": "mavic3m",
       "name": "DJI Mavic 3M",
-      "typeTags": ["agri", "survey"],
-      "priceJPY": { "min": 800000, "max": 1000000 },
-      "bullets": ["マルチスペクトル + RGB カメラ", "圃場データの即時解析", "RTK サポート"],
+      "typeTags": [
+        "agri",
+        "survey"
+      ],
+      "priceJPY": {
+        "min": 800000,
+        "max": 1000000
+      },
+      "bullets": [
+        "マルチスペクトル + RGB カメラ",
+        "圃場データの即時解析",
+        "RTK サポート"
+      ],
       "specs": {
         "機体重量": "約 951 g",
         "最大飛行時間": "最大 43 分",
         "センサー": "RGB 20MP + マルチスペクトル（G/R/RE/NIR）",
         "補正": "RTK / Network RTK / D-RTK 2"
       },
-      "images": ["m3m.png"],
+      "images": [
+        "m3m.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-multispectral",
         "consult": "/contact"
@@ -371,16 +583,27 @@
     {
       "id": "agras_t50",
       "name": "DJI Agras T50",
-      "typeTags": ["agri"],
-      "priceJPY": { "min": 2500000, "max": 3000000 },
-      "bullets": ["最大 50 kg の散布能力", "前方/後方レーダー + 双眼ビジョン", "自動ルート散布"],
+      "typeTags": [
+        "agri"
+      ],
+      "priceJPY": {
+        "min": 2500000,
+        "max": 3000000
+      },
+      "bullets": [
+        "最大 50 kg の散布能力",
+        "前方/後方レーダー + 双眼ビジョン",
+        "自動ルート散布"
+      ],
       "specs": {
         "離陸重量": "最大 78 kg（散布時）",
         "散布幅": "最大 11 m",
         "散布タンク容量": "最大 40 L",
         "対応レーダー": "前後デュアルアクティブフェーズドアレイ"
       },
-      "images": ["t50.png"],
+      "images": [
+        "t50.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/agras-t50",
         "consult": "/contact"
@@ -389,16 +612,28 @@
     {
       "id": "flycart30",
       "name": "DJI FlyCart 30",
-      "typeTags": ["logi", "auto"],
-      "priceJPY": { "min": 1500000, "max": 2500000 },
-      "bullets": ["最大 30 kg ペイロード", "最大 16 km の航続距離", "デュアルバッテリー冗長"],
+      "typeTags": [
+        "logi",
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 1500000,
+        "max": 2500000
+      },
+      "bullets": [
+        "最大 30 kg ペイロード",
+        "最大 16 km の航続距離",
+        "デュアルバッテリー冗長"
+      ],
       "specs": {
         "機体重量": "約 39 kg",
         "最大積載": "30 kg（ボックス）、40 kg（ウインチ）",
         "最大航続距離": "16 km",
         "運用環境": "−20 〜 45 ℃、IP55"
       },
-      "images": ["flycart30.png"],
+      "images": [
+        "flycart30.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/flycart-30",
         "consult": "/contact"
@@ -407,16 +642,28 @@
     {
       "id": "dock3_m4td",
       "name": "DJI Dock 3 + Matrice 4TD",
-      "typeTags": ["auto"],
-      "priceJPY": { "min": 10000000, "max": 12000000 },
-      "bullets": ["全天候ドックで無人自動運用", "24 時間リモート監視", "サーマル + ズームで広域カバー"],
+      "typeTags": [
+        "auto"
+      ],
+      "priceJPY": {
+        "min": 10000000,
+        "max": 12000000
+      },
+      "bullets": [
+        "全天候ドックで無人自動運用",
+        "24 時間リモート監視",
+        "サーマル + ズームで広域カバー"
+      ],
       "specs": {
         "システム構成": "Dock 3 + Matrice 4TD",
         "再出動時間": "最短 50 秒",
         "運用環境": "IP55（ドック） / IP54（機体）",
         "通信": "O4 Enterprise + 5G（オプション）"
       },
-      "images": ["dock3.png", "m4td.png"],
+      "images": [
+        "dock3.png",
+        "m4td.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/dock-3",
         "consult": "/contact"
@@ -425,19 +672,62 @@
     {
       "id": "inspire3",
       "name": "DJI Inspire 3",
-      "typeTags": ["creative"],
-      "priceJPY": { "min": 1800000, "max": 2000000 },
-      "bullets": ["8K ProRes RAW 対応", "ティルトブースト機構でダイナミック撮影", "RTK ベースで精密トラッキング"],
+      "typeTags": [
+        "creative"
+      ],
+      "priceJPY": {
+        "min": 1800000,
+        "max": 2000000
+      },
+      "bullets": [
+        "8K ProRes RAW 対応",
+        "ティルトブースト機構でダイナミック撮影",
+        "RTK ベースで精密トラッキング"
+      ],
       "specs": {
         "機体重量": "約 4.0 kg（機体のみ）",
         "最大飛行時間": "最大 28 分",
         "カメラ": "Zenmuse X9-8K Air（フルサイズセンサー）",
         "動画性能": "8K60 ProRes RAW / CinemaDNG"
       },
-      "images": ["insp3.png"],
+      "images": [
+        "insp3.png"
+      ],
       "links": {
         "learn": "https://www.dji.com/jp/inspire-3",
         "consult": "/contact"
+      }
+    },
+    {
+      "id": "avata2",
+      "name": "DJI Avata 2",
+      "typeTags": [
+        "creative",
+        "hobby"
+      ],
+      "priceJPY": {
+        "min": 160000,
+        "max": 210000
+      },
+      "bullets": [
+        "Cinewhoop デザインで狭所も安全に飛行",
+        "1/1.3 型 CMOS 4K60 の臨場感ある FPV 映像",
+        "最大 23 分飛行・急速充電対応バッテリー"
+      ],
+      "specs": {
+        "耐風性能": "10.7 m/s",
+        "動画解像度": "4K 60fps／2.7K 120fps",
+        "機体重量": "約377 g",
+        "最大航続距離": "13 km",
+        "イメージセンサー": "1/1.3 型 CMOS 48MP",
+        "最大飛行時間": "最大23分"
+      },
+      "images": [
+        "avata2.png"
+      ],
+      "links": {
+        "consult": "/contact",
+        "learn": "https://www.dji.com/jp/avata-2"
       }
     }
   ]
