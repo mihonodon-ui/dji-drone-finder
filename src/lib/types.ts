@@ -83,6 +83,7 @@ export const CatalogModelSchema = z.object({
     max: z.number().int()
   }),
   bullets: z.array(z.string()).default([]),
+  specs: z.record(z.string()).optional(),
   images: z.array(z.string()).default([]),
   links: z
     .object({

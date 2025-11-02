@@ -70,14 +70,12 @@ export default function LineupPage() {
                 ))}
               </div>
               <div className="mt-auto flex flex-wrap gap-3 text-sm">
-                {model.links?.learn ? (
-                  <Link
-                    href={model.links.learn}
-                    className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
-                  >
-                    詳細を見る
-                  </Link>
-                ) : null}
+                <Link
+                  href={`/models/${model.id}`}
+                  className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:border-primary hover:text-primary"
+                >
+                  詳細を見る
+                </Link>
                 {model.links?.consult ? (
                   <Link
                     href={model.links.consult}

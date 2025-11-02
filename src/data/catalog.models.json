@@ -58,6 +58,12 @@
       "typeTags": ["hobby", "creative"],
       "priceJPY": { "min": 150000, "max": 180000 },
       "bullets": ["全方位障害物センサー", "縦撮り対応", "249g クラスで規制負担を軽減"],
+      "specs": {
+        "機体重量": "約 249 g",
+        "最大飛行時間": "最大 34 分",
+        "カメラ": "1/1.3 型 CMOS 48MP、4K60 HDR",
+        "伝送システム": "O4 HD Video Transmission"
+      },
       "images": ["mini5pro.jpg"],
       "links": { "learn": "#", "consult": "/contact", "demo": "/experience" }
     },
@@ -67,6 +73,12 @@
       "typeTags": ["hobby"],
       "priceJPY": { "min": 125000, "max": 150000 },
       "bullets": ["360°障害物検知", "ActiveTrack 360", "縦横切替カメラ"],
+      "specs": {
+        "機体重量": "約 249 g",
+        "最大飛行時間": "最大 34 分",
+        "カメラ": "1/1.3 型 CMOS 48MP、4K60",
+        "最大伝送距離": "最大 20 km (O4)"
+      },
       "images": ["mini4pro.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -76,6 +88,12 @@
       "typeTags": ["hobby"],
       "priceJPY": { "min": 80000, "max": 100000 },
       "bullets": ["249g エントリーモデル", "4K30 撮影", "QuickShots 自動撮影"],
+      "specs": {
+        "機体重量": "約 249 g",
+        "最大飛行時間": "最大 31 分",
+        "カメラ": "1/2.3 型 CMOS 12MP、4K30",
+        "動画ビットレート": "100 Mbps"
+      },
       "images": ["mini4k.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -85,6 +103,12 @@
       "typeTags": ["hobby"],
       "priceJPY": { "min": 90000, "max": 110000 },
       "bullets": ["48MP 写真", "長時間飛行バッテリー", "縦撮り対応"],
+      "specs": {
+        "機体重量": "約 248 g",
+        "最大飛行時間": "最大 38 分",
+        "カメラ": "1/1.3 型 CMOS 48MP、4K30 HDR",
+        "風圧抵抗": "10.7 m/s"
+      },
       "images": ["mini3.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -94,6 +118,12 @@
       "typeTags": ["hobby"],
       "priceJPY": { "min": 60000, "max": 75000 },
       "bullets": ["2.7K カメラ", "OcuSync 2.0 伝送", "軽量で気軽に始められる"],
+      "specs": {
+        "機体重量": "約 246 g",
+        "最大飛行時間": "最大 31 分",
+        "カメラ": "1/2.3 型 CMOS 12MP、2.7K30",
+        "最大伝送距離": "10 km (O2)"
+      },
       "images": ["mini2se.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -103,6 +133,12 @@
       "typeTags": ["creative", "hobby"],
       "priceJPY": { "min": 230000, "max": 270000 },
       "bullets": ["デュアルカメラ（広角 + 望遠）", "縦横切替のフレキシブル撮影", "最大 46 分の飛行時間"],
+      "specs": {
+        "機体重量": "約 720 g",
+        "最大飛行時間": "最大 46 分",
+        "カメラ": "1/1.3 型 CMOS デュアル（広角・3倍望遠）",
+        "動画性能": "4K100 HDR、10bit D-Log M"
+      },
       "images": ["air3s.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -112,6 +148,12 @@
       "typeTags": ["creative", "survey"],
       "priceJPY": { "min": 350000, "max": 450000 },
       "bullets": ["トリプルカメラ構成", "5.1K/50fps 10bit D-Log", "O3+ 伝送"],
+      "specs": {
+        "機体重量": "約 958 g",
+        "最大飛行時間": "最大 43 分",
+        "カメラ": "4/3 CMOS 広角 + 中望遠 + 望遠",
+        "動画性能": "5.1K 50fps、Apple ProRes (Cine)"
+      },
       "images": ["mavic3pro.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -121,6 +163,12 @@
       "typeTags": ["inspection"],
       "priceJPY": { "min": 700000, "max": 900000 },
       "bullets": ["赤外線 + ズーム + 広角のトリプルカメラ", "RTK オプション対応", "折り畳みで現場即応"],
+      "specs": {
+        "機体重量": "約 915 g",
+        "最大飛行時間": "最大 45 分",
+        "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512",
+        "防塵防滴": "IP54 (機体)"
+      },
       "images": ["m3t.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -130,6 +178,12 @@
       "typeTags": ["inspection", "auto"],
       "priceJPY": { "min": 1800000, "max": 2200000 },
       "bullets": ["全天候対応 IP55", "赤外・ズーム・レーザー距離計を一体化", "DJI Dock 3 とシームレス連携"],
+      "specs": {
+        "機体重量": "約 3.77 kg",
+        "最大飛行時間": "最大 41 分",
+        "カメラ": "広角 48MP + 望遠 12MP + サーマル 640x512 + レーザー距離計",
+        "防塵防滴": "IP55 (機体) / IP54 (コントローラー)"
+      },
       "images": ["m30t.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -139,6 +193,12 @@
       "typeTags": ["survey"],
       "priceJPY": { "min": 800000, "max": 1000000 },
       "bullets": ["4/3 CMOS センサー", "メカニカルシャッター", "RTK モジュール対応"],
+      "specs": {
+        "機体重量": "約 915 g",
+        "最大飛行時間": "最大 45 分",
+        "カメラ": "4/3 CMOS 20MP、メカニカルシャッター 1/2000 秒",
+        "測量キャプチャ": "3cm + 5cm（水平/垂直、RTK使用時）"
+      },
       "images": ["m3e.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -148,6 +208,12 @@
       "typeTags": ["survey", "dev"],
       "priceJPY": { "min": 2500000, "max": 3000000 },
       "bullets": ["O4 Enterprise 伝送", "最大 6 kg ペイロード", "多様なセンサー・SDK 拡張"],
+      "specs": {
+        "機体重量": "約 8.1 kg",
+        "最大飛行時間": "最大 55 分",
+        "最大ペイロード": "6 kg",
+        "対応SDK": "Pilot 2、Payload/Onboard SDK"
+      },
       "images": ["m400.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -157,6 +223,12 @@
       "typeTags": ["agri", "survey"],
       "priceJPY": { "min": 800000, "max": 1000000 },
       "bullets": ["マルチスペクトル + RGB カメラ", "圃場データの即時解析", "RTK サポート"],
+      "specs": {
+        "機体重量": "約 951 g",
+        "最大飛行時間": "最大 43 分",
+        "センサー": "RGB 20MP + マルチスペクトル（G/R/RE/NIR）",
+        "補正": "RTK / Network RTK / D-RTK 2"
+      },
       "images": ["m3m.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -166,6 +238,12 @@
       "typeTags": ["agri"],
       "priceJPY": { "min": 2500000, "max": 3000000 },
       "bullets": ["最大 50 kg の散布能力", "前方/後方レーダー + 双眼ビジョン", "自動ルート散布"],
+      "specs": {
+        "離陸重量": "最大 78 kg（散布時）",
+        "散布幅": "最大 11 m",
+        "散布タンク容量": "最大 40 L",
+        "対応レーダー": "前後デュアルアクティブフェーズドアレイ"
+      },
       "images": ["t50.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -175,6 +253,12 @@
       "typeTags": ["logi", "auto"],
       "priceJPY": { "min": 1500000, "max": 2500000 },
       "bullets": ["最大 30 kg ペイロード", "最大 16 km の航続距離", "デュアルバッテリー冗長"],
+      "specs": {
+        "機体重量": "約 39 kg",
+        "最大積載": "30 kg（ボックス）、40 kg（ウインチ）",
+        "最大航続距離": "16 km",
+        "運用環境": "−20 〜 45 ℃、IP55"
+      },
       "images": ["flycart30.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -184,6 +268,12 @@
       "typeTags": ["auto"],
       "priceJPY": { "min": 10000000, "max": 12000000 },
       "bullets": ["全天候ドックで無人自動運用", "24 時間リモート監視", "サーマル + ズームで広域カバー"],
+      "specs": {
+        "システム構成": "Dock 3 + Matrice 4TD",
+        "再出動時間": "最短 50 秒",
+        "運用環境": "IP55（ドック） / IP54（機体）",
+        "通信": "O4 Enterprise + 5G（オプション）"
+      },
       "images": ["dock3.jpg", "m4td.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -193,9 +283,14 @@
       "typeTags": ["creative"],
       "priceJPY": { "min": 1800000, "max": 2000000 },
       "bullets": ["8K ProRes RAW 対応", "ティルトブースト機構でダイナミック撮影", "RTK ベースで精密トラッキング"],
+      "specs": {
+        "機体重量": "約 4.0 kg（機体のみ）",
+        "最大飛行時間": "最大 28 分",
+        "カメラ": "Zenmuse X9-8K Air（フルサイズセンサー）",
+        "動画性能": "8K60 ProRes RAW / CinemaDNG"
+      },
       "images": ["insp3.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     }
   ]
 }
-
