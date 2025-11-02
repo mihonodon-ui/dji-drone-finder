@@ -24,7 +24,11 @@ export default function LineupPage() {
         <h1 className="text-3xl font-bold text-slate-900 sm:text-4xl">最新ラインナップ一覧</h1>
         <p className="text-base text-muted">
           `/diagnose` で使用している DJI ドローンの代表モデルです。用途・タイプ・価格帯を合わせて一覧表示しています。
-          JSON データ（`src/data/catalog.models.json`）を更新するとこのページにも即時反映されます。
+          JSON データ（`src/data/catalog.models.json`）を更新するとこのページにも即時反映されます。販売終了機種は
+          <Link href="/archive" className="ml-1 font-semibold text-primary hover:underline">
+            アーカイブ一覧
+          </Link>
+          にまとめています。
         </p>
         <div className="flex flex-wrap gap-3">
           <Link
@@ -97,4 +101,3 @@ export default function LineupPage() {
     </main>
   );
 }
-
