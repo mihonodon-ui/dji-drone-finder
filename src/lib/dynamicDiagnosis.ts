@@ -12,6 +12,7 @@ export interface ConstraintState {
   maxPrice?: number;
   minPrice?: number;
   requiredSensors?: string[];
+  preferredWeight?: "under100" | "over100";
 }
 
 export interface DiagnosisState {
@@ -75,12 +76,28 @@ export function applyOptionEffects(
     detailSegments: [...state.detailSegments]
   };
 
+  if (option.effects?.setDetailSegments) {
+    nextState.detailSegments = Array.from(
+      new Set(option.effects.setDetailSegments)
+    );
+  }
+
   if (option.effects?.addDetailSegments?.length) {
     const merged = new Set([
       ...nextState.detailSegments,
       ...option.effects.addDetailSegments
     ]);
     nextState.detailSegments = Array.from(merged);
+  }
+
+  if (option.effects?.removeDetailSegments?.length) {
+    nextState.detailSegments = nextState.detailSegments.filter(
+      (segment) => !option.effects?.removeDetailSegments?.includes(segment)
+    );
+  }
+
+  if (option.effects?.clearPreferredWeight) {
+    delete nextState.constraints.preferredWeight;
   }
 
   return nextState;
@@ -91,7 +108,8 @@ function extractConstraints(constraints?: QuestionOptionConstraints) {
   return {
     maxPrice: constraints.maxPrice,
     minPrice: constraints.minPrice,
-    requiredSensors: constraints.requiredSensors
+    requiredSensors: constraints.requiredSensors,
+    preferredWeight: constraints.preferredWeight
   };
 }
 

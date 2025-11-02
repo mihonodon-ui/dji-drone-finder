@@ -20,6 +20,8 @@ export const catalog: Catalog = CatalogSchema.parse(catalogRaw);
 export const resultTemplates: ResultTemplateSet =
   ResultTemplateSetSchema.parse(resultTemplatesRaw);
 
+const microModelIds = new Set(["tello", "djineo", "djiflip"]);
+
 export function resolveTypeDetail(type: DroneTypeKey) {
   return catalog.types[type];
 }
@@ -39,4 +41,8 @@ export function resolveAlternativeModels(type: DroneTypeKey) {
 
 export function resolveResultTemplate(type: DroneTypeKey) {
   return resultTemplates.templates[type];
+}
+
+export function isMicroModel(model: { id: string }) {
+  return microModelIds.has(model.id);
 }

@@ -86,6 +86,36 @@
       ]
     },
     {
+      "id": "dyn_q3_regulation",
+      "text": "航空法の許可・承認についてどのように考えていますか？",
+      "category": "regulation",
+      "difficulty": "basic",
+      "targetSegments": ["common"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "許可申請なしで運用できる100g未満の機体に限定したい",
+          "scores": { "hobby": 2, "creative": 1 },
+          "constraints": { "preferredWeight": "under100" },
+          "effects": { "addDetailSegments": ["detail_micro"] }
+        },
+        {
+          "key": "B",
+          "label": "許可申請が必要でも性能を優先したい",
+          "scores": { "creative": 2, "inspection": 1, "survey": 1 },
+          "constraints": { "preferredWeight": "over100" },
+          "effects": { "removeDetailSegments": ["detail_micro"] }
+        },
+        {
+          "key": "C",
+          "label": "特にこだわりはない／相談して決めたい",
+          "scores": { "creative": 1, "hobby": 1 },
+          "effects": { "removeDetailSegments": ["detail_micro"], "clearPreferredWeight": true }
+        }
+      ]
+    },
+    {
       "id": "dyn_q3",
       "text": "もっとも重視したいポイントは？",
       "category": "priority",
@@ -217,6 +247,31 @@
       ]
     },
     {
+      "id": "dyn_micro_q1",
+      "text": "マイクロドローン（100g未満）の主な用途は？",
+      "category": "micro_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_micro"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "屋内練習・教育用途で安全に飛ばせることが重要",
+          "scores": { "hobby": 3 }
+        },
+        {
+          "key": "B",
+          "label": "SNS 向けのショート動画やFPV的な撮影を楽しみたい",
+          "scores": { "creative": 2, "hobby": 2 }
+        },
+        {
+          "key": "C",
+          "label": "子どもや初心者と一緒に体験したい",
+          "scores": { "hobby": 2 }
+        }
+      ]
+    },
+    {
       "id": "dyn_creative_q1",
       "text": "映像制作で最も重視したいポイントは？",
       "category": "creative_detail",
@@ -318,3 +373,5 @@
     }
   ]
 }
+
+

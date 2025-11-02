@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { catalog } from "@/lib/datasets";
+import { catalog, isMicroModel } from "@/lib/datasets";
 import type { CatalogModel, ResultTemplate } from "@/lib/types";
 
 interface ResultCardProps {
@@ -26,6 +26,8 @@ export function ResultCard(props: ResultCardProps) {
     `${model.priceJPY.min.toLocaleString("ja-JP")}〜${model.priceJPY.max.toLocaleString("ja-JP")}円`;
   const priceMid = (model: CatalogModel) =>
     (model.priceJPY.min + model.priceJPY.max) / 2;
+  const weightBadge = (model: CatalogModel) =>
+    isMicroModel(model) ? "100g未満" : "100g超";
 
   const payloadAlternatives: CatalogModel[] = [];
   const upperAlternatives: CatalogModel[] = [];
@@ -75,6 +77,9 @@ export function ResultCard(props: ResultCardProps) {
                 {formatPrice(model)}
                 <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
                   {kindLabel(model)}
+                </span>
+                <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                  {weightBadge(model)}
                 </span>
                 {model.typeTags?.length ? (
                   <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
@@ -140,6 +145,9 @@ export function ResultCard(props: ResultCardProps) {
               <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
                 {kindLabel(primaryModel)}
               </span>
+              <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
+                {weightBadge(primaryModel)}
+              </span>
               {primaryModel.typeTags?.length ? (
                 <span className="rounded-full bg-slate-100 px-3 py-1 text-slate-600">
                   {primaryModel.typeTags
@@ -151,6 +159,11 @@ export function ResultCard(props: ResultCardProps) {
             </div>
             <p className="text-sm text-muted">
               {formatPrice(primaryModel)}（税込目安）
+            </p>
+            <p className="text-xs text-slate-500">
+              {isMicroModel(primaryModel)
+                ? "100g未満のマイクロドローンで、許可申請なしでも運用しやすい区分です。"
+                : "100gを超えるため、用途に応じて登録や許可・承認申請の手続きが必要です。"}
             </p>
             {primaryModel.bullets?.length ? (
               <ul className="mt-3 grid gap-2 text-sm text-slate-600 sm:grid-cols-2">

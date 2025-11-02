@@ -73,6 +73,7 @@
       "label": "防災・災害対応",
       "primaryModelId": "m4t",
       "alts": [
+        "m400",
         "m30t",
         "m350rtk",
         "dock3_m4td",
@@ -104,7 +105,6 @@
         "m350rtk",
         "m4t",
         "m4e",
-        "m400",
         "zenmuse_l2",
         "zenmuse_p1",
         "zenmuse_h30",
@@ -597,7 +597,7 @@
     },
     {
       "id": "mavic3e",
-      "name": "DJI Mavic 3 Enterprise",
+      "name": "DJI Mavic 3E",
       "typeTags": [
         "survey"
       ],
@@ -723,12 +723,13 @@
     },
     {
       "id": "m400",
-      "name": "DJI Matrice 400",
+      "name": "DJI Matrice 400 RTK",
       "typeTags": [
         "survey",
         "dev",
         "inspection",
-        "auto"
+        "auto",
+        "disaster"
       ],
       "priceJPY": {
         "min": 2500000,

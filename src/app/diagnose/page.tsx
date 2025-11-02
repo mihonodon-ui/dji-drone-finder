@@ -10,6 +10,7 @@ import ResultCard from "@/components/ResultCard";
 import {
   catalog,
   dynamicQuestionSet,
+  isMicroModel,
   resolveAlternativeModels,
   resolvePrimaryModel,
   resolveResultTemplate
@@ -26,7 +27,7 @@ import {
   type DiagnosisState
 } from "@/lib/dynamicDiagnosis";
 import { evaluateQuestionSet } from "@/lib/scoring";
-import type { DroneTypeKey, Question, QuestionOption } from "@/lib/types";
+import type { CatalogModel, DroneTypeKey, Question, QuestionOption } from "@/lib/types";
 
 function formatPriceRange(min?: number, max?: number) {
   if (!min && !max) return null;
@@ -53,11 +54,24 @@ function selectModelsWithBudget(
 
   const primary = resolvePrimaryModel(type);
   const alternatives = resolveAlternativeModels(type);
-  const candidates = [primary, ...alternatives].filter(
-    (model): model is NonNullable<typeof model> => Boolean(model)
+  const uniqueCandidates = new Map(
+    [primary, ...alternatives]
+      .filter((model): model is NonNullable<typeof model> => Boolean(model))
+      .map((model) => [model.id, model])
   );
 
-  const affordable = candidates.filter((model) => {
+  const orderedCandidates = Array.from(uniqueCandidates.values());
+  if (!orderedCandidates.length) {
+    return {
+      primary: undefined,
+      alternatives: [] as ReturnType<typeof resolveAlternativeModels>,
+      note: constraints.maxPrice
+        ? "予算条件に一致する機種が見つかりませんでした。"
+        : undefined
+    };
+  }
+
+  const fitsBudget = (model: CatalogModel) => {
     const { min, max } = model.priceJPY;
     if (typeof constraints.maxPrice === "number" && min > constraints.maxPrice) {
       return false;
@@ -66,28 +80,85 @@ function selectModelsWithBudget(
       return false;
     }
     return true;
-  });
+  };
 
-  if (!affordable.length) {
-    return {
-      primary,
-      alternatives,
-      note: constraints.maxPrice
-        ? "選択中の予算帯では対応機種が見つかりません。予算または要件をご検討ください。"
-        : undefined
-    };
+  const notes: string[] = [];
+  const weightPreference = constraints.preferredWeight;
+  const microCandidates = orderedCandidates.filter((model) => isMicroModel(model));
+  const standardCandidates = orderedCandidates.filter((model) => !isMicroModel(model));
+
+  let prioritizedCandidates: CatalogModel[] = orderedCandidates;
+  let secondaryCandidates: CatalogModel[] = [];
+
+  if (weightPreference === "under100") {
+    if (microCandidates.length) {
+      prioritizedCandidates = microCandidates;
+      secondaryCandidates = standardCandidates;
+    } else {
+      notes.push("100g未満で要件に合う機体がないため、通常機を提示しています。");
+    }
+  } else if (weightPreference === "over100") {
+    if (standardCandidates.length) {
+      prioritizedCandidates = standardCandidates;
+      secondaryCandidates = microCandidates;
+    } else if (microCandidates.length) {
+      notes.push("100g超の候補が見つからないため、マイクロ機を提示しています。");
+      prioritizedCandidates = microCandidates;
+    }
   }
 
-  const [first, ...rest] = affordable;
-  const note =
-    primary && first.id !== primary.id
-      ? "予算に合わせて代替候補を優先表示しています。"
-      : undefined;
+  const selectedPrimary =
+    prioritizedCandidates[0] ?? orderedCandidates[0]!;
+
+  const seen = new Set<string>([selectedPrimary.id]);
+  const collectAlternatives = (candidates: CatalogModel[]) =>
+    candidates.filter((model) => {
+      if (seen.has(model.id)) return false;
+      seen.add(model.id);
+      return true;
+    });
+
+  const prioritizedAlternatives = collectAlternatives(prioritizedCandidates);
+  const secondaryAlternatives = collectAlternatives(secondaryCandidates);
+  const remainingAlternatives = [...prioritizedAlternatives, ...secondaryAlternatives];
+
+  const affordableAlternatives = remainingAlternatives.filter(fitsBudget);
+  const orderedAlternatives =
+    affordableAlternatives.length === remainingAlternatives.length
+      ? remainingAlternatives
+      : [
+          ...affordableAlternatives,
+          ...remainingAlternatives.filter(
+            (model) => !affordableAlternatives.includes(model)
+          )
+        ];
+
+  const primaryWithinBudget = fitsBudget(selectedPrimary);
+
+  if (!primaryWithinBudget) {
+    if (typeof constraints.maxPrice === "number" || typeof constraints.minPrice === "number") {
+      notes.push(
+        affordableAlternatives.length
+          ? "推奨機種は予算条件を上回ります。下位候補でのコスト調整もご検討ください。"
+          : "設定した予算条件では要件に合う機体が限られます。条件の見直しもご検討ください。"
+      );
+    } else {
+      notes.push("要件に最適な機体を優先表示しています。");
+    }
+  }
+
+  if (weightPreference === "under100" && !isMicroModel(selectedPrimary)) {
+    notes.push(
+      microCandidates.length
+        ? "100g未満モデルが優先候補にありません。別タイプの機体も合わせてご検討ください。"
+        : "このタイプには100g未満の候補がありません。許可申請を前提にした機体を提示しています。"
+    );
+  }
 
   return {
-    primary: first,
-    alternatives: rest,
-    note
+    primary: selectedPrimary,
+    alternatives: orderedAlternatives,
+    note: notes.length ? notes.join(" ") : undefined
   };
 }
 

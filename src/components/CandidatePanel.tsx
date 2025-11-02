@@ -1,5 +1,5 @@
 import type { DiagnosisMode, ConstraintState } from "@/lib/dynamicDiagnosis";
-import { catalog } from "@/lib/datasets";
+import { catalog, isMicroModel } from "@/lib/datasets";
 import type { CatalogModel } from "@/lib/types";
 import clsx from "clsx";
 
@@ -43,6 +43,11 @@ function formatConstraints(constraints: ConstraintState) {
   }
   if (constraints.requiredSensors?.length) {
     chips.push(`必須センサー: ${constraints.requiredSensors.join(", ")}`);
+  }
+  if (constraints.preferredWeight === "under100") {
+    chips.push("100g未満を優先");
+  } else if (constraints.preferredWeight === "over100") {
+    chips.push("100g超機体でOK");
   }
   return chips;
 }
@@ -133,6 +138,9 @@ export function CandidatePanel({
                       <span>{formatPrice(model)}</span>
                       <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
                         {formatKind(model)}
+                      </span>
+                      <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">
+                        {isMicroModel(model) ? "100g未満" : "100g超"}
                       </span>
                       {modelTypeLabels ? (
                         <span className="rounded-full bg-slate-100 px-2 py-0.5 text-slate-500">

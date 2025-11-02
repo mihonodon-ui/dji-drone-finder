@@ -20,7 +20,8 @@ export const QuestionOptionConstraintsSchema = z
   .object({
     maxPrice: z.number().int().optional(),
     minPrice: z.number().int().optional(),
-    requiredSensors: z.array(z.string()).optional()
+    requiredSensors: z.array(z.string()).optional(),
+    preferredWeight: z.enum(["under100", "over100"]).optional()
   })
   .partial()
   .optional();
@@ -28,7 +29,10 @@ export const QuestionOptionConstraintsSchema = z
 export const QuestionOptionEffectsSchema = z
   .object({
     setMode: z.enum(["light", "pro"]).optional(),
-    addDetailSegments: z.array(z.string()).optional()
+    addDetailSegments: z.array(z.string()).optional(),
+    removeDetailSegments: z.array(z.string()).optional(),
+    setDetailSegments: z.array(z.string()).optional(),
+    clearPreferredWeight: z.boolean().optional()
   })
   .partial()
   .optional();
@@ -48,7 +52,9 @@ export const QuestionSchema = z.object({
   category: z.string().optional(),
   difficulty: z.enum(["basic", "advanced", "expert"]).optional(),
   targetSegments: z
-    .array(z.enum(["common", "light", "pro", "detail_creative", "detail_agri"]))
+    .array(
+      z.enum(["common", "light", "pro", "detail_creative", "detail_agri", "detail_micro"])
+    )
     .optional(),
   strategyTags: z.array(z.string()).optional(),
   options: z.array(QuestionOptionSchema).min(2)
