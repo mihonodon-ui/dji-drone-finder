@@ -5,7 +5,7 @@
     "hobby": {
       "label": "趣味・旅撮",
       "primaryModelId": "mini5pro",
-      "alts": ["mini4pro", "mini4k", "mini3", "mini2se", "djiflip", "djineo"],
+      "alts": ["mini4pro", "mini4k", "mini3", "mini2se", "djiflip", "djineo", "tello"],
       "summary": "旅行やSNS向けに、軽量で扱いやすい空撮ドローンを重視するタイプ。"
     },
     "creative": {
@@ -210,7 +210,7 @@
       },
       "images": ["mavic4pro.png"],
       "links": {
-        "learn": "https://sekido-rc.com/?mode=grp&gid=3072235",
+        "learn": "https://www.dji.com/jp/support/product/mavic-4-pro",
         "consult": "/contact"
       }
     },
@@ -247,6 +247,24 @@
       "images": ["mavic3classic.png"],
       "links": {
         "learn": "https://www.dji.com/jp/mavic-3-classic",
+        "consult": "/contact"
+      }
+    },
+    {
+      "id": "tello",
+      "name": "DJI Ryze Tello",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 18000, "max": 22000 },
+      "bullets": ["プログラミング対応", "室内安全ガード付き", "HD 720p 30fps カメラ"],
+      "specs": {
+        "メーカー": "Ryze Tech（DJI テクノロジー協力）",
+        "機体重量": "約 80 g",
+        "最大飛行時間": "最大 13 分",
+        "制御方法": "スマホ / Scratch プログラミング"
+      },
+      "images": ["tello.png"],
+      "links": {
+        "learn": "https://www.ryzerobotics.com/tello",
         "consult": "/contact"
       }
     },
@@ -414,4 +432,3 @@
     }
   ]
 }
-
