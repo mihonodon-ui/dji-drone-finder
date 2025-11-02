@@ -28,6 +28,7 @@ export function createEmptyScoreMap(): ScoreMap {
     survey: 0,
     agri: 0,
     logi: 0,
+    disaster: 0,
     auto: 0,
     dev: 0
   };
@@ -145,4 +146,3 @@ export function evaluateQuestionSet(
     secondary
   };
 }
-

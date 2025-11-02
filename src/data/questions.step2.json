@@ -44,6 +44,11 @@
           "scores": { "auto": 4, "inspection": 2 }
         },
         {
+          "key": "I",
+          "label": "防災・災害対応・緊急監視",
+          "scores": { "disaster": 4, "auto": 2, "inspection": 1 }
+        },
+        {
           "key": "H",
           "label": "研究・開発・PoC",
           "scores": { "dev": 4, "survey": 1 }
@@ -63,12 +68,12 @@
         {
           "key": "B",
           "label": "月数回〜隔週",
-          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1, "disaster": 1 }
         },
         {
           "key": "C",
           "label": "週1以上／常時運用",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2 }
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "disaster": 3 }
         }
       ]
     },
@@ -90,7 +95,7 @@
         {
           "key": "C",
           "label": "上級（産業用途の経験豊富）",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "dev": 1 }
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "disaster": 2, "dev": 1 }
         }
       ]
     },
@@ -107,22 +112,22 @@
         {
           "key": "B",
           "label": "工場・プラント・インフラ現場",
-          "scores": { "inspection": 3, "auto": 1 }
+          "scores": { "inspection": 3, "auto": 1, "disaster": 1 }
         },
         {
           "key": "C",
           "label": "山間部・林野・農地・広域エリア",
-          "scores": { "survey": 2, "agri": 3 }
+          "scores": { "survey": 2, "agri": 3, "disaster": 2 }
         },
         {
           "key": "D",
           "label": "沿岸・強風エリア・遠隔地",
-          "scores": { "logi": 2, "auto": 2, "survey": 1 }
+          "scores": { "logi": 2, "auto": 2, "survey": 1, "disaster": 3 }
         },
         {
           "key": "E",
           "label": "常設拠点からの24h無人運用",
-          "scores": { "auto": 3, "logi": 2 }
+          "scores": { "auto": 3, "logi": 2, "disaster": 2 }
         }
       ]
     },
@@ -134,12 +139,12 @@
         {
           "key": "A",
           "label": "はい（常時監視・遠隔操作を想定）",
-          "scores": { "auto": 4, "logi": 3, "survey": 1, "inspection": 1 }
+          "scores": { "auto": 4, "logi": 3, "survey": 1, "inspection": 1, "disaster": 3 }
         },
         {
           "key": "B",
           "label": "検討中／部分的に導入予定",
-          "scores": { "auto": 2, "logi": 1, "survey": 1 }
+          "scores": { "auto": 2, "logi": 1, "survey": 1, "disaster": 2 }
         },
         {
           "key": "C",
@@ -156,12 +161,12 @@
         {
           "key": "A",
           "label": "必須（常時活用する）",
-          "scores": { "inspection": 4, "survey": 4, "agri": 2 }
+          "scores": { "inspection": 4, "survey": 4, "agri": 2, "disaster": 3 }
         },
         {
           "key": "B",
           "label": "用途により使いたい",
-          "scores": { "inspection": 2, "survey": 2, "agri": 1, "dev": 1 }
+          "scores": { "inspection": 2, "survey": 2, "agri": 1, "dev": 1, "disaster": 2 }
         },
         {
           "key": "C",
@@ -178,12 +183,12 @@
         {
           "key": "A",
           "label": "SDK 利用やカスタム開発を実施する",
-          "scores": { "dev": 4, "survey": 1, "auto": 1 }
+          "scores": { "dev": 4, "survey": 1, "auto": 1, "disaster": 2 }
         },
         {
           "key": "B",
           "label": "パートナーと連携しながら開発予定",
-          "scores": { "dev": 2, "survey": 1, "inspection": 1 }
+          "scores": { "dev": 2, "survey": 1, "inspection": 1, "disaster": 1 }
         },
         {
           "key": "C",
@@ -200,12 +205,12 @@
         {
           "key": "A",
           "label": "主要業務として行う（1kg以上の運搬・散布）",
-          "scores": { "logi": 4, "agri": 3, "auto": 2 }
+          "scores": { "logi": 4, "agri": 3, "auto": 2, "disaster": 2 }
         },
         {
           "key": "B",
           "label": "限定的に発生する",
-          "scores": { "logi": 2, "agri": 2 }
+          "scores": { "logi": 2, "agri": 2, "disaster": 1 }
         },
         {
           "key": "C",
@@ -227,17 +232,17 @@
         {
           "key": "B",
           "label": "〜100万円程度",
-          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
+          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1, "disaster": 1 }
         },
         {
           "key": "C",
           "label": "〜300万円程度",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "dev": 1 }
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "disaster": 2, "dev": 1 }
         },
         {
           "key": "D",
           "label": "1000万円以上（大規模投資）",
-          "scores": { "auto": 4, "logi": 3, "dev": 2 }
+          "scores": { "auto": 4, "logi": 3, "disaster": 3, "dev": 2 }
         }
       ]
     },
@@ -259,12 +264,12 @@
         {
           "key": "C",
           "label": "精度・センサー拡張性",
-          "scores": { "survey": 3, "inspection": 2, "agri": 2, "dev": 1 }
+          "scores": { "survey": 3, "inspection": 2, "agri": 2, "disaster": 2, "dev": 1 }
         },
         {
           "key": "D",
           "label": "自動化・運用効率",
-          "scores": { "auto": 3, "logi": 3 }
+          "scores": { "auto": 3, "logi": 3, "disaster": 3 }
         },
         {
           "key": "E",

@@ -69,6 +69,20 @@
       "alts": [],
       "summary": "物資輸送や災害支援で積載性と航続時間を求めるタイプ。"
     },
+    "disaster": {
+      "label": "防災・災害対応",
+      "primaryModelId": "m4t",
+      "alts": [
+        "m30t",
+        "m350rtk",
+        "dock3_m4td",
+        "zenmuse_h30",
+        "zenmuse_h30t",
+        "zenmuse_s1",
+        "zenmuse_v1"
+      ],
+      "summary": "災害現場の迅速な把握と夜間・悪天候での運用を重視するタイプ。"
+    },
     "auto": {
       "label": "警戒・自動運用",
       "primaryModelId": "dock3_m4td",
@@ -522,7 +536,8 @@
       "name": "DJI Matrice 30T",
       "typeTags": [
         "inspection",
-        "auto"
+        "auto",
+        "disaster"
       ],
       "priceJPY": {
         "min": 1800000,
@@ -554,6 +569,7 @@
         "inspection",
         "survey",
         "auto",
+        "disaster",
         "dev"
       ],
       "priceJPY": {
@@ -831,7 +847,8 @@
       "id": "dock3_m4td",
       "name": "DJI Dock 3 + Matrice 4TD",
       "typeTags": [
-        "auto"
+        "auto",
+        "disaster"
       ],
       "priceJPY": {
         "min": 10000000,
@@ -863,6 +880,7 @@
       "typeTags": [
         "inspection",
         "auto",
+        "disaster",
         "dev"
       ],
       "priceJPY": {
@@ -897,6 +915,7 @@
       "typeTags": [
         "inspection",
         "auto",
+        "disaster",
         "dev"
       ],
       "priceJPY": {
@@ -930,7 +949,8 @@
       "name": "DJI Zenmuse S1",
       "typeTags": [
         "inspection",
-        "auto"
+        "auto",
+        "disaster"
       ],
       "priceJPY": {
         "min": 400000,
@@ -963,7 +983,8 @@
       "name": "DJI Zenmuse V1 スピーカー",
       "typeTags": [
         "inspection",
-        "auto"
+        "auto",
+        "disaster"
       ],
       "priceJPY": {
         "min": 180000,

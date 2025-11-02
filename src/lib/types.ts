@@ -7,6 +7,7 @@ export const droneTypeKeys = [
   "survey",
   "agri",
   "logi",
+  "disaster",
   "auto",
   "dev"
 ] as const;
@@ -46,7 +47,9 @@ export const QuestionSchema = z.object({
   weight: z.number().int().min(1).default(1),
   category: z.string().optional(),
   difficulty: z.enum(["basic", "advanced", "expert"]).optional(),
-  targetSegments: z.array(z.enum(["common", "light", "pro", "detail_creative"])).optional(),
+  targetSegments: z
+    .array(z.enum(["common", "light", "pro", "detail_creative", "detail_agri"]))
+    .optional(),
   strategyTags: z.array(z.string()).optional(),
   options: z.array(QuestionOptionSchema).min(2)
 });
@@ -146,6 +149,7 @@ export const defaultTypePriority: DroneTypeKey[] = [
   "survey",
   "agri",
   "logi",
+  "disaster",
   "auto",
   "dev"
 ];

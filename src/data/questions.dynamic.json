@@ -26,12 +26,24 @@
         },
         {
           "key": "C",
-          "label": "業務で点検・測量・農業などに使いたい",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "auto": 1 },
+          "label": "設備点検・測量などインフラ業務に使いたい",
+          "scores": { "inspection": 3, "survey": 3, "auto": 1 },
           "effects": { "setMode": "pro" }
         },
         {
           "key": "D",
+          "label": "農業リモートセンシング・散布に使いたい",
+          "scores": { "agri": 4, "survey": 1, "logi": 1 },
+          "effects": { "setMode": "pro", "addDetailSegments": ["detail_agri"] }
+        },
+        {
+          "key": "E",
+          "label": "防災・災害対応や自治体の緊急監視に使いたい",
+          "scores": { "disaster": 4, "auto": 2, "inspection": 1 },
+          "effects": { "setMode": "pro" }
+        },
+        {
+          "key": "F",
           "label": "研究開発・SDK 連携・PoC を進めたい",
           "scores": { "dev": 3, "survey": 1, "creative": 1 },
           "effects": { "setMode": "pro" }
@@ -62,13 +74,13 @@
         {
           "key": "C",
           "label": "〜300万円",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 1, "dev": 1 },
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 1, "disaster": 2, "dev": 1 },
           "constraints": { "maxPrice": 3000000 }
         },
         {
           "key": "D",
           "label": "1000万円以上（大規模投資も想定）",
-          "scores": { "auto": 4, "logi": 3, "dev": 2 },
+          "scores": { "auto": 4, "logi": 3, "disaster": 3, "dev": 2 },
           "constraints": { "maxPrice": 12000000 }
         }
       ]
@@ -110,7 +122,7 @@
         {
           "key": "A",
           "label": "赤外線やズームで設備点検を行いたい",
-          "scores": { "inspection": 4, "auto": 1 }
+          "scores": { "inspection": 4, "disaster": 3, "auto": 1 }
         },
         {
           "key": "B",
@@ -120,7 +132,7 @@
         {
           "key": "C",
           "label": "LiDAR やマルチスペクトルなど高度なセンサーが必要",
-          "scores": { "agri": 2, "survey": 2, "dev": 2 }
+          "scores": { "agri": 2, "survey": 2, "dev": 2, "disaster": 1 }
         },
         {
           "key": "D",
@@ -140,17 +152,17 @@
         {
           "key": "A",
           "label": "24時間運用や Dock 導入を予定している",
-          "scores": { "auto": 4, "logi": 2 }
+          "scores": { "auto": 4, "logi": 2, "disaster": 3 }
         },
         {
           "key": "B",
           "label": "部分的な自動化を検討している",
-          "scores": { "auto": 2, "logi": 1, "inspection": 1 }
+          "scores": { "auto": 2, "logi": 1, "inspection": 1, "disaster": 2 }
         },
         {
           "key": "C",
           "label": "手動運用が中心",
-          "scores": { "inspection": 1, "survey": 1 }
+          "scores": { "inspection": 1, "survey": 1, "disaster": 1 }
         }
       ]
     },
@@ -165,12 +177,12 @@
         {
           "key": "A",
           "label": "SDK を活用し連携開発する予定",
-          "scores": { "dev": 4, "survey": 1, "auto": 1 }
+          "scores": { "dev": 4, "survey": 1, "auto": 1, "disaster": 2 }
         },
         {
           "key": "B",
           "label": "パートナーと連携しながら検討したい",
-          "scores": { "dev": 2, "inspection": 1 }
+          "scores": { "dev": 2, "inspection": 1, "disaster": 1 }
         },
         {
           "key": "C",
@@ -190,12 +202,12 @@
         {
           "key": "A",
           "label": "主要業務として行う（1kg 以上の運搬・散布）",
-          "scores": { "logi": 4, "agri": 3 }
+          "scores": { "logi": 4, "agri": 3, "disaster": 2 }
         },
         {
           "key": "B",
           "label": "限定的に発生する見込み",
-          "scores": { "logi": 2, "agri": 2 }
+          "scores": { "logi": 2, "agri": 2, "disaster": 1 }
         },
         {
           "key": "C",
@@ -251,6 +263,56 @@
           "key": "C",
           "label": "FPV や迫力ショット向けの機体を想定している",
           "scores": { "creative": 2, "hobby": 2 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_agri_q1",
+      "text": "農業分野で最も重視する用途は？",
+      "category": "agri_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_agri"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "作物の生育状況を可視化・マッピングしたい",
+          "scores": { "agri": 3, "survey": 2 }
+        },
+        {
+          "key": "B",
+          "label": "農薬散布・施肥作業の効率化が最優先",
+          "scores": { "agri": 3, "logi": 2 }
+        },
+        {
+          "key": "C",
+          "label": "営農DXや精密農業でデータ連携を重視する",
+          "scores": { "agri": 3, "dev": 1 }
+        }
+      ]
+    },
+    {
+      "id": "dyn_agri_q2",
+      "text": "想定している圃場規模や運用形態を教えてください",
+      "category": "agri_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_agri"],
+      "weight": 3,
+      "options": [
+        {
+          "key": "A",
+          "label": "小規模圃場（〜5ha）で手軽に運用したい",
+          "scores": { "agri": 2, "hobby": 1 }
+        },
+        {
+          "key": "B",
+          "label": "10ha 以上の広域圃場・散布作業を担う",
+          "scores": { "agri": 3, "logi": 1 }
+        },
+        {
+          "key": "C",
+          "label": "農協・自治体など複数拠点での共同運用",
+          "scores": { "agri": 2, "auto": 1, "disaster": 1 }
         }
       ]
     }
