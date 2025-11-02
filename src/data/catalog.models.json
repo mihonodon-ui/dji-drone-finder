@@ -1,24 +1,24 @@
 {
-  "version": "2025-03-01",
+  "version": "2025-10-26",
   "currency": "JPY",
   "types": {
     "hobby": {
       "label": "趣味・旅撮",
       "primaryModelId": "mini5pro",
-      "alts": ["air3s"],
-      "summary": "旅行・SNS 向けに軽量で扱いやすいカメラドローンを重視するタイプ。"
+      "alts": ["mini4pro", "mini4k", "mini3", "mini2se"],
+      "summary": "旅行やSNS向けに、軽量で扱いやすい空撮ドローンを重視するタイプ。"
     },
     "creative": {
       "label": "映像・クリエイティブ",
       "primaryModelId": "air3s",
-      "alts": ["inspire3"],
-      "summary": "映像制作でダイナミックレンジやデュアルカメラなど画質を優先するタイプ。"
+      "alts": ["mavic3pro", "inspire3"],
+      "summary": "映像制作でダイナミックレンジや多レンズ構成を求めるタイプ。"
     },
     "inspection": {
       "label": "点検",
       "primaryModelId": "mavic3t",
       "alts": ["m30t"],
-      "summary": "設備点検・災害対応で赤外線やズーム撮影の効率を高めたいタイプ。"
+      "summary": "設備点検や災害対応で赤外線やズーム撮影の効率を高めたいタイプ。"
     },
     "survey": {
       "label": "測量",
@@ -42,7 +42,7 @@
       "label": "警戒・自動運用",
       "primaryModelId": "dock3_m4td",
       "alts": ["m30t"],
-      "summary": "常設拠点からの無人運用・自動警戒を前提とするタイプ。"
+      "summary": "常設拠点からの無人運用・警備を前提としたタイプ。"
     },
     "dev": {
       "label": "開発・研究",
@@ -62,6 +62,42 @@
       "links": { "learn": "#", "consult": "/contact", "demo": "/experience" }
     },
     {
+      "id": "mini4pro",
+      "name": "DJI Mini 4 Pro",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 125000, "max": 150000 },
+      "bullets": ["360°障害物検知", "ActiveTrack 360", "縦横切替カメラ"],
+      "images": ["mini4pro.jpg"],
+      "links": { "learn": "#", "consult": "/contact" }
+    },
+    {
+      "id": "mini4k",
+      "name": "DJI Mini 4K",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 80000, "max": 100000 },
+      "bullets": ["249g エントリーモデル", "4K30 撮影", "QuickShots 自動撮影"],
+      "images": ["mini4k.jpg"],
+      "links": { "learn": "#", "consult": "/contact" }
+    },
+    {
+      "id": "mini3",
+      "name": "DJI Mini 3",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 90000, "max": 110000 },
+      "bullets": ["48MP 写真", "長時間飛行バッテリー", "縦撮り対応"],
+      "images": ["mini3.jpg"],
+      "links": { "learn": "#", "consult": "/contact" }
+    },
+    {
+      "id": "mini2se",
+      "name": "DJI Mini 2 SE",
+      "typeTags": ["hobby"],
+      "priceJPY": { "min": 60000, "max": 75000 },
+      "bullets": ["2.7K カメラ", "OcuSync 2.0 伝送", "軽量で気軽に始められる"],
+      "images": ["mini2se.jpg"],
+      "links": { "learn": "#", "consult": "/contact" }
+    },
+    {
       "id": "air3s",
       "name": "DJI Air 3S",
       "typeTags": ["creative", "hobby"],
@@ -71,11 +107,20 @@
       "links": { "learn": "#", "consult": "/contact" }
     },
     {
+      "id": "mavic3pro",
+      "name": "DJI Mavic 3 Pro",
+      "typeTags": ["creative", "survey"],
+      "priceJPY": { "min": 350000, "max": 450000 },
+      "bullets": ["トリプルカメラ構成", "5.1K/50fps 10bit D-Log", "O3+ 伝送"],
+      "images": ["mavic3pro.jpg"],
+      "links": { "learn": "#", "consult": "/contact" }
+    },
+    {
       "id": "mavic3t",
       "name": "DJI Mavic 3T",
       "typeTags": ["inspection"],
       "priceJPY": { "min": 700000, "max": 900000 },
-      "bullets": ["赤外線 + 望遠 + 広角のトリプルカメラ", "RTK オプション対応", "折り畳みで現場即応"],
+      "bullets": ["赤外線 + ズーム + 広角のトリプルカメラ", "RTK オプション対応", "折り畳みで現場即応"],
       "images": ["m3t.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
@@ -93,7 +138,7 @@
       "name": "DJI Mavic 3 Enterprise",
       "typeTags": ["survey"],
       "priceJPY": { "min": 800000, "max": 1000000 },
-      "bullets": ["4/3 CMOS カメラ", "メカニカルシャッターで歪み低減", "RTK モジュール対応"],
+      "bullets": ["4/3 CMOS センサー", "メカニカルシャッター", "RTK モジュール対応"],
       "images": ["m3e.jpg"],
       "links": { "learn": "#", "consult": "/contact" }
     },
