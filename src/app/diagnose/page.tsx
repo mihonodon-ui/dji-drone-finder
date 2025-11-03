@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import CandidatePanel, { type CandidateEntry } from "@/components/CandidatePanel";
 import CTAButtons from "@/components/CTAButtons";
 import ProgressBar from "@/components/ProgressBar";
@@ -197,6 +197,92 @@ export default function DiagnosePage() {
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [prefTypeKey, setPrefTypeKey] = useState<DroneTypeKey | undefined>(undefined);
+  const [prefWeightValue, setPrefWeightValue] = useState<"under100" | "over100" | undefined>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const typeParam = params.get("prefType");
+    const weightParam = params.get("prefWeight");
+
+    if (weightParam === "under100" || weightParam === "over100") {
+      setPrefWeightValue(weightParam);
+    }
+
+    if (typeParam && Object.prototype.hasOwnProperty.call(catalog.types, typeParam)) {
+      setPrefTypeKey(typeParam as DroneTypeKey);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!prefTypeKey && !prefWeightValue) return;
+    setState((prev) => {
+      let nextState = prev;
+      let changed = false;
+
+      if (prefWeightValue && prev.constraints.preferredWeight !== prefWeightValue) {
+        nextState = {
+          ...nextState,
+          constraints: { ...nextState.constraints, preferredWeight: prefWeightValue }
+        };
+        changed = true;
+      }
+
+      if (!prefWeightValue && prev.constraints.preferredWeight) {
+        nextState = {
+          ...nextState,
+          constraints: { ...nextState.constraints, preferredWeight: undefined }
+        };
+        changed = true;
+      }
+
+      if (prefWeightValue === "under100") {
+        if (!nextState.detailSegments.includes("detail_micro")) {
+          nextState = {
+            ...nextState,
+            detailSegments: [...nextState.detailSegments, "detail_micro"]
+          };
+          changed = true;
+        }
+      } else if (
+        (prefWeightValue === "over100" || prefWeightValue === undefined) &&
+        nextState.detailSegments.includes("detail_micro")
+      ) {
+        nextState = {
+          ...nextState,
+          detailSegments: nextState.detailSegments.filter(
+            (segment) => segment !== "detail_micro"
+          )
+        };
+        changed = true;
+      }
+
+      if (prefTypeKey) {
+        if (nextState.mode === "unknown") {
+          nextState = { ...nextState, mode: "pro" };
+          changed = true;
+        }
+
+        const detailSegmentMap: Partial<Record<DroneTypeKey, string>> = {
+          creative: "detail_creative",
+          agri: "detail_agri"
+        };
+        const targetSegment = detailSegmentMap[prefTypeKey];
+        if (targetSegment && !nextState.detailSegments.includes(targetSegment)) {
+          nextState = {
+            ...nextState,
+            detailSegments: [...nextState.detailSegments, targetSegment]
+          };
+          changed = true;
+        }
+      }
+
+      return changed ? nextState : prev;
+    });
+  }, [prefTypeKey, prefWeightValue]);
 
   const activeQuestions = useMemo(
     () => buildActiveQuestions(dynamicQuestionSet, state),
@@ -235,6 +321,14 @@ export default function DiagnosePage() {
     () => buildCandidateEntries(state.mode, evaluation, state.constraints, primaryType),
     [evaluation, state.constraints, primaryType, state.mode]
   );
+
+  const recommendedType = prefTypeKey ? catalog.types[prefTypeKey] : undefined;
+  const weightPreferenceLabel =
+    prefWeightValue === "under100"
+      ? "100g未満のマイクロドローンを優先"
+      : prefWeightValue === "over100"
+        ? "100g超でも性能を優先"
+        : undefined;
 
   const handleSelect = (question: Question, option: QuestionOption) => {
     const nextState = registerAnswer(state, question, option);
@@ -313,6 +407,21 @@ export default function DiagnosePage() {
               プロ用途でも最大7問で結果をご案内します。
             </p>
           </header>
+
+          {recommendedType ? (
+            <div className="rounded-3xl border border-sky-200 bg-sky-50 p-6 text-sm text-slate-700">
+              <p className="font-semibold text-slate-900">
+                STEP1 推奨タイプ：{recommendedType.label}
+              </p>
+              <p className="mt-1">{recommendedType.summary}</p>
+              {weightPreferenceLabel ? (
+                <p className="mt-1 text-xs text-slate-600">{weightPreferenceLabel}</p>
+              ) : null}
+              <p className="mt-1 text-xs text-slate-500">
+                詳細診断では回答に合わせて候補機体が自動で更新されます。
+              </p>
+            </div>
+          ) : null}
 
           {!diagnosisComplete && currentQuestion ? (
             <section className="flex flex-col gap-6 rounded-3xl bg-white p-8 shadow-xl shadow-sky-100">

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { catalog } from "@/lib/datasets";
+import { catalog, isMicroModel } from "@/lib/datasets";
 
 const formattedModels = catalog.models.map((model) => {
   const priceRange = `${model.priceJPY.min.toLocaleString("ja-JP")}〜${model.priceJPY.max.toLocaleString("ja-JP")}円`;
@@ -27,8 +27,9 @@ const primaryModelIds = new Set(
 const highlightedModels = formattedModels.filter(
   (model) => primaryModelIds.has(model.id) && !model.isPayload
 );
+const microModels = formattedModels.filter((model) => isMicroModel(model));
 const aircraftModels = formattedModels.filter(
-  (model) => !model.isPayload && !primaryModelIds.has(model.id)
+  (model) => !model.isPayload && !primaryModelIds.has(model.id) && !isMicroModel(model)
 );
 const payloadModels = formattedModels.filter((model) => model.isPayload);
 
@@ -161,6 +162,22 @@ export default function LineupPage() {
               ))}
             </div>
           </div>
+        ) : null}
+
+        {microModels.length ? (
+          <section id="micro" className="flex flex-col gap-4 rounded-3xl bg-sky-50/60 p-6">
+            <div className="flex flex-col gap-2">
+              <h2 className="text-xl font-semibold text-slate-900">100g未満マイクロドローン</h2>
+              <p className="text-sm text-muted">
+                市街地や屋内で許可・承認が不要な 100g 未満クラスです。旅行・室内撮影など手続き簡素な用途に向きます。
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {microModels.map((model) => (
+                <ModelCard key={model.id} model={model} />
+              ))}
+            </div>
+          </section>
         ) : null}
 
         <h2 className="text-xl font-semibold text-slate-900">ドローン本体</h2>

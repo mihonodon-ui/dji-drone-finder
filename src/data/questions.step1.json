@@ -1,155 +1,128 @@
 {
-  "version": "2025-03-01",
+  "version": "2025-11-03",
   "locale": "ja-JP",
-  "title": "ライト診断（STEP1）",
+  "title": "STEP1：かんたん用途診断",
   "questions": [
     {
-      "id": "s1_q1",
-      "text": "ドローンを使う主な目的は？",
-      "weight": 3,
+      "id": "s1_goal",
+      "text": "まず実現したいことを教えてください。",
+      "weight": 6,
       "options": [
         {
           "key": "A",
-          "label": "旅行や趣味の撮影",
-          "scores": { "hobby": 3, "creative": 1 }
+          "label": "旅・趣味で気軽に撮影し、SNSでも映える映像を残したい",
+          "scores": { "hobby": 4, "creative": 2 }
         },
         {
           "key": "B",
-          "label": "映像制作・プロモーション",
-          "scores": { "creative": 3, "hobby": 1 }
+          "label": "商業映像・イベント・プロモーションで本格的な空撮をしたい",
+          "scores": { "creative": 5, "hobby": 1 }
         },
         {
           "key": "C",
-          "label": "点検・測量などの業務",
-          "scores": { "inspection": 2, "survey": 2, "agri": 1 }
+          "label": "設備点検・測量・自治体業務など業務利用が中心",
+          "scores": { "inspection": 3, "survey": 3, "disaster": 1 }
         },
         {
           "key": "D",
-          "label": "物資運搬や無人監視",
-          "scores": { "logi": 2, "auto": 3, "disaster": 2 }
+          "label": "圃場管理や農薬散布など農業で使いたい",
+          "scores": { "agri": 5, "survey": 1 }
         },
         {
           "key": "E",
-          "label": "防災・災害対応や緊急監視",
-          "scores": { "disaster": 4, "auto": 2, "inspection": 1 }
+          "label": "物資搬送・物流・配送で活用したい",
+          "scores": { "logi": 4, "auto": 2 }
         },
         {
           "key": "F",
-          "label": "研究・PoC・拡張開発",
-          "scores": { "dev": 3, "survey": 1 }
+          "label": "防災・災害対応・自治体での緊急運用を想定",
+          "scores": { "disaster": 5, "auto": 2, "inspection": 1 }
+        },
+        {
+          "key": "G",
+          "label": "研究開発・SDK 連携・PoC など拡張性を重視したい",
+          "scores": { "dev": 4, "survey": 1, "creative": 1 }
         }
       ]
     },
     {
-      "id": "s1_q2",
-      "text": "ドローンの運用経験はどのくらい？",
-      "weight": 2,
+      "id": "s1_scale",
+      "text": "運用の規模や頻度を教えてください。",
+      "weight": 4,
       "options": [
         {
           "key": "A",
-          "label": "ほぼ未経験（これから学びたい）",
+          "label": "月数回までのスポット運用／これから始める段階",
           "scores": { "hobby": 2, "creative": 1 }
         },
         {
           "key": "B",
-          "label": "基本操作はできる",
+          "label": "週1〜数回の定期運用（小規模チーム）",
           "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 }
         },
         {
           "key": "C",
-          "label": "専門的に運用している／予定",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "dev": 1 }
+          "label": "常時または複数拠点での運用を想定",
+          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 2, "auto": 2, "disaster": 2, "dev": 1 }
         }
       ]
     },
     {
-      "id": "s1_q3",
-      "text": "主に撮影・計測したい対象は？",
+      "id": "s1_environment",
+      "text": "主な飛行環境に近いものを選んでください。",
       "weight": 3,
       "options": [
         {
           "key": "A",
-          "label": "旅の風景・人物・日常シーン",
-          "scores": { "hobby": 3, "creative": 1 }
+          "label": "屋内・市街地・イベント会場など人が多い場所",
+          "scores": { "hobby": 2, "creative": 2, "inspection": 1 }
         },
         {
           "key": "B",
-          "label": "建物・設備・インフラの状態確認",
-          "scores": { "inspection": 3, "auto": 1, "disaster": 2 }
-        },
-        {
-          "key": "C",
-          "label": "地形・農地・広域のデータ取得",
-          "scores": { "survey": 3, "agri": 2 }
-        },
-        {
-          "key": "D",
-          "label": "自動化や研究テーマの検証",
-          "scores": { "dev": 2, "auto": 2, "logi": 1 }
-        },
-        {
-          "key": "E",
-          "label": "災害現場・被災状況の把握",
-          "scores": { "disaster": 4, "inspection": 1, "auto": 1 }
-        }
-      ]
-    },
-    {
-      "id": "s1_q4",
-      "text": "主な飛行場所は？",
-      "weight": 2,
-      "options": [
-        {
-          "key": "A",
-          "label": "市街地・観光地など人の多い場所",
-          "scores": { "hobby": 2, "creative": 2 }
-        },
-        {
-          "key": "B",
-          "label": "工事現場・プラント・施設内",
+          "label": "工場・プラント・設備内部の点検が中心",
           "scores": { "inspection": 3, "disaster": 1 }
         },
         {
           "key": "C",
-          "label": "山間部・農地・広域エリア",
+          "label": "山間部・農地・森林など広域の屋外エリア",
           "scores": { "survey": 2, "agri": 3, "disaster": 2 }
         },
         {
           "key": "D",
-          "label": "常設拠点からの無人運用",
-          "scores": { "auto": 3, "logi": 2, "disaster": 2 }
+          "label": "沿岸・強風地帯・夜間など過酷環境",
+          "scores": { "disaster": 3, "auto": 2, "logi": 1 }
+        },
+        {
+          "key": "E",
+          "label": "常設拠点からの自動巡回や遠隔監視を想定",
+          "scores": { "auto": 4, "disaster": 2 }
         }
       ]
     },
     {
-      "id": "s1_q5",
-      "text": "もっとも惹かれるポイントは？",
+      "id": "s1_permit",
+      "text": "航空法の許可・承認について、どちらに近いですか？",
       "weight": 2,
       "options": [
         {
           "key": "A",
-          "label": "携帯性と気軽さ",
-          "scores": { "hobby": 2, "creative": 1 }
+          "label": "許可・承認なしで運用できる 100g 未満のマイクロ機を検討したい",
+          "scores": {},
+          "constraints": { "preferredWeight": "under100" },
+          "effects": { "addDetailSegments": ["detail_micro"] }
         },
         {
           "key": "B",
-          "label": "映像品質と演出力",
-          "scores": { "creative": 3, "hobby": 1 }
+          "label": "必要なら許可・承認を取得する前提で、ベストな機体を選びたい",
+          "scores": {},
+          "constraints": { "preferredWeight": "over100" },
+          "effects": { "removeDetailSegments": ["detail_micro"] }
         },
         {
           "key": "C",
-          "label": "精密データや解析精度",
-          "scores": { "survey": 2, "inspection": 2, "agri": 2 }
-        },
-        {
-          "key": "D",
-          "label": "無人化・自動化・運搬効率",
-          "scores": { "auto": 3, "logi": 3, "disaster": 2 }
-        },
-        {
-          "key": "E",
-          "label": "SDK（ドローン連携の開発キット）・拡張性・カスタム開発",
-          "scores": { "dev": 3, "survey": 1 }
+          "label": "どちらでも構わないので、まずは提案を見たい",
+          "scores": {},
+          "effects": { "removeDetailSegments": ["detail_micro"], "clearPreferredWeight": true }
         }
       ]
     }

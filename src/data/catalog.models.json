@@ -7,12 +7,13 @@
       "primaryModelId": "mini5pro",
       "alts": [
         "mini4pro",
+        "air3s",
+        "avata2",
         "mini4k",
         "mini3",
         "mini2se",
         "djiflip",
         "djineo",
-        "avata2",
         "tello"
       ],
       "summary": "旅行やSNS向けに、軽量で扱いやすい空撮ドローンを重視するタイプ。"
@@ -128,7 +129,7 @@
       "bullets": [
         "全方位障害物検知",
         "縦撮りビデオ対応",
-        "249gで手続き簡素"
+        "249gクラスのコンパクト設計"
       ],
       "specs": {
         "機体重量": "約 249 g",

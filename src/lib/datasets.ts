@@ -36,7 +36,9 @@ export function resolveAlternativeModels(type: DroneTypeKey) {
   const typeDetail = resolveTypeDetail(type);
   if (!typeDetail) return [];
 
-  return catalog.models.filter((model) => typeDetail.alts.includes(model.id));
+  return typeDetail.alts
+    .map((modelId) => catalog.models.find((model) => model.id === modelId))
+    .filter((model): model is NonNullable<typeof model> => Boolean(model));
 }
 
 export function resolveResultTemplate(type: DroneTypeKey) {

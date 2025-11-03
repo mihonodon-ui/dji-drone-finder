@@ -322,6 +322,31 @@
       ]
     },
     {
+      "id": "dyn_creative_q3",
+      "text": "運用体制やチーム構成を教えてください",
+      "category": "creative_detail",
+      "difficulty": "advanced",
+      "targetSegments": ["detail_creative"],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "ソロオペレーション中心（1人で持ち運び・撮影したい）",
+          "scores": { "creative": 2, "hobby": 1 }
+        },
+        {
+          "key": "B",
+          "label": "2名以上のチームで本格運用・映画制作を行う",
+          "scores": { "creative": 2, "dev": 1 }
+        },
+        {
+          "key": "C",
+          "label": "イベント演出や FPV パイロットを含むチーム運用",
+          "scores": { "creative": 2, "hobby": 2 }
+        }
+      ]
+    },
+    {
       "id": "dyn_agri_q1",
       "text": "農業分野で最も重視する用途は？",
       "category": "agri_detail",
@@ -373,5 +398,9 @@
     }
   ]
 }
+
+
+
+
 
 
