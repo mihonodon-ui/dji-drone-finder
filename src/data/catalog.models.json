@@ -144,7 +144,24 @@
         "learn": "https://www.dji.com/jp/mini-5-pro",
         "consult": "/contact",
         "demo": "/experience"
-      }
+      },
+      "tier": "premium",
+      "strengths": [
+        "4K60 HDR撮影",
+        "全方位障害物検知",
+        "縦向き撮影モード"
+      ],
+      "sensorHighlights": [
+        "1/1.3 型 CMOS 48MP",
+        "O4 映像伝送"
+      ],
+      "bestFor": [
+        "旅撮",
+        "夜景",
+        "安全優先"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "premium"
     },
     {
       "id": "mini4pro",
@@ -173,7 +190,24 @@
       "links": {
         "learn": "https://www.dji.com/jp/mini-4-pro",
         "consult": "/contact"
-      }
+      },
+      "tier": "standard",
+      "strengths": [
+        "ActiveTrack 360",
+        "全方向障害物検知",
+        "縦向き撮影対応"
+      ],
+      "sensorHighlights": [
+        "1/1.3 型 CMOS 48MP",
+        "O4 映像伝送"
+      ],
+      "bestFor": [
+        "Vlog",
+        "自動撮影",
+        "旅撮"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "mid"
     },
     {
       "id": "mini4k",
@@ -202,7 +236,22 @@
       "links": {
         "learn": "https://www.dji.com/jp/mini-4k",
         "consult": "/contact"
-      }
+      },
+      "tier": "entry",
+      "strengths": [
+        "軽量・折りたたみ",
+        "手頃な4K撮影",
+        "自動撮影モード"
+      ],
+      "sensorHighlights": [
+        "1/2.3 型 CMOS 12MP"
+      ],
+      "bestFor": [
+        "旅のサブ機",
+        "初めての空撮"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "entry"
     },
     {
       "id": "mini3",
@@ -215,15 +264,15 @@
         "max": 110000
       },
       "bullets": [
-        "1/1.3型48MP",
-        "縦撮りクイック",
+        "1/1.3型センサー",
+        "チルトアップ撮影",
         "最大38分飛行"
       ],
       "specs": {
         "機体重量": "約 248 g",
-        "最大飛行時間": "最大 38 分",
         "カメラ": "1/1.3 型 CMOS 48MP、4K30 HDR",
-        "耐風性能": "10.7 m/s"
+        "最大風圧抵抗": "10.7 m/s",
+        "最大飛行時間": "最大 38 分"
       },
       "images": [
         "mini3.png"
@@ -231,7 +280,23 @@
       "links": {
         "learn": "https://www.dji.com/jp/mini-3",
         "consult": "/contact"
-      }
+      },
+      "tier": "entry",
+      "strengths": [
+        "1/1.3型センサー",
+        "チルトアップ撮影",
+        "長時間飛行"
+      ],
+      "sensorHighlights": [
+        "1/1.3 型 CMOS 48MP"
+      ],
+      "bestFor": [
+        "旅撮",
+        "夕景・夜景",
+        "手軽な4K"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "entry"
     },
     {
       "id": "mini2se",
@@ -244,15 +309,15 @@
         "max": 70000
       },
       "bullets": [
-        "2.7Kカメラ搭載",
-        "OcuSync2.0伝送",
+        "2.7Kカメラ撮影",
+        "OcuSync 2.0伝送",
         "246gで気軽に飛行"
       ],
       "specs": {
         "機体重量": "約 246 g",
-        "最大飛行時間": "最大 31 分",
         "カメラ": "1/2.3 型 CMOS 12MP、2.7K30",
-        "最大伝送距離": "10 km (O2)"
+        "最大伝送距離": "10 km (O2)",
+        "最大飛行時間": "最大 31 分"
       },
       "images": [
         "mini2se.png"
@@ -260,7 +325,22 @@
       "links": {
         "learn": "https://www.dji.com/jp/mini-2-se",
         "consult": "/contact"
-      }
+      },
+      "tier": "entry",
+      "strengths": [
+        "軽量ボディ",
+        "長距離伝送",
+        "シンプル操作"
+      ],
+      "sensorHighlights": [
+        "1/2.3 型 CMOS 12MP"
+      ],
+      "bestFor": [
+        "初めてのドローン",
+        "旅行のサブ機"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "entry"
     },
     {
       "id": "djiflip",
@@ -289,7 +369,22 @@
       "links": {
         "learn": "https://www.dji.com/jp/dji-flip",
         "consult": "/contact"
-      }
+      },
+      "tier": "fpv",
+      "strengths": [
+        "室内FPV",
+        "シンプル操作",
+        "手軽な価格"
+      ],
+      "sensorHighlights": [
+        "HD カメラ"
+      ],
+      "bestFor": [
+        "室内アクロ練習",
+        "気軽なFPV"
+      ],
+      "weightCategory": "under250",
+      "priceCategory": "entry"
     },
     {
       "id": "djineo",
@@ -318,7 +413,22 @@
       "links": {
         "learn": "https://www.dji.com/jp/dji-neo",
         "consult": "/contact"
-      }
+      },
+      "tier": "micro",
+      "strengths": [
+        "安全保護ガード",
+        "簡単操作モード",
+        "教育向け機能"
+      ],
+      "sensorHighlights": [
+        "HD カメラ"
+      ],
+      "bestFor": [
+        "教育用途",
+        "親子での練習"
+      ],
+      "weightCategory": "under100",
+      "priceCategory": "entry"
     },
     {
       "id": "air3s",
@@ -348,7 +458,23 @@
       "links": {
         "learn": "https://www.dji.com/jp/air-3",
         "consult": "/contact"
-      }
+      },
+      "tier": "premium",
+      "strengths": [
+        "デュアルカメラ",
+        "風に強い飛行性能",
+        "O4映像伝送"
+      ],
+      "sensorHighlights": [
+        "1/1.3 型 CMOS デュアルカメラ"
+      ],
+      "bestFor": [
+        "高画質空撮",
+        "風の強いロケーション",
+        "ステップアップ"
+      ],
+      "weightCategory": "over250",
+      "priceCategory": "premium"
     },
     {
       "id": "mavic4pro",
@@ -469,7 +595,22 @@
       "links": {
         "learn": "https://www.ryzerobotics.com/tello",
         "consult": "/contact"
-      }
+      },
+      "tier": "micro",
+      "strengths": [
+        "プログラミング対応",
+        "軽量設計",
+        "手頃な価格"
+      ],
+      "sensorHighlights": [
+        "HD カメラ"
+      ],
+      "bestFor": [
+        "プログラミング学習",
+        "室内フライト"
+      ],
+      "weightCategory": "under100",
+      "priceCategory": "entry"
     },
     {
       "id": "avata2",
@@ -501,7 +642,22 @@
       "links": {
         "consult": "/contact",
         "learn": "https://www.dji.com/jp/avata-2"
-      }
+      },
+      "tier": "fpv",
+      "strengths": [
+        "FPVゴーグル体験",
+        "プロペラガード一体型",
+        "ダイナミック撮影"
+      ],
+      "sensorHighlights": [
+        "1/1.3 型 CMOS 48MP"
+      ],
+      "bestFor": [
+        "FPVアクション",
+        "シネマティックFPV"
+      ],
+      "weightCategory": "over250",
+      "priceCategory": "premium"
     },
     {
       "id": "mavic3t",

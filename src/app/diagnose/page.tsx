@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import CandidatePanel, { type CandidateEntry } from "@/components/CandidatePanel";
+import CandidatePanel from "@/components/CandidatePanel";
 import CTAButtons from "@/components/CTAButtons";
 import ProgressBar from "@/components/ProgressBar";
 import QuestionCard from "@/components/QuestionCard";
@@ -22,12 +22,16 @@ import {
   findQuestionById,
   isDiagnosisComplete,
   registerAnswer,
-  type ConstraintState,
-  type DiagnosisMode,
   type DiagnosisState
 } from "@/lib/dynamicDiagnosis";
 import { evaluateQuestionSet } from "@/lib/scoring";
-import type { CatalogModel, DroneTypeKey, Question, QuestionOption } from "@/lib/types";
+import type {
+  AnswerMap,
+  CatalogModel,
+  DroneTypeKey,
+  Question,
+  QuestionOption
+} from "@/lib/types";
 
 function formatPriceRange(min?: number, max?: number) {
   if (!min && !max) return null;
@@ -39,10 +43,13 @@ function formatPriceRange(min?: number, max?: number) {
   return null;
 }
 
-function selectModelsWithBudget(
-  type: DroneTypeKey,
-  constraints: ConstraintState
-) {
+const questionPoolMap: Record<string, string[]> = {
+  hobby_travel_priority: ["mini5pro", "air3s", "mini4k", "mini3", "mini2se", "mini4pro"],
+  hobby_vlog_priority: ["mini4pro", "mini5pro", "mini4k", "mini3", "mini2se", "air3s"]
+};
+
+function selectModelsWithBudget(type: DroneTypeKey, state: DiagnosisState) {
+  const { constraints, preferredModels } = state;
   const typeDetail = catalog.types[type];
   if (!typeDetail) {
     return {
@@ -61,6 +68,24 @@ function selectModelsWithBudget(
   );
 
   const orderedCandidates = Array.from(uniqueCandidates.values());
+  const preferredSet = new Set(preferredModels);
+  const preferredMatches = preferredModels
+    .map((modelId) => uniqueCandidates.get(modelId))
+    .filter((model): model is CatalogModel => Boolean(model));
+  const nonPreferred = orderedCandidates.filter((model) => !preferredSet.has(model.id));
+  const baseCandidates =
+    preferredMatches.length > 0 ? [...preferredMatches, ...nonPreferred] : orderedCandidates;
+
+  if (!baseCandidates.length) {
+    return {
+      primary: undefined,
+      alternatives: [] as ReturnType<typeof resolveAlternativeModels>,
+      note: constraints.maxPrice
+        ? "予算条件に一致する機種が見つかりませんでした。"
+        : undefined
+    };
+  }
+
   if (!orderedCandidates.length) {
     return {
       primary: undefined,
@@ -84,10 +109,10 @@ function selectModelsWithBudget(
 
   const notes: string[] = [];
   const weightPreference = constraints.preferredWeight;
-  const microCandidates = orderedCandidates.filter((model) => isMicroModel(model));
-  const standardCandidates = orderedCandidates.filter((model) => !isMicroModel(model));
+  const microCandidates = baseCandidates.filter((model) => isMicroModel(model));
+  const standardCandidates = baseCandidates.filter((model) => !isMicroModel(model));
 
-  let prioritizedCandidates: CatalogModel[] = orderedCandidates;
+  let prioritizedCandidates: CatalogModel[] = baseCandidates;
   let secondaryCandidates: CatalogModel[] = [];
 
   if (weightPreference === "under100") {
@@ -108,7 +133,9 @@ function selectModelsWithBudget(
   }
 
   const selectedPrimary =
-    prioritizedCandidates[0] ?? orderedCandidates[0]!;
+    prioritizedCandidates[0] ??
+    baseCandidates[0] ??
+    orderedCandidates[0]!;
 
   const seen = new Set<string>([selectedPrimary.id]);
   const collectAlternatives = (candidates: CatalogModel[]) =>
@@ -162,45 +189,13 @@ function selectModelsWithBudget(
   };
 }
 
-function buildCandidateEntries(
-  mode: DiagnosisMode,
-  evaluation: ReturnType<typeof evaluateQuestionSet>,
-  constraints: ConstraintState,
-  primaryType?: DroneTypeKey
-): CandidateEntry[] {
-  const ranked = evaluation.ranked.slice(0, 4);
-  if (!ranked.length) return [];
-
-  return ranked.flatMap((entry, index) => {
-    const typeDetail = catalog.types[entry.type];
-    if (!typeDetail) return [];
-    const { primary, alternatives, note } = selectModelsWithBudget(entry.type, constraints);
-    const representative = primary ?? alternatives[0];
-    return [
-      {
-        rank: index + 1,
-        typeKey: entry.type,
-        typeLabel: typeDetail.label,
-        score: entry.score,
-        model: representative,
-        fallback: note,
-        isPrimary: entry.type === primaryType && mode !== "unknown"
-      }
-    ];
-  });
-}
-
 export default function DiagnosePage() {
   const [state, setState] = useState<DiagnosisState>(createInitialDiagnosisState());
-  const [currentQuestionId, setCurrentQuestionId] = useState<string | undefined>(
-    dynamicQuestionSet.questions[0]?.id
-  );
+  const [currentQuestionId, setCurrentQuestionId] = useState<string | undefined>(undefined);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [prefTypeKey, setPrefTypeKey] = useState<DroneTypeKey | undefined>(undefined);
-  const [prefWeightValue, setPrefWeightValue] = useState<"under100" | "over100" | undefined>(
-    undefined
-  );
+  const [prefWeightValue, setPrefWeightValue] = useState<"under100" | "over100" | undefined>();
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -218,71 +213,23 @@ export default function DiagnosePage() {
   }, []);
 
   useEffect(() => {
-    if (!prefTypeKey && !prefWeightValue) return;
-    setState((prev) => {
-      let nextState = prev;
-      let changed = false;
+    if (prefTypeKey === undefined && prefWeightValue === undefined) {
+      return;
+    }
 
-      if (prefWeightValue && prev.constraints.preferredWeight !== prefWeightValue) {
-        nextState = {
-          ...nextState,
-          constraints: { ...nextState.constraints, preferredWeight: prefWeightValue }
-        };
-        changed = true;
-      }
-
-      if (!prefWeightValue && prev.constraints.preferredWeight) {
-        nextState = {
-          ...nextState,
-          constraints: { ...nextState.constraints, preferredWeight: undefined }
-        };
-        changed = true;
-      }
-
-      if (prefWeightValue === "under100") {
-        if (!nextState.detailSegments.includes("detail_micro")) {
-          nextState = {
-            ...nextState,
-            detailSegments: [...nextState.detailSegments, "detail_micro"]
-          };
-          changed = true;
-        }
-      } else if (
-        (prefWeightValue === "over100" || prefWeightValue === undefined) &&
-        nextState.detailSegments.includes("detail_micro")
-      ) {
-        nextState = {
-          ...nextState,
-          detailSegments: nextState.detailSegments.filter(
-            (segment) => segment !== "detail_micro"
-          )
-        };
-        changed = true;
-      }
-
-      if (prefTypeKey) {
-        if (nextState.mode === "unknown") {
-          nextState = { ...nextState, mode: "pro" };
-          changed = true;
-        }
-
-        const detailSegmentMap: Partial<Record<DroneTypeKey, string>> = {
-          creative: "detail_creative",
-          agri: "detail_agri"
-        };
-        const targetSegment = detailSegmentMap[prefTypeKey];
-        if (targetSegment && !nextState.detailSegments.includes(targetSegment)) {
-          nextState = {
-            ...nextState,
-            detailSegments: [...nextState.detailSegments, targetSegment]
-          };
-          changed = true;
-        }
-      }
-
-      return changed ? nextState : prev;
-    });
+    setState(createBaseState(prefWeightValue));
+    setCurrentQuestionId(dynamicQuestionSet.questions[0]?.id);
+    setErrorMessage(null);
+    setCopied(false);
   }, [prefTypeKey, prefWeightValue]);
+
+  useEffect(() => {
+    if (currentQuestionId) return;
+    const nextId = findNextQuestionId(dynamicQuestionSet, state);
+    if (nextId) {
+      setCurrentQuestionId(nextId);
+    }
+  }, [state, currentQuestionId]);
 
   const activeQuestions = useMemo(
     () => buildActiveQuestions(dynamicQuestionSet, state),
@@ -303,9 +250,16 @@ export default function DiagnosePage() {
   const primaryType = evaluation.primary?.type;
   const typeDetail = primaryType ? catalog.types[primaryType] : undefined;
   const modelSelection = primaryType
-    ? selectModelsWithBudget(primaryType, state.constraints)
+    ? selectModelsWithBudget(primaryType, state)
+    : { primary: undefined, alternatives: [], note: undefined };
+  const showFinalModels = diagnosisComplete;
+  const finalResultSelection = showFinalModels
+    ? modelSelection
     : { primary: undefined, alternatives: [], note: undefined };
   const resultTemplate = primaryType ? resolveResultTemplate(primaryType) : undefined;
+  const resultHighlights = showFinalModels
+    ? state.resultSummary.filter((item) => Boolean(item))
+    : [];
 
   const shareUrl =
     typeof window !== "undefined" && primaryType
@@ -317,10 +271,46 @@ export default function DiagnosePage() {
   const budgetLabel = formatPriceRange(state.constraints.minPrice, state.constraints.maxPrice);
   const hasAnswers = state.questionOrder.length > 0;
 
-  const candidateEntries = useMemo(
-    () => buildCandidateEntries(state.mode, evaluation, state.constraints, primaryType),
-    [evaluation, state.constraints, primaryType, state.mode]
-  );
+  const preferredModelList = useMemo(() => {
+    const models: CatalogModel[] = [];
+    state.preferredModels.forEach((modelId) => {
+      const found = catalog.models.find((model) => model.id === modelId);
+      if (found && !models.find((item) => item.id === found.id)) {
+        models.push(found);
+      }
+    });
+    return models;
+  }, [state.preferredModels]);
+
+  const candidateModels = useMemo(() => {
+    const ordered: CatalogModel[] = [];
+    if (modelSelection.primary) {
+      ordered.push(modelSelection.primary);
+    }
+    modelSelection.alternatives.forEach((model) => {
+      if (!ordered.find((item) => item.id === model.id)) {
+        ordered.push(model);
+      }
+    });
+    return ordered;
+  }, [modelSelection.primary, modelSelection.alternatives]);
+
+  const sidebarModels = preferredModelList.length ? preferredModelList : candidateModels;
+  const questionPoolModels = useMemo(() => {
+    if (!currentQuestion) return [];
+    const poolIds = questionPoolMap[currentQuestion.id];
+    if (!poolIds) return [];
+    const models: CatalogModel[] = [];
+    poolIds.forEach((id) => {
+      const found = catalog.models.find((model) => model.id === id);
+      if (found) {
+        models.push(found);
+      }
+    });
+    return models;
+  }, [currentQuestion]);
+  const galleryModels =
+    questionPoolModels.length > 0 ? questionPoolModels : sidebarModels;
 
   const recommendedType = prefTypeKey ? catalog.types[prefTypeKey] : undefined;
   const weightPreferenceLabel =
@@ -331,18 +321,29 @@ export default function DiagnosePage() {
         : undefined;
 
   const handleSelect = (question: Question, option: QuestionOption) => {
-    const nextState = registerAnswer(state, question, option);
+    const answers: AnswerMap = { ...state.answers };
+    const order = [...state.questionOrder];
+    const existingIndex = order.indexOf(question.id);
+
+    if (existingIndex >= 0) {
+      order.splice(existingIndex);
+      state.questionOrder.slice(existingIndex).forEach((questionId) => {
+        delete answers[questionId];
+      });
+    }
+
+    answers[question.id] = option.key;
+    order.push(question.id);
+
+    const nextState = replayAnswers(answers, order, prefWeightValue);
     setState(nextState);
     setErrorMessage(null);
 
-    const nextActiveQuestions = buildActiveQuestions(dynamicQuestionSet, nextState);
-    const shouldFinish = isDiagnosisComplete(nextState, nextActiveQuestions);
     const nextQuestionId = findNextQuestionId(dynamicQuestionSet, nextState);
-
-    if (shouldFinish || !nextQuestionId) {
-      setCurrentQuestionId(undefined);
-    } else {
+    if (nextQuestionId) {
       setCurrentQuestionId(nextQuestionId);
+    } else {
+      setCurrentQuestionId(undefined);
     }
   };
 
@@ -369,15 +370,23 @@ export default function DiagnosePage() {
   };
 
   const handlePrev = () => {
-    if (!currentQuestion) return;
-    const currentIndex = activeQuestions.findIndex((item) => item.id === currentQuestion.id);
-    if (currentIndex <= 0) return;
-    setCurrentQuestionId(activeQuestions[currentIndex - 1]?.id);
+    if (!state.questionOrder.length) return;
+    const trimmedOrder = state.questionOrder.slice(0, -1);
+    const trimmedAnswers: AnswerMap = { ...state.answers };
+    const removed = state.questionOrder.slice(-1);
+    removed.forEach((questionId) => {
+      delete trimmedAnswers[questionId];
+    });
+    const rebuiltState = replayAnswers(trimmedAnswers, trimmedOrder, prefWeightValue);
+    setState(rebuiltState);
+    const targetQuestionId =
+      trimmedOrder[trimmedOrder.length - 1] ?? dynamicQuestionSet.questions[0]?.id;
+    setCurrentQuestionId(targetQuestionId ?? dynamicQuestionSet.questions[0]?.id);
   };
 
   const handleReset = () => {
-    const initialState = createInitialDiagnosisState();
-    setState(initialState);
+    const base = createBaseState(prefWeightValue);
+    setState(base);
     setCurrentQuestionId(dynamicQuestionSet.questions[0]?.id);
     setErrorMessage(null);
     setCopied(false);
@@ -500,9 +509,10 @@ export default function DiagnosePage() {
                 <ResultCard
                   typeLabel={typeDetail.label}
                   template={resultTemplate}
-                  primaryModel={modelSelection.primary}
-                  alternativeModels={modelSelection.alternatives}
+                  primaryModel={finalResultSelection.primary}
+                  alternativeModels={finalResultSelection.alternatives}
                   score={evaluation.primary?.score}
+                  resultSummary={resultHighlights}
                 />
               ) : (
                 <div className="rounded-3xl bg-white p-8 text-slate-700 shadow">
@@ -582,12 +592,45 @@ export default function DiagnosePage() {
         </div>
 
         <CandidatePanel
-          candidates={candidateEntries}
+          models={galleryModels}
           constraints={state.constraints}
-          mode={state.mode}
           hasAnswers={hasAnswers}
+          note={modelSelection.note}
         />
       </div>
     </main>
   );
 }
+
+function createBaseState(
+  preferredWeight?: "under100" | "over100"
+): DiagnosisState {
+  const base = createInitialDiagnosisState();
+  if (preferredWeight) {
+    base.constraints = { ...base.constraints, preferredWeight };
+  }
+  return base;
+}
+
+function replayAnswers(
+  answers: AnswerMap,
+  order: string[],
+  preferredWeight?: "under100" | "over100"
+) {
+  let nextState = createBaseState(preferredWeight);
+  const sanitizedOrder: string[] = [];
+  order.forEach((questionId) => {
+    const answerKey = answers[questionId];
+    if (!answerKey) return;
+    const question = findQuestionById(dynamicQuestionSet, questionId);
+    const option = question?.options.find((item) => item.key === answerKey);
+    if (!question || !option) return;
+    nextState = registerAnswer(nextState, question, option);
+    sanitizedOrder.push(questionId);
+  });
+  nextState.questionOrder = sanitizedOrder;
+  return nextState;
+}
+
+
+

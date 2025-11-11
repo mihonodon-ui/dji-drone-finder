@@ -32,7 +32,14 @@ export const QuestionOptionEffectsSchema = z
     addDetailSegments: z.array(z.string()).optional(),
     removeDetailSegments: z.array(z.string()).optional(),
     setDetailSegments: z.array(z.string()).optional(),
-    clearPreferredWeight: z.boolean().optional()
+    clearPreferredWeight: z.boolean().optional(),
+    addPreferredModels: z.array(z.string()).optional(),
+    setPreferredModels: z.array(z.string()).optional(),
+    clearPreferredModels: z.boolean().optional(),
+    forceComplete: z.boolean().optional(),
+    appendResultSummary: z.string().optional(),
+    setResultSummary: z.string().optional(),
+    clearResultSummary: z.boolean().optional()
   })
   .partial()
   .optional();
@@ -53,7 +60,25 @@ export const QuestionSchema = z.object({
   difficulty: z.enum(["basic", "advanced", "expert"]).optional(),
   targetSegments: z
     .array(
-      z.enum(["common", "light", "pro", "detail_creative", "detail_agri", "detail_micro"])
+      z.enum([
+        "common",
+        "light",
+        "pro",
+        "detail_creative",
+        "detail_agri",
+        "detail_micro",
+        "detail_hobby",
+        "detail_hobby_travel",
+        "detail_hobby_travel_light",
+        "detail_hobby_travel_dual",
+        "detail_hobby_travel_safety",
+        "detail_hobby_vlog",
+        "detail_hobby_vlog_skin",
+        "detail_hobby_vlog_light",
+        "detail_hobby_vlog_follow",
+        "detail_hobby_micro",
+        "detail_hobby_fpv"
+      ])
     )
     .optional(),
   strategyTags: z.array(z.string()).optional(),
@@ -89,11 +114,17 @@ export const CatalogModelSchema = z.object({
   name: z.string(),
   typeTags: z.array(z.string()).default([]),
   kind: z.enum(["aircraft", "payload"]).default("aircraft"),
+  tier: z.enum(["premium", "standard", "entry", "fpv", "micro"]).optional(),
   priceJPY: z.object({
     min: z.number().int(),
     max: z.number().int()
   }),
   bullets: z.array(z.string()).default([]),
+  strengths: z.array(z.string()).default([]),
+  sensorHighlights: z.array(z.string()).default([]),
+  bestFor: z.array(z.string()).default([]),
+  weightCategory: z.enum(["under100", "under250", "over250"]).optional(),
+  priceCategory: z.enum(["entry", "mid", "premium"]).optional(),
   specs: z.record(z.string()).optional(),
   notes: z.string().optional(),
   status: z.string().optional(),

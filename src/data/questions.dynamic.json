@@ -1,406 +1,662 @@
 {
-  "version": "2025-03-01",
+  "version": "2025-11-05",
   "locale": "ja-JP",
-  "title": "用途に合わせた DJI ドローン診断",
+  "title": "DJI ドローン診断（タイプ別フロー）",
   "questions": [
     {
-      "id": "dyn_q1",
-      "text": "ドローンを活用したい主な目的は？",
-      "category": "purpose",
+      "id": "hobby_scene",
+      "text": "どんなシーンで撮影したいですか？",
+      "category": "hobby_entry",
       "difficulty": "basic",
-      "targetSegments": ["common"],
-      "strategyTags": ["must_ask"],
+      "targetSegments": [
+        "common"
+      ],
       "weight": 4,
       "options": [
         {
           "key": "A",
-          "label": "旅や趣味で写真・動画を撮りたい",
-          "scores": { "hobby": 4, "creative": 2 },
-          "effects": { "setMode": "light" }
+          "label": "旅先の風景・夜景を中心に撮りたい",
+          "scores": {
+            "hobby": 3,
+            "creative": 1
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_travel"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini5pro",
+              "mini4pro",
+              "air3s"
+            ],
+            "setResultSummary": "シーン: 旅撮（風景・夜景）"
+          }
         },
         {
           "key": "B",
-          "label": "映像制作・プロモーションなどの空撮業務に使いたい",
-          "scores": { "creative": 4, "hobby": 1 },
-          "effects": { "setMode": "pro", "addDetailSegments": ["detail_creative"] }
+          "label": "Vlog・人物・家族の記録を撮りたい",
+          "scores": {
+            "hobby": 3,
+            "creative": 1
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_vlog"
+            ],
+            "clearPreferredModels": true,
+            "setResultSummary": "タイプ: Vlog・人物"
+          }
         },
         {
           "key": "C",
-          "label": "設備点検・測量などインフラ業務に使いたい",
-          "scores": { "inspection": 3, "survey": 3, "auto": 1 },
-          "effects": { "setMode": "pro" }
+          "label": "FPV の迫力ある映像に挑戦したい",
+          "scores": {
+            "hobby": 1,
+            "creative": 2
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_fpv"
+            ],
+            "clearPreferredModels": true,
+            "setPreferredModels": [
+              "avata2",
+              "djiflip",
+              "air3s"
+            ],
+            "forceComplete": false,
+            "setResultSummary": "シーン: FPV アクション"
+          }
         },
         {
           "key": "D",
-          "label": "農業リモートセンシング・散布に使いたい",
-          "scores": { "agri": 4, "survey": 1, "logi": 1 },
-          "effects": { "setMode": "pro", "addDetailSegments": ["detail_agri"] }
-        },
-        {
-          "key": "E",
-          "label": "防災・災害対応や自治体の緊急監視に使いたい",
-          "scores": { "disaster": 4, "auto": 2, "inspection": 1 },
-          "effects": { "setMode": "pro" }
-        },
-        {
-          "key": "F",
-          "label": "研究開発・SDK 連携・PoC を進めたい",
-          "scores": { "dev": 3, "survey": 1, "creative": 1 },
-          "effects": { "setMode": "pro" }
+          "label": "室内や教育用途で安全に遊びたい",
+          "scores": {
+            "hobby": 2
+          },
+          "constraints": {
+            "preferredWeight": "under100"
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_micro",
+              "detail_micro"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "djineo",
+              "tello",
+              "djiflip",
+              "mini2se"
+            ],
+            "setResultSummary": "シーン: 室内・教育/マイクロ"
+          }
         }
       ]
     },
     {
-      "id": "dyn_q2",
-      "text": "想定している導入予算帯は？",
-      "category": "budget",
-      "difficulty": "basic",
-      "targetSegments": ["common"],
-      "strategyTags": ["must_ask"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "〜20万円",
-          "scores": { "hobby": 3, "creative": 1 },
-          "constraints": { "maxPrice": 200000 }
-        },
-        {
-          "key": "B",
-          "label": "〜100万円",
-          "scores": { "creative": 2, "inspection": 1, "survey": 1, "agri": 1 },
-          "constraints": { "maxPrice": 1000000 }
-        },
-        {
-          "key": "C",
-          "label": "〜300万円",
-          "scores": { "inspection": 2, "survey": 2, "agri": 2, "logi": 1, "disaster": 2, "dev": 1 },
-          "constraints": { "maxPrice": 3000000 }
-        },
-        {
-          "key": "D",
-          "label": "1000万円以上（大規模投資も想定）",
-          "scores": { "auto": 4, "logi": 3, "disaster": 3, "dev": 2 },
-          "constraints": { "maxPrice": 12000000 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_q3_regulation",
-      "text": "航空法の許可・承認についてどのように考えていますか？",
-      "category": "regulation",
-      "difficulty": "basic",
-      "targetSegments": ["common"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "許可申請なしで運用できる100g未満の機体に限定したい",
-          "scores": { "hobby": 2, "creative": 1 },
-          "constraints": { "preferredWeight": "under100" },
-          "effects": { "addDetailSegments": ["detail_micro"] }
-        },
-        {
-          "key": "B",
-          "label": "許可申請が必要でも性能を優先したい",
-          "scores": { "creative": 2, "inspection": 1, "survey": 1 },
-          "constraints": { "preferredWeight": "over100" },
-          "effects": { "removeDetailSegments": ["detail_micro"] }
-        },
-        {
-          "key": "C",
-          "label": "特にこだわりはない／相談して決めたい",
-          "scores": { "creative": 1, "hobby": 1 },
-          "effects": { "removeDetailSegments": ["detail_micro"], "clearPreferredWeight": true }
-        }
-      ]
-    },
-    {
-      "id": "dyn_q3",
-      "text": "もっとも重視したいポイントは？",
-      "category": "priority",
-      "difficulty": "basic",
-      "targetSegments": ["light"],
-      "strategyTags": ["light_terminal"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "画質と映像表現力",
-          "scores": { "creative": 3, "hobby": 1 }
-        },
-        {
-          "key": "B",
-          "label": "携帯性と手軽さ",
-          "scores": { "hobby": 3 }
-        },
-        {
-          "key": "C",
-          "label": "自動運用や今後の拡張性",
-          "scores": { "auto": 2, "dev": 1 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_q4",
-      "text": "必要なセンサー・機能はどれですか？",
-      "category": "sensor",
+      "id": "hobby_travel_priority",
+      "text": "旅撮で重視したいポイントはどれですか？",
+      "category": "hobby_travel",
       "difficulty": "advanced",
-      "targetSegments": ["pro"],
-      "weight": 4,
-      "options": [
-        {
-          "key": "A",
-          "label": "赤外線やズームで設備点検を行いたい",
-          "scores": { "inspection": 4, "disaster": 3, "auto": 1 }
-        },
-        {
-          "key": "B",
-          "label": "RTK や高精度測量が必要",
-          "scores": { "survey": 4, "agri": 2 }
-        },
-        {
-          "key": "C",
-          "label": "LiDAR やマルチスペクトルなど高度なセンサーが必要",
-          "scores": { "agri": 2, "survey": 2, "dev": 2, "disaster": 1 }
-        },
-        {
-          "key": "D",
-          "label": "特に限定した要件はない",
-          "scores": { "logi": 1, "creative": 1 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_q5",
-      "text": "自動航行・ドック運用について教えてください",
-      "category": "automation",
-      "difficulty": "advanced",
-      "targetSegments": ["pro"],
+      "targetSegments": [
+        "detail_hobby_travel"
+      ],
       "weight": 3,
       "options": [
         {
           "key": "A",
-          "label": "24時間運用や Dock 導入を予定している",
-          "scores": { "auto": 4, "logi": 2, "disaster": 3 }
+          "label": "夜景やダイナミックな景色を高画質で残したい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_travel"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini5pro",
+              "air3s"
+            ],
+            "appendResultSummary": "旅撮サブ: 夜景・高画質"
+          }
         },
         {
           "key": "B",
-          "label": "部分的な自動化を検討している",
-          "scores": { "auto": 2, "logi": 1, "inspection": 1, "disaster": 2 }
+          "label": "荷物を増やさず軽量に持ち運びたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_travel_light"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini4k",
+              "mini3",
+              "mini2se"
+            ],
+            "appendResultSummary": "旅撮サブ: 軽量で荷物を増やさない"
+          }
         },
         {
           "key": "C",
-          "label": "手動運用が中心",
-          "scores": { "inspection": 1, "survey": 1, "disaster": 1 }
+          "label": "安全サポート（障害物検知など）を重視したい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_travel_safety"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini4pro",
+              "mini5pro"
+            ],
+            "appendResultSummary": "旅撮サブ: 安全面サポート"
+          }
         }
       ]
     },
     {
-      "id": "dyn_q6",
-      "text": "SDK（ドローンを自社システムと連携させる開発キット）やカスタム開発の予定は？",
-      "category": "development",
+      "id": "hobby_travel_final",
+      "text": "今回の旅撮スタイルに最も近いものを選んでください",
+      "category": "hobby_travel",
       "difficulty": "advanced",
-      "targetSegments": ["pro"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "SDK を活用し連携開発する予定",
-          "scores": { "dev": 4, "survey": 1, "auto": 1, "disaster": 2 }
-        },
-        {
-          "key": "B",
-          "label": "パートナーと連携しながら検討したい",
-          "scores": { "dev": 2, "inspection": 1, "disaster": 1 }
-        },
-        {
-          "key": "C",
-          "label": "既製アプリのみで完結したい",
-          "scores": { "inspection": 1, "logi": 1 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_q7",
-      "text": "物資輸送や散布など重量物の取り扱いは？",
-      "category": "payload",
-      "difficulty": "advanced",
-      "targetSegments": ["pro"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "主要業務として行う（1kg 以上の運搬・散布）",
-          "scores": { "logi": 4, "agri": 3, "disaster": 2 }
-        },
-        {
-          "key": "B",
-          "label": "限定的に発生する見込み",
-          "scores": { "logi": 2, "agri": 2, "disaster": 1 }
-        },
-        {
-          "key": "C",
-          "label": "想定していない",
-          "scores": { "inspection": 1, "creative": 1 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_micro_q1",
-      "text": "マイクロドローン（100g未満）の主な用途は？",
-      "category": "micro_detail",
-      "difficulty": "advanced",
-      "targetSegments": ["detail_micro"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "屋内練習・教育用途で安全に飛ばせることが重要",
-          "scores": { "hobby": 3 }
-        },
-        {
-          "key": "B",
-          "label": "SNS 向けのショート動画やFPV的な撮影を楽しみたい",
-          "scores": { "creative": 2, "hobby": 2 }
-        },
-        {
-          "key": "C",
-          "label": "子どもや初心者と一緒に体験したい",
-          "scores": { "hobby": 2 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_creative_q1",
-      "text": "映像制作で最も重視したいポイントは？",
-      "category": "creative_detail",
-      "difficulty": "advanced",
-      "targetSegments": ["detail_creative"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "シネマクオリティの画質・ダイナミックレンジ",
-          "scores": { "creative": 3, "dev": 1 }
-        },
-        {
-          "key": "B",
-          "label": "長時間飛行と現場での運用効率",
-          "scores": { "creative": 2, "logi": 1 }
-        },
-        {
-          "key": "C",
-          "label": "携帯性と少人数運用のしやすさ",
-          "scores": { "creative": 1, "hobby": 2 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_creative_q2",
-      "text": "必要なカメラ構成に近いものを選んでください",
-      "category": "creative_detail",
-      "difficulty": "advanced",
-      "targetSegments": ["detail_creative"],
-      "weight": 3,
-      "options": [
-        {
-          "key": "A",
-          "label": "望遠・広角を同時に使えるマルチカメラ構成",
-          "scores": { "creative": 3, "inspection": 1 }
-        },
-        {
-          "key": "B",
-          "label": "単眼でも大判センサーを重視する",
-          "scores": { "creative": 2, "dev": 1 }
-        },
-        {
-          "key": "C",
-          "label": "FPV や迫力ショット向けの機体を想定している",
-          "scores": { "creative": 2, "hobby": 2 }
-        }
-      ]
-    },
-    {
-      "id": "dyn_creative_q3",
-      "text": "運用体制やチーム構成を教えてください",
-      "category": "creative_detail",
-      "difficulty": "advanced",
-      "targetSegments": ["detail_creative"],
+      "targetSegments": [
+        "detail_hobby_travel"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
       "weight": 2,
       "options": [
         {
           "key": "A",
-          "label": "ソロオペレーション中心（1人で持ち運び・撮影したい）",
-          "scores": { "creative": 2, "hobby": 1 }
+          "scores": {
+            "hobby": 2
+          },
+          "label": "荷物を抑えて夜景や旅情を丁寧に残したい",
+          "effects": {
+            "setPreferredModels": [
+              "mini5pro"
+            ],
+            "appendResultSummary": "旅撮仕上げ: 軽量ボディで色再現重視"
+          }
         },
         {
           "key": "B",
-          "label": "2名以上のチームで本格運用・映画制作を行う",
-          "scores": { "creative": 2, "dev": 1 }
-        },
-        {
-          "key": "C",
-          "label": "イベント演出や FPV パイロットを含むチーム運用",
-          "scores": { "creative": 2, "hobby": 2 }
+          "scores": {
+            "creative": 1,
+            "hobby": 2
+          },
+          "label": "望遠切替や耐風性も備えた機体で安心したい",
+          "effects": {
+            "setPreferredModels": [
+              "air3s"
+            ],
+            "appendResultSummary": "旅撮仕上げ: マルチレンズで安心"
+          }
         }
       ]
     },
     {
-      "id": "dyn_agri_q1",
-      "text": "農業分野で最も重視する用途は？",
-      "category": "agri_detail",
+      "id": "hobby_travel_light_final",
+      "text": "携行性重視派の最後のこだわりを教えてください",
+      "category": "hobby_travel",
       "difficulty": "advanced",
-      "targetSegments": ["detail_agri"],
-      "weight": 3,
+      "targetSegments": [
+        "detail_hobby_travel_light"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
       "options": [
         {
           "key": "A",
-          "label": "作物の生育状況を可視化・マッピングしたい",
-          "scores": { "agri": 3, "survey": 2 }
+          "label": "旅行中はとにかく最小装備にしたい（充電器も最小限）",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini4k"
+            ],
+            "appendResultSummary": "軽量仕上げ: Mini 4K（共通バッテリーで荷物最小）"
+          }
         },
         {
           "key": "B",
-          "label": "農薬散布・施肥作業の効率化が最優先",
-          "scores": { "agri": 3, "logi": 2 }
+          "label": "予算は抑えつつも写真画質には少しこだわりたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini3"
+            ],
+            "appendResultSummary": "軽量仕上げ: Mini 3（画質バランス型）"
+          }
         },
         {
           "key": "C",
-          "label": "営農DXや精密農業でデータ連携を重視する",
-          "scores": { "agri": 3, "dev": 1 }
+          "label": "まずは最安構成で練習したい／家族と共有したい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini2se"
+            ],
+            "appendResultSummary": "軽量仕上げ: Mini 2 SE（エントリー）"
+          }
+        },
+        {
+          "key": "D",
+          "label": "軽量でも夜景やRAW撮影までしっかりやりたい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini5pro"
+            ],
+            "appendResultSummary": "軽量仕上げ: Mini 5 Pro（高画質）"
+          }
         }
       ]
     },
     {
-      "id": "dyn_agri_q2",
-      "text": "想定している圃場規模や運用形態を教えてください",
-      "category": "agri_detail",
+      "id": "hobby_travel_safety_final",
+      "text": "安全サポート派の最後のこだわりは？",
+      "category": "hobby_travel",
       "difficulty": "advanced",
-      "targetSegments": ["detail_agri"],
+      "targetSegments": [
+        "detail_hobby_travel_safety"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "最新APASと全方位検知で都市部を安全に飛ばしたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini4pro"
+            ],
+            "appendResultSummary": "安全仕上げ: 全方位センサー重視"
+          }
+        },
+        {
+          "key": "B",
+          "label": "RAW夜景と耐風性まで備えた上位センサーで安心したい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini5pro"
+            ],
+            "appendResultSummary": "安全仕上げ: 上位センサー＆耐風"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_vlog_priority",
+      "text": "Vlog・人物撮影で大事にしたいことはどれですか？",
+      "category": "hobby_vlog",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_vlog"
+      ],
       "weight": 3,
       "options": [
         {
           "key": "A",
-          "label": "小規模圃場（〜5ha）で手軽に運用したい",
-          "scores": { "agri": 2, "hobby": 1 }
+          "label": "肌の見え方や手ブレ補正を優先したい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_vlog_skin"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini4pro",
+              "mini5pro"
+            ],
+            "appendResultSummary": "Vlog仕上げ: 肌映え・補正重視"
+          }
         },
         {
           "key": "B",
-          "label": "10ha 以上の広域圃場・散布作業を担う",
-          "scores": { "agri": 3, "logi": 1 }
+          "label": "ワンオペで気軽に持ち歩ける軽さが欲しい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_vlog_light"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini4k",
+              "mini3",
+              "mini2se"
+            ],
+            "appendResultSummary": "Vlog仕上げ: ワンオペ軽量"
+          }
         },
         {
           "key": "C",
-          "label": "農協・自治体など複数拠点での共同運用",
-          "scores": { "agri": 2, "auto": 1, "disaster": 1 }
+          "label": "自動追尾や撮影アシストを活用したい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setDetailSegments": [
+              "detail_hobby_vlog_follow"
+            ],
+            "clearPreferredModels": true,
+            "addPreferredModels": [
+              "mini4pro",
+              "mini5pro",
+              "air3s"
+            ],
+            "appendResultSummary": "Vlog仕上げ: 自動追尾・アシスト"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_vlog_skin_final",
+      "text": "肌映えサポート派の最後のこだわりは？",
+      "category": "hobby_vlog",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_vlog_skin"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "国内唯一の機体認証と全方位センサーで安全重視",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini4pro"
+            ],
+            "appendResultSummary": "Vlog仕上げ: 機体認証＋全方位センサー"
+          }
+        },
+        {
+          "key": "B",
+          "label": "シリーズ最新センサーでRAW夜景や耐風性まで確保したい",
+          "scores": {
+            "creative": 1,
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini5pro"
+            ],
+            "appendResultSummary": "Vlog仕上げ: 最新センサー＋RAW夜景"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_vlog_light_final",
+      "text": "ワンオペ軽量派の仕上げを選んでください",
+      "category": "hobby_vlog",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_vlog_light"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "共通バッテリーで荷物を最小限にしたい（Mini 4K）",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini4k"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Mini 4K（荷物最小）"
+          }
+        },
+        {
+          "key": "B",
+          "label": "4K60pも撮れるバランス型がいい（Mini 3）",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini3"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Mini 3（画質バランス）"
+          }
+        },
+        {
+          "key": "C",
+          "label": "最小コストで気軽に始めたい（Mini 2 SE）",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini2se"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Mini 2 SE（エントリー）"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_vlog_follow_final",
+      "text": "自動追尾・アシスト派の仕上げを選んでください",
+      "category": "hobby_vlog",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_vlog_follow"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "全方位APASと縦撮り重視で安心したい（Mini 4 Pro）",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini4pro"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Mini 4 Pro（縦撮り＋APAS）"
+          }
+        },
+        {
+          "key": "B",
+          "label": "RAW夜景や耐風性まで備えた上位センサーが欲しい（Mini 5 Pro）",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini5pro"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Mini 5 Pro（RAW夜景）"
+          }
+        },
+        {
+          "key": "C",
+          "label": "望遠追尾や屋外の耐風性まで確保したい（Air 3S）",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setPreferredModels": [
+              "air3s"
+            ],
+            "appendResultSummary": "Vlog仕上げ: Air 3S（望遠追尾）"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_fpv_final",
+      "text": "求めている FPV 体験に近いものを選んでください",
+      "category": "hobby_fpv",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_fpv"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "没入感のある本格 FPV ゴーグル体験",
+          "scores": {
+            "hobby": 1,
+            "creative": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "avata2"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "FPV: 没入ゴーグル体験"
+          }
+        },
+        {
+          "key": "B",
+          "label": "室内で気軽に FPV 練習を楽しみたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "djiflip",
+              "djineo"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "FPV: 室内アクロ練習"
+          }
+        },
+        {
+          "key": "C",
+          "label": "FPV 感を保ちつつ通常撮影とも両立したい",
+          "scores": {
+            "hobby": 2,
+            "creative": 1
+          },
+          "effects": {
+            "setPreferredModels": [
+              "air3s",
+              "mini5pro"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "FPV: ハイブリッド撮影"
+          }
+        }
+      ]
+    },
+    {
+      "id": "hobby_micro_goal",
+      "text": "マイクロ機で特に重視したいポイントは？",
+      "category": "hobby_micro",
+      "difficulty": "advanced",
+      "targetSegments": [
+        "detail_hobby_micro"
+      ],
+      "strategyTags": [
+        "light_terminal"
+      ],
+      "weight": 2,
+      "options": [
+        {
+          "key": "A",
+          "label": "子どもや教育用途で安全に練習したい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "djineo",
+              "tello"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "マイクロ: 教育・安心練習"
+          }
+        },
+        {
+          "key": "B",
+          "label": "室内でFPVアクロ練習をしたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "djiflip",
+              "djineo"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "マイクロ: 室内FPV"
+          }
+        },
+        {
+          "key": "C",
+          "label": "屋外にも持ち出して遊びたい",
+          "scores": {
+            "hobby": 2
+          },
+          "effects": {
+            "setPreferredModels": [
+              "mini2se",
+              "mini3"
+            ],
+            "forceComplete": true,
+            "appendResultSummary": "マイクロ: 屋外にも対応"
+          }
         }
       ]
     }
   ]
 }
-
-
-
-
-
-

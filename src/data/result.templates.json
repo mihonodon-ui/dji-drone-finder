@@ -3,15 +3,21 @@
   "locale": "ja-JP",
   "templates": {
     "hobby": {
-      "title": "あなたは「趣味・旅撮」タイプ",
-      "mainMessage": "Mini 5 Pro は全方位センサーと縦撮り対応で旅先でも安心。249g クラスで携行性が高く、旅の映像制作にも十分な性能を備えています。100g 未満で許可不要の運用を重視する場合は Tello / Neo などのマイクロ機も候補になります。",
-      "priceNote": "目安価格：15〜18万円（税込）",
+      "title": "タイプ解説：趣味・旅撮",
+      "mainMessage": "旅撮やVlog、FPVなど軽やかな撮影スタイルに向けた構成です。縦撮り・全方位センサーを備えた Mini 5 Pro / Mini 4 Pro、廉価で持ち歩きやすい Mini 4K / Mini 3 / Mini 2 SE、風に強い Air 3S、室内・教育用途の Neo / Tello / DJI Flip などから目的に応じて選択できます。",
+      "priceNote": "主な価格帯：入門 6〜11万円（Mini 2 SE / Mini 3）〜 プレミアム 23万円前後（Air 3S）",
       "tips": [
-        "航空法の最新ルールを確認し、許可不要の範囲から安全に運用を始めましょう。",
-        "SNS 配信には縦構図テンプレを活用すると編集がスムーズです。"
+        "撮影シーン（旅撮・Vlog・FPV・室内）に合わせてバッテリーやアクセサリを選ぶと迷いが減ります。",
+        "100gを超える機体は航空法上の許可・承認が必要になるため、運用ルールを事前に確認しましょう。"
       ],
-      "cta": { "label": "購入・相談する", "href": "/contact" },
-      "secondaryCta": { "label": "体験会を予約", "href": "/experience" }
+      "cta": {
+        "label": "購入・相談する",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "体験会を予約",
+        "href": "/experience"
+      }
     },
     "creative": {
       "title": "あなたは「映像・クリエイティブ」タイプ",
@@ -21,8 +27,14 @@
         "デュアルオペレーターが必要な撮影には Inspire 3 が最適です。",
         "ND フィルターや Log 撮影でグレーディング耐性を高めましょう。"
       ],
-      "cta": { "label": "撮影プランを相談", "href": "/contact" },
-      "secondaryCta": { "label": "機種比較 PDF を入手", "href": "/download/creative.pdf" }
+      "cta": {
+        "label": "撮影プランを相談",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "機種比較 PDF を入手",
+        "href": "/download/creative.pdf"
+      }
     },
     "inspection": {
       "title": "あなたは「点検」タイプ",
@@ -32,8 +44,14 @@
         "赤外線解析のワークフローを整備すると導入効果が高まります。",
         "点検レポート連携には API／クラウドサービスも併せて検討しましょう。"
       ],
-      "cta": { "label": "要件ヒアリングを申し込む", "href": "/contact" },
-      "secondaryCta": { "label": "点検ソリューションを見る", "href": "/solutions/inspection" }
+      "cta": {
+        "label": "要件ヒアリングを申し込む",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "点検ソリューションを見る",
+        "href": "/solutions/inspection"
+      }
     },
     "survey": {
       "title": "あなたは「測量」タイプ",
@@ -43,8 +61,14 @@
         "RTK 基準局や補正サービスの契約を早めに検討しましょう。",
         "処理ソフトとワークフローを事前に整備すると精度が安定します。"
       ],
-      "cta": { "label": "測量導入を相談", "href": "/contact" },
-      "secondaryCta": { "label": "デモフライトを予約", "href": "/experience" }
+      "cta": {
+        "label": "測量導入を相談",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "デモフライトを予約",
+        "href": "/experience"
+      }
     },
     "agri": {
       "title": "あなたは「農業」タイプ",
@@ -54,8 +78,14 @@
         "圃場マップ作成と営農支援サービスの連携を確認しましょう。",
         "散布運用では点検・清掃スケジュールと資格要件を事前にチェック。"
       ],
-      "cta": { "label": "営農向け相談をする", "href": "/contact" },
-      "secondaryCta": { "label": "導入補助金を確認", "href": "/download/subsidy.pdf" }
+      "cta": {
+        "label": "営農向け相談をする",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "導入補助金を確認",
+        "href": "/download/subsidy.pdf"
+      }
     },
     "logi": {
       "title": "あなたは「物流」タイプ",
@@ -65,8 +95,14 @@
         "運搬ルートの安全確保と関係各所との調整が重要です。",
         "重量物輸送は法規制と保険体制の整備を忘れずに。"
       ],
-      "cta": { "label": "運搬ソリューションを相談", "href": "/contact" },
-      "secondaryCta": { "label": "デモ運航を申し込む", "href": "/experience" }
+      "cta": {
+        "label": "運搬ソリューションを相談",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "デモ運航を申し込む",
+        "href": "/experience"
+      }
     },
     "disaster": {
       "title": "あなたは「防災・災害対応」タイプ",
@@ -76,8 +112,14 @@
         "自治体・防災計画と連動した運用体制を整備しましょう。",
         "サーマル/ズームの訓練と夜間飛行の許可取得を事前に進めておくと安心です。"
       ],
-      "cta": { "label": "災害対策の導入を相談", "href": "/contact" },
-      "secondaryCta": { "label": "防災ソリューション資料を請求", "href": "/download/disaster.pdf" }
+      "cta": {
+        "label": "災害対策の導入を相談",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "防災ソリューション資料を請求",
+        "href": "/download/disaster.pdf"
+      }
     },
     "auto": {
       "title": "あなたは「警戒・自動運用」タイプ",
@@ -87,8 +129,14 @@
         "通信インフラと電源の冗長化でダウンタイムを防止しましょう。",
         "警備・自治体用途では条例や住民説明の準備も重要です。"
       ],
-      "cta": { "label": "自動運用の要件整理", "href": "/contact" },
-      "secondaryCta": { "label": "ソリューション資料を請求", "href": "/download/auto.pdf" }
+      "cta": {
+        "label": "自動運用の要件整理",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "ソリューション資料を請求",
+        "href": "/download/auto.pdf"
+      }
     },
     "dev": {
       "title": "あなたは「開発・研究」タイプ",
@@ -98,8 +146,14 @@
         "DJI Onboard SDK／Payload SDK の対応状況を事前に確認しましょう。",
         "研究計画に合わせてデータ取得と解析基盤を連携させておくと効率的です。"
       ],
-      "cta": { "label": "技術相談を申し込む", "href": "/contact" },
-      "secondaryCta": { "label": "SDK ドキュメントを見る", "href": "https://developer.dji.com/" }
+      "cta": {
+        "label": "技術相談を申し込む",
+        "href": "/contact"
+      },
+      "secondaryCta": {
+        "label": "SDK ドキュメントを見る",
+        "href": "https://developer.dji.com/"
+      }
     }
   }
 }
